@@ -22,8 +22,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://trrpsl.fortiddns.com/AutoUpdate/PSOilBill/</UpdateUrl>
-    <ApplicationRevision>67</ApplicationRevision>
+    <UpdateUrl>http://10.104.1.9/AutoUpdate/PSOilBill/</UpdateUrl>
+    <ApplicationRevision>74</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

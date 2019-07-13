@@ -289,10 +289,11 @@ namespace PSOilBill
                 string lvField8 = DT.Rows[i]["O_CarNum"].ToString(); //ทะเบียนรถ
                 string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
                 string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
+                string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString(""); //ราคาน้ำมันต่อลิตร
 
                 //เพิ่ม
-                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10) ";
-                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "')";
+                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Field11) ";
+                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvField11 + "')";
                 lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
 
                 progressBar1.Value += 1;
