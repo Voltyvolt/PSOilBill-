@@ -567,8 +567,10 @@ namespace PSOilBill
             string lvYear = "61/62";
             string lvEmpID = txtEmpID.Text;
             string lvEmpName = txtEmpName.Text;
+            string lvType = "";
 
             #region เก็บค่า
+
             if (tabPageAll.SelectedIndex == 0)
             {
                 lvQuota = txtQuota.Text;
@@ -584,6 +586,7 @@ namespace PSOilBill
                 lvAmountL = txtAmount.Text;
                 lvOilType = txtOil.Text;
                 lvOilPrice = txtlitter.Text;
+                lvType = txtType.Text;
             }
             else if (tabPageAll.SelectedIndex == 1)
             {
@@ -600,6 +603,7 @@ namespace PSOilBill
                 lvAmountL = txtAmount1.Text;
                 lvOilType = txtOil1.Text;
                 lvOilPrice = txtlitter1.Text;
+                lvType = txtType1.Text;
             }
             else if(tabPageAll.SelectedIndex == 2)
             {
@@ -616,6 +620,7 @@ namespace PSOilBill
                 lvAmountL = txtAmount2.Text;
                 lvOilType = txtOil2.Text;
                 lvOilPrice = txtlitter2.Text;
+                lvType = txtType2.Text;
             }
             else if (tabPageAll.SelectedIndex == 3)
             {
@@ -632,6 +637,7 @@ namespace PSOilBill
                 lvQ = txtQ3.Text;
                 lvOilType = txtOil3.Text;
                 lvOilPrice = txtlitter3.Text;
+                lvType = txtType3.Text;
             }
             else if (tabPageAll.SelectedIndex == 4)
             {
@@ -648,6 +654,7 @@ namespace PSOilBill
                 lvQ = txtQ4.Text;
                 lvOilType = txtOil4.Text;
                 lvOilPrice = txtlitter4.Text;
+                lvType = txtType4.Text;
             }
             else if (tabPageAll.SelectedIndex == 5)
             {
@@ -664,6 +671,7 @@ namespace PSOilBill
                 lvQ = txtQ5.Text;
                 lvOilType = txtOil5.Text;
                 lvOilPrice = txtlitter5.Text;
+                lvType = txtType5.Text;
             }
             else if (tabPageAll.SelectedIndex == 6)
             {
@@ -682,6 +690,7 @@ namespace PSOilBill
                 lvOilType = Gstr.fncGetDataCode(txtOil6.Text, ":");
                 lvOilPrice = txtLitter6.Text;
                 lvEmpID = txtEmpID.Text;
+                lvType = txtType6.Text;
             }
             #endregion  
 
@@ -818,8 +827,8 @@ namespace PSOilBill
 
                 //เพิ่ม
                 //HD
-                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName) ";
-                lvSQL += "Values ('"+ lvDocS +"', '"+ lvDocNo +"', '"+ lvDate +"', '"+ lvName +"', '"+ lvQuota +"', '"+ lvCarNum +"', '"+ lvFront +"', '"+ lvCaneS +"', '"+ lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "')";
+                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName,O_Type) ";
+                lvSQL += "Values ('"+ lvDocS +"', '"+ lvDocNo +"', '"+ lvDate +"', '"+ lvName +"', '"+ lvQuota +"', '"+ lvCarNum +"', '"+ lvFront +"', '"+ lvCaneS +"', '"+ lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "')";
                 lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
                 //DT
                 double lvAmount = Gstr.fncToDouble(lvAmountL);
@@ -859,7 +868,7 @@ namespace PSOilBill
                 lvSQL += "O_Name = '" + lvName + "', O_Quota = '" + lvQuota + "', O_CarNum = '" + lvCarNum + "', O_CarFront = '" + lvFront + "', O_CaneS = '" + lvCaneS + "', O_CaneNo = '" + lvCaneNo + "', ";
                 lvSQL += "O_MeterS = '"+ lvMeterS + "', O_MeterE = '" + lvMeterE + "', O_QNo = '" + lvQ + "', ";
                 lvSQL += "O_Dept = '" + lvDept + "', O_Issue = '" + lvIssue + "', O_Objective = '" + lvObjective + "', ";
-                lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '"+ lvEmpID + "', O_EmpName = '" + lvEmpName + "' ";
+                lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '"+ lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "' ";
                 lvSQL += "Where O_DocNo = '"+ lvDocNo +"' "; //O_DocS = '"+ lvDocS +"' And 
                 string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 

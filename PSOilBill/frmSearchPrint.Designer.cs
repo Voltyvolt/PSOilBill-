@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchPrint));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl125 = new DevExpress.XtraEditors.LabelControl();
             this.txtCarNum = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
@@ -130,6 +131,7 @@
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNum.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
@@ -149,10 +151,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtType);
+            this.groupBox1.Controls.Add(this.labelControl125);
             this.groupBox1.Controls.Add(this.txtCarNum);
             this.groupBox1.Controls.Add(this.labelControl11);
             this.groupBox1.Controls.Add(this.labelControl10);
@@ -185,6 +190,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ค้นหา";
+            // 
+            // labelControl125
+            // 
+            this.labelControl125.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelControl125.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl125.Appearance.Options.UseFont = true;
+            this.labelControl125.Location = new System.Drawing.Point(679, 202);
+            this.labelControl125.Name = "labelControl125";
+            this.labelControl125.Size = new System.Drawing.Size(77, 24);
+            this.labelControl125.TabIndex = 95;
+            this.labelControl125.Text = "ประเภท :";
             // 
             // txtCarNum
             // 
@@ -1315,6 +1331,26 @@
             this.progressBar1.Size = new System.Drawing.Size(1008, 39);
             this.progressBar1.TabIndex = 6;
             // 
+            // txtType
+            // 
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType.Location = new System.Drawing.Point(762, 199);
+            this.txtType.Name = "txtType";
+            this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType.Properties.Appearance.Options.UseFont = true;
+            this.txtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType.Size = new System.Drawing.Size(174, 30);
+            this.txtType.TabIndex = 96;
+            // 
             // frmSearchPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1354,6 +1390,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1461,5 +1498,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private DevExpress.XtraEditors.TextEdit txtCarNum;
         private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl labelControl125;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType;
     }
 }

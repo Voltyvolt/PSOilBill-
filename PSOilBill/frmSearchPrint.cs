@@ -43,7 +43,7 @@ namespace PSOilBill
 
             //Get Data
             DataTable DT = new DataTable();
-            lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID ";
+            lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID,O_Type ";
             lvSQL += "from Cane_OilBillHD ";
             lvSQL += "inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo ";
             lvSQL += "where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' ";
@@ -101,6 +101,11 @@ namespace PSOilBill
             if (txtCarNum.Text != "")
             {
                 lvSQL += "And Cane_OilBillHD.O_CarNum like '%" + txtCarNum.Text + "%' ";
+            }
+
+            if(txtType.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_Type = '" + txtType.Text + "'";
             }
 
             lvSQL += "Order by Cane_OilBillHD.O_DocNo ";

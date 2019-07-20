@@ -51,8 +51,8 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDocS = new DevExpress.XtraEditors.TextEdit();
             this.cmbDocNo = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtDocS = new DevExpress.XtraEditors.TextEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -317,12 +317,26 @@
             this.ใบเสรจToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.พิมพ์ต่อเนื่องToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.รายงานสรปToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelControl116 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl118 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl120 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl122 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl123 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl124 = new DevExpress.XtraEditors.LabelControl();
+            this.txtType6 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl125 = new DevExpress.XtraEditors.LabelControl();
+            this.txtType5 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtType4 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtType3 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtType2 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtType1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDocNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -447,6 +461,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLitter6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFront6.Properties)).BeginInit();
             this.CPrint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -616,21 +637,6 @@
             this.labelControl1.Text = "เล่มที่ : ";
             this.labelControl1.Visible = false;
             // 
-            // txtDocS
-            // 
-            this.txtDocS.Enabled = false;
-            this.txtDocS.Location = new System.Drawing.Point(342, -36);
-            this.txtDocS.Name = "txtDocS";
-            this.txtDocS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDocS.Properties.Appearance.Options.UseFont = true;
-            this.txtDocS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDocS.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDocS.Size = new System.Drawing.Size(227, 30);
-            this.txtDocS.TabIndex = 0;
-            this.txtDocS.Visible = false;
-            this.txtDocS.EditValueChanged += new System.EventHandler(this.txtDocS_EditValueChanged);
-            this.txtDocS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDocS_KeyDown);
-            // 
             // cmbDocNo
             // 
             this.cmbDocNo.Location = new System.Drawing.Point(78, 23);
@@ -646,6 +652,21 @@
             this.cmbDocNo.SelectedIndexChanged += new System.EventHandler(this.cmbDocNo_SelectedIndexChanged);
             this.cmbDocNo.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.cmbDocNo_QueryPopUp);
             this.cmbDocNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDocNo_KeyDown);
+            // 
+            // txtDocS
+            // 
+            this.txtDocS.Enabled = false;
+            this.txtDocS.Location = new System.Drawing.Point(342, -36);
+            this.txtDocS.Name = "txtDocS";
+            this.txtDocS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDocS.Properties.Appearance.Options.UseFont = true;
+            this.txtDocS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
+            this.txtDocS.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtDocS.Size = new System.Drawing.Size(227, 30);
+            this.txtDocS.TabIndex = 0;
+            this.txtDocS.Visible = false;
+            this.txtDocS.EditValueChanged += new System.EventHandler(this.txtDocS_EditValueChanged);
+            this.txtDocS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDocS_KeyDown);
             // 
             // panel1
             // 
@@ -804,7 +825,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(225, 105);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 81);
+            this.groupBox5.Size = new System.Drawing.Size(811, 53);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -945,6 +966,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.txtType);
+            this.tabPage1.Controls.Add(this.labelControl116);
             this.tabPage1.Controls.Add(this.txtQ);
             this.tabPage1.Controls.Add(this.labelControl112);
             this.tabPage1.Controls.Add(this.btnBill1);
@@ -1390,6 +1413,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage3.Controls.Add(this.txtType1);
+            this.tabPage3.Controls.Add(this.labelControl118);
             this.tabPage3.Controls.Add(this.txtQ1);
             this.tabPage3.Controls.Add(this.labelControl113);
             this.tabPage3.Controls.Add(this.btnBill2);
@@ -1830,6 +1855,8 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage4.Controls.Add(this.txtType2);
+            this.tabPage4.Controls.Add(this.labelControl120);
             this.tabPage4.Controls.Add(this.txtQ2);
             this.tabPage4.Controls.Add(this.labelControl115);
             this.tabPage4.Controls.Add(this.btnBill3);
@@ -2270,6 +2297,8 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage5.Controls.Add(this.txtType3);
+            this.tabPage5.Controls.Add(this.labelControl122);
             this.tabPage5.Controls.Add(this.txtQ3);
             this.tabPage5.Controls.Add(this.labelControl117);
             this.tabPage5.Controls.Add(this.btnBill4);
@@ -2339,7 +2368,7 @@
             // btnBill4
             // 
             this.btnBill4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBill4.ImageOptions.Image")));
-            this.btnBill4.Location = new System.Drawing.Point(317, 21);
+            this.btnBill4.Location = new System.Drawing.Point(317, 40);
             this.btnBill4.Name = "btnBill4";
             this.btnBill4.Size = new System.Drawing.Size(31, 30);
             this.btnBill4.TabIndex = 85;
@@ -2710,6 +2739,8 @@
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage6.Controls.Add(this.txtType4);
+            this.tabPage6.Controls.Add(this.labelControl123);
             this.tabPage6.Controls.Add(this.txtQ4);
             this.tabPage6.Controls.Add(this.labelControl119);
             this.tabPage6.Controls.Add(this.btnBill5);
@@ -2779,7 +2810,7 @@
             // btnBill5
             // 
             this.btnBill5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBill5.ImageOptions.Image")));
-            this.btnBill5.Location = new System.Drawing.Point(320, 21);
+            this.btnBill5.Location = new System.Drawing.Point(320, 43);
             this.btnBill5.Name = "btnBill5";
             this.btnBill5.Size = new System.Drawing.Size(31, 30);
             this.btnBill5.TabIndex = 85;
@@ -3150,6 +3181,8 @@
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage7.Controls.Add(this.txtType5);
+            this.tabPage7.Controls.Add(this.labelControl124);
             this.tabPage7.Controls.Add(this.txtQ5);
             this.tabPage7.Controls.Add(this.labelControl121);
             this.tabPage7.Controls.Add(this.btnBill6);
@@ -3219,7 +3252,7 @@
             // btnBill6
             // 
             this.btnBill6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBill6.ImageOptions.Image")));
-            this.btnBill6.Location = new System.Drawing.Point(321, 20);
+            this.btnBill6.Location = new System.Drawing.Point(320, 39);
             this.btnBill6.Name = "btnBill6";
             this.btnBill6.Size = new System.Drawing.Size(31, 30);
             this.btnBill6.TabIndex = 85;
@@ -3590,6 +3623,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.txtType6);
+            this.tabPage2.Controls.Add(this.labelControl125);
             this.tabPage2.Controls.Add(this.txtEmpName);
             this.tabPage2.Controls.Add(this.labelControl111);
             this.tabPage2.Controls.Add(this.txtEmpID);
@@ -4141,6 +4176,223 @@
             this.รายงานสรปToolStripMenuItem.Text = "รายงานสรุป (F6)";
             this.รายงานสรปToolStripMenuItem.Click += new System.EventHandler(this.รายงานสรปToolStripMenuItem_Click);
             // 
+            // labelControl116
+            // 
+            this.labelControl116.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl116.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl116.Appearance.Options.UseFont = true;
+            this.labelControl116.Location = new System.Drawing.Point(92, 400);
+            this.labelControl116.Name = "labelControl116";
+            this.labelControl116.Size = new System.Drawing.Size(77, 24);
+            this.labelControl116.TabIndex = 59;
+            this.labelControl116.Text = "ประเภท :";
+            // 
+            // labelControl118
+            // 
+            this.labelControl118.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl118.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl118.Appearance.Options.UseFont = true;
+            this.labelControl118.Location = new System.Drawing.Point(92, 398);
+            this.labelControl118.Name = "labelControl118";
+            this.labelControl118.Size = new System.Drawing.Size(77, 24);
+            this.labelControl118.TabIndex = 88;
+            this.labelControl118.Text = "ประเภท :";
+            // 
+            // labelControl120
+            // 
+            this.labelControl120.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl120.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl120.Appearance.Options.UseFont = true;
+            this.labelControl120.Location = new System.Drawing.Point(92, 399);
+            this.labelControl120.Name = "labelControl120";
+            this.labelControl120.Size = new System.Drawing.Size(77, 24);
+            this.labelControl120.TabIndex = 90;
+            this.labelControl120.Text = "ประเภท :";
+            // 
+            // labelControl122
+            // 
+            this.labelControl122.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl122.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl122.Appearance.Options.UseFont = true;
+            this.labelControl122.Location = new System.Drawing.Point(91, 413);
+            this.labelControl122.Name = "labelControl122";
+            this.labelControl122.Size = new System.Drawing.Size(77, 24);
+            this.labelControl122.TabIndex = 90;
+            this.labelControl122.Text = "ประเภท :";
+            // 
+            // labelControl123
+            // 
+            this.labelControl123.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl123.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl123.Appearance.Options.UseFont = true;
+            this.labelControl123.Location = new System.Drawing.Point(94, 414);
+            this.labelControl123.Name = "labelControl123";
+            this.labelControl123.Size = new System.Drawing.Size(77, 24);
+            this.labelControl123.TabIndex = 90;
+            this.labelControl123.Text = "ประเภท :";
+            // 
+            // labelControl124
+            // 
+            this.labelControl124.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl124.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl124.Appearance.Options.UseFont = true;
+            this.labelControl124.Location = new System.Drawing.Point(95, 413);
+            this.labelControl124.Name = "labelControl124";
+            this.labelControl124.Size = new System.Drawing.Size(77, 24);
+            this.labelControl124.TabIndex = 92;
+            this.labelControl124.Text = "ประเภท :";
+            // 
+            // txtType6
+            // 
+            this.txtType6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType6.Location = new System.Drawing.Point(167, 413);
+            this.txtType6.Name = "txtType6";
+            this.txtType6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType6.Properties.Appearance.Options.UseFont = true;
+            this.txtType6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType6.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType6.Size = new System.Drawing.Size(174, 30);
+            this.txtType6.TabIndex = 94;
+            // 
+            // labelControl125
+            // 
+            this.labelControl125.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl125.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl125.Appearance.Options.UseFont = true;
+            this.labelControl125.Location = new System.Drawing.Point(84, 419);
+            this.labelControl125.Name = "labelControl125";
+            this.labelControl125.Size = new System.Drawing.Size(77, 24);
+            this.labelControl125.TabIndex = 93;
+            this.labelControl125.Text = "ประเภท :";
+            // 
+            // txtType5
+            // 
+            this.txtType5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType5.Location = new System.Drawing.Point(178, 407);
+            this.txtType5.Name = "txtType5";
+            this.txtType5.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType5.Properties.Appearance.Options.UseFont = true;
+            this.txtType5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType5.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType5.Size = new System.Drawing.Size(174, 30);
+            this.txtType5.TabIndex = 95;
+            // 
+            // txtType4
+            // 
+            this.txtType4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType4.Location = new System.Drawing.Point(177, 408);
+            this.txtType4.Name = "txtType4";
+            this.txtType4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType4.Properties.Appearance.Options.UseFont = true;
+            this.txtType4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType4.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType4.Size = new System.Drawing.Size(174, 30);
+            this.txtType4.TabIndex = 95;
+            // 
+            // txtType3
+            // 
+            this.txtType3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType3.Location = new System.Drawing.Point(174, 407);
+            this.txtType3.Name = "txtType3";
+            this.txtType3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType3.Properties.Appearance.Options.UseFont = true;
+            this.txtType3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType3.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType3.Size = new System.Drawing.Size(174, 30);
+            this.txtType3.TabIndex = 95;
+            // 
+            // txtType2
+            // 
+            this.txtType2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType2.Location = new System.Drawing.Point(175, 393);
+            this.txtType2.Name = "txtType2";
+            this.txtType2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType2.Properties.Appearance.Options.UseFont = true;
+            this.txtType2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType2.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType2.Size = new System.Drawing.Size(174, 30);
+            this.txtType2.TabIndex = 95;
+            // 
+            // txtType1
+            // 
+            this.txtType1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType1.Location = new System.Drawing.Point(175, 392);
+            this.txtType1.Name = "txtType1";
+            this.txtType1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType1.Properties.Appearance.Options.UseFont = true;
+            this.txtType1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType1.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType1.Size = new System.Drawing.Size(174, 30);
+            this.txtType1.TabIndex = 95;
+            // 
+            // txtType
+            // 
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType.Location = new System.Drawing.Point(175, 394);
+            this.txtType.Name = "txtType";
+            this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType.Properties.Appearance.Options.UseFont = true;
+            this.txtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType.Size = new System.Drawing.Size(174, 30);
+            this.txtType.TabIndex = 95;
+            // 
             // frmBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4163,8 +4415,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDocNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -4297,6 +4549,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLitter6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFront6.Properties)).EndInit();
             this.CPrint.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtType6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4581,6 +4840,20 @@
         private DevExpress.XtraEditors.LabelControl labelControl111;
         private DevExpress.XtraEditors.TextEdit txtEmpID;
         private DevExpress.XtraEditors.LabelControl labelControl114;
+        private DevExpress.XtraEditors.LabelControl labelControl116;
+        private DevExpress.XtraEditors.LabelControl labelControl118;
+        private DevExpress.XtraEditors.LabelControl labelControl120;
+        private DevExpress.XtraEditors.LabelControl labelControl122;
+        private DevExpress.XtraEditors.LabelControl labelControl123;
+        private DevExpress.XtraEditors.LabelControl labelControl124;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType6;
+        private DevExpress.XtraEditors.LabelControl labelControl125;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType1;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType2;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType3;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType4;
+        private DevExpress.XtraEditors.ComboBoxEdit txtType5;
     }
 }
 
