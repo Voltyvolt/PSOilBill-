@@ -261,7 +261,7 @@ namespace PSOilBill
                 lvSQL += "And Cane_OilBillHD.O_CarNum like '%" + txtCarNum.Text + "%' ";
             }
 
-            lvSQL += "Order by Cane_OilBillHD.O_DocNo ";
+            lvSQL += "Order by Cane_OilBillHD.O_CarFront , Cane_OilBillHD.O_DocNo ";
 
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
