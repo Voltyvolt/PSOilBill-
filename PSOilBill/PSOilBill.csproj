@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://10.104.1.9/AutoUpdate/PSOilBill/</UpdateUrl>
-    <ApplicationRevision>78</ApplicationRevision>
+    <ApplicationRevision>79</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -161,6 +161,12 @@
     <Compile Include="frmBill.Designer.cs">
       <DependentUpon>frmBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="newrptX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="newrptX.Designer.cs">
+      <DependentUpon>newrptX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rptBill.cs">
@@ -211,6 +217,9 @@
     <EmbeddedResource Include="frmSearchPrint.resx">
       <DependentUpon>frmSearchPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="newrptX.resx">
+      <DependentUpon>newrptX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -245,7 +254,9 @@
     <None Include="PSOilBill_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="2017-11-17_13-28-33.ico" />

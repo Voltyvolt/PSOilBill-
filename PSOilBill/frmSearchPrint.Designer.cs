@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchPrint));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl125 = new DevExpress.XtraEditors.LabelControl();
             this.txtCarNum = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -131,8 +132,8 @@
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNum.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -151,7 +152,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -190,6 +190,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ค้นหา";
+            // 
+            // txtType
+            // 
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtType.Location = new System.Drawing.Point(762, 199);
+            this.txtType.Name = "txtType";
+            this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtType.Properties.Appearance.Options.UseFont = true;
+            this.txtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtType.Properties.Items.AddRange(new object[] {
+            "รถบริษัท",
+            "รถเช่า",
+            "รับเหมา",
+            "รถชาวไร่",
+            "รถน้ำตาล",
+            "ใช้ในตัวโรง",
+            "โรงในเครือ"});
+            this.txtType.Size = new System.Drawing.Size(174, 30);
+            this.txtType.TabIndex = 96;
             // 
             // labelControl125
             // 
@@ -1331,26 +1351,6 @@
             this.progressBar1.Size = new System.Drawing.Size(1008, 39);
             this.progressBar1.TabIndex = 6;
             // 
-            // txtType
-            // 
-            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(762, 199);
-            this.txtType.Name = "txtType";
-            this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtType.Properties.Appearance.Options.UseFont = true;
-            this.txtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtType.Properties.Items.AddRange(new object[] {
-            "รถบริษัท",
-            "รถเช่า",
-            "รับเหมา",
-            "รถชาวไร่",
-            "รถน้ำตาล",
-            "ใช้ในตัวโรง",
-            "โรงในเครือ"});
-            this.txtType.Size = new System.Drawing.Size(174, 30);
-            this.txtType.TabIndex = 96;
-            // 
             // frmSearchPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1372,6 +1372,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSearchPrint_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNum.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -1390,7 +1391,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

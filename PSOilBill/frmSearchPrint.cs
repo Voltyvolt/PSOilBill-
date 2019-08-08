@@ -26,7 +26,8 @@ namespace PSOilBill
 
             if (cmbType.Text == "บิลรถโรงงาน")
             {
-                fncReportPrint1();
+                //fncReportPrint1();
+                fncReportPrint2();
             }
             else
             {
@@ -312,6 +313,134 @@ namespace PSOilBill
 
             //Refresh รายงาน
             rptReport1 Report = new rptReport1();
+            Report.CreateDocument();
+            documentViewer1.DocumentSource = Report;
+        }
+
+        private void fncReportPrint2()
+        {
+            //ลบข้อมูล
+            string lvSQL = "Delete From SysTemp";
+            string lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
+
+            //Get Data
+            DataTable DT = new DataTable();
+            lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID,O_CarFront,O_MeterS,O_MeterE,Cane_OilBillHD.O_Remark,O_EmpName,O_PdIn,O_PdOut,O_Type,O_Budjet,O_Asset,O_CarnumS6,O_CarnumE6 ";
+            lvSQL += "from Cane_OilBillHD ";
+            lvSQL += "inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo ";
+            lvSQL += "where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' ";
+
+            if (txtDateS.Text != "")
+            {
+                string lvDateS = Gstr.fncChangeTDate(txtDateS.Text);
+                string lvDateE = Gstr.fncChangeTDate(txtDateE.Text);
+                if (lvDateE == "") lvDateE = lvDateS;
+
+                lvSQL += "And O_Date >= '" + lvDateS + "' And O_Date <= '" + lvDateE + "' ";
+            }
+
+            if (txtQuotaS.Text != "")
+            {
+                string lvQS = txtQuotaS.Text;
+                string lvQE = txtQuotaE.Text;
+                if (lvQE == "") lvQE = lvQS;
+
+                lvSQL += "And O_Quota >= '" + lvQS + "' And O_Quota <= '" + lvQE + "' ";
+            }
+
+            if (txtDocS.Text != "")
+            {
+                string lvDocS = txtDocS.Text;
+                string lvDocE = txtDocE.Text;
+                if (lvDocE == "") lvDocE = lvDocS;
+
+                lvSQL += "And Cane_OilBillHD.O_DocNo >= '" + lvDocS + "' And Cane_OilBillHD.O_DocNo <= '" + lvDocE + "' ";
+            }
+
+            //เฉพาะบิลโรงงาน
+            lvSQL += "And Cane_OilBillHD.O_DocNo like 'C-%' ";
+
+            if (txtYear.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_Year = '" + txtYear.Text + "' ";
+            }
+
+            if (txtDue.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_Due = '" + txtDue.Text + "' ";
+            }
+
+            if (txtCarNum.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_CarNum like '%" + txtCarNum.Text + "%' ";
+            }
+
+            if(txtType.Text != "")
+            {
+                lvSQL += "And  Cane_OilBillHD.O_Type = '"+ txtType.Text +"' ";
+            }
+
+            lvSQL += "Order by Cane_OilBillHD.O_DocNo ";
+
+            DT = GsysSQL.fncGetQueryData(lvSQL, DT);
+
+            int lvNumRow = DT.Rows.Count;
+
+            progressBar1.Maximum = lvNumRow;
+            progressBar1.Value = 0;
+            //progressBar1.Visible = true;
+
+            for (int i = 0; i < lvNumRow; i++)
+            {
+                //ตัวแปร
+                string lvDate = txtDateS.Text + " - " + txtDateE.Text;
+                if (txtDateS.Text == txtDateE.Text)
+                    lvDate = txtDateS.Text;
+
+                string lvField1 = lvDate; //วันที่
+                string lvField2 = DT.Rows[i]["O_CarFront"].ToString(); //ตู้
+                string lvField3 = (i + 1).ToString(); //ลำดับ
+                string lvField4 = ""; //นามผู้รับ
+
+                if (DT.Rows[i]["O_EmpID"].ToString() != "")
+                    lvField4 = GsysSQL.fncFindEmpFullName(DT.Rows[i]["O_EmpID"].ToString());
+                else
+                    lvField4 = DT.Rows[i]["O_EmpName"].ToString();
+
+                string lvField5 = Gstr.fncToInt(DT.Rows[i]["O_MeterS"].ToString()).ToString(); //มิเตอร์ ก่อน
+                string lvField6 = Gstr.fncToInt(DT.Rows[i]["O_Litter"].ToString()).ToString("#,###"); //จำนวนลิตร
+                string lvField7 = Gstr.fncToInt(DT.Rows[i]["O_MeterE"].ToString()).ToString(); //มิเตอร์ หลัง
+                string lvField8 = DT.Rows[i]["O_CarNum"].ToString(); //ทะเบียนรถ
+                string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
+                string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
+                string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString(""); //ราคาน้ำมันต่อลิตร
+                string lvField12 = DT.Rows[i]["O_PdIN"].ToString(); //ใบรับ
+                string lvField13 = DT.Rows[i]["O_PdOut"].ToString(); //ใบสั่งจ่าย
+                string lvField14 = DT.Rows[i]["O_Budjet"].ToString(); //รหัสงบประมาณ
+                string lvField15 = DT.Rows[i]["O_Asset"].ToString(); //รหัสทรัพย์สิน
+                string lvField16 = DT.Rows[i]["O_Dept"].ToString(); //รหัสหน่วยงาน
+                string lvField17 = DT.Rows[i]["O_Name"].ToString(); //ชื่อหน่วยงาน
+                string lvField18 = DT.Rows[i]["O_CarnumS6"].ToString(); //อักษรรถ
+                string lvField19 = DT.Rows[i]["O_CarnumE6"].ToString(); //ทะเบียนรถ
+                string lvField20 = DT.Rows[i]["O_Total"].ToString(); //ราคารวม
+                string lvField21 = DT.Rows[i]["O_Type"].ToString(); //ประเภทรถ
+
+                //เพิ่ม
+                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21) ";
+                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvField11 + "', '" + lvField12 + "', '" + lvField13 + "', '" + lvField14 + "', '" + lvField15 + "', '" + lvField16 + "', '" + lvField17 + "', '" + lvField18 + "', '" + lvField19 + "', '" + lvField20 + "', '" + lvField21 + "')";
+                lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
+
+                progressBar1.Value += 1;
+                Application.DoEvents();
+            }
+
+            progressBar1.Value = 0;
+
+            this.Cursor = Cursors.Default;
+            btnSearch.Enabled = true;
+
+            //Refresh รายงาน
+            newrptX Report = new newrptX();
             Report.CreateDocument();
             documentViewer1.DocumentSource = Report;
         }

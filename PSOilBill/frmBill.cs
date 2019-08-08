@@ -35,6 +35,7 @@ namespace PSOilBill
             
             pvMode = "";
             ShowBtn();
+            txtType.Visible = false;
 
             this.WindowState = FormWindowState.Maximized;
         }
@@ -536,6 +537,7 @@ namespace PSOilBill
                     cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
             }
 
+
             //คำนวนยอดใหม่
             FncKeyDownLitAmountNoSave(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
 
@@ -568,6 +570,10 @@ namespace PSOilBill
             string lvEmpID = txtEmpID.Text;
             string lvEmpName = txtEmpName.Text;
             string lvType = "";
+            string lvproductIn = "";
+            string lvproductOut = "";
+            string lvCarnumS6 = "";
+            string lvCarnumE6 = "";
 
             #region เก็บค่า
 
@@ -603,7 +609,7 @@ namespace PSOilBill
                 lvAmountL = txtAmount1.Text;
                 lvOilType = txtOil1.Text;
                 lvOilPrice = txtlitter1.Text;
-                lvType = txtType1.Text;
+                //lvType = txtType1.Text;
             }
             else if(tabPageAll.SelectedIndex == 2)
             {
@@ -620,7 +626,7 @@ namespace PSOilBill
                 lvAmountL = txtAmount2.Text;
                 lvOilType = txtOil2.Text;
                 lvOilPrice = txtlitter2.Text;
-                lvType = txtType2.Text;
+                //lvType = txtType2.Text;
             }
             else if (tabPageAll.SelectedIndex == 3)
             {
@@ -637,7 +643,7 @@ namespace PSOilBill
                 lvQ = txtQ3.Text;
                 lvOilType = txtOil3.Text;
                 lvOilPrice = txtlitter3.Text;
-                lvType = txtType3.Text;
+                //lvType = txtType3.Text;
             }
             else if (tabPageAll.SelectedIndex == 4)
             {
@@ -654,7 +660,7 @@ namespace PSOilBill
                 lvQ = txtQ4.Text;
                 lvOilType = txtOil4.Text;
                 lvOilPrice = txtlitter4.Text;
-                lvType = txtType4.Text;
+                //lvType = txtType4.Text;
             }
             else if (tabPageAll.SelectedIndex == 5)
             {
@@ -671,7 +677,7 @@ namespace PSOilBill
                 lvQ = txtQ5.Text;
                 lvOilType = txtOil5.Text;
                 lvOilPrice = txtlitter5.Text;
-                lvType = txtType5.Text;
+                //lvType = txtType5.Text;
             }
             else if (tabPageAll.SelectedIndex == 6)
             {
@@ -690,7 +696,11 @@ namespace PSOilBill
                 lvOilType = Gstr.fncGetDataCode(txtOil6.Text, ":");
                 lvOilPrice = txtLitter6.Text;
                 lvEmpID = txtEmpID.Text;
-                lvType = txtType6.Text;
+                lvproductIn = txtPdIn.Text;
+                lvproductOut = txtPdOut.Text;
+                lvCarnumS6 = txtCarNumS6.Text;
+                lvCarnumE6 = txtCarNumE6.Text;
+                lvType = txtType.Text;
             }
             #endregion  
 
@@ -755,6 +765,13 @@ namespace PSOilBill
             if (lvChkBill != "" && tabPageAll.SelectedTab != tabPage2)//pvMode == "New" && 
             {
                 MessageBox.Show("เลขที่บิล " + lvCaneNo + " ซ้ำ กับเอกสารที่ " + lvChkBill + " กรุณาตรวจสอบใหม่อีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtType.Text == "")
+            {
+                MessageBox.Show("กรุณาเลือกประเภท", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtType.Focus();
                 return;
             }
 
@@ -827,8 +844,8 @@ namespace PSOilBill
 
                 //เพิ่ม
                 //HD
-                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName,O_Type) ";
-                lvSQL += "Values ('"+ lvDocS +"', '"+ lvDocNo +"', '"+ lvDate +"', '"+ lvName +"', '"+ lvQuota +"', '"+ lvCarNum +"', '"+ lvFront +"', '"+ lvCaneS +"', '"+ lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "')";
+                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName ,O_Type, O_PdIn, O_PdOut, O_CarnumS6, O_CarnumE6) ";
+                lvSQL += "Values ('"+ lvDocS +"', '"+ lvDocNo +"', '"+ lvDate +"', '"+ lvName +"', '"+ lvQuota +"', '"+ lvCarNum +"', '"+ lvFront +"', '"+ lvCaneS +"', '"+ lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "', '" + lvproductIn + "', '"+ lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "')";
                 lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
                 //DT
                 double lvAmount = Gstr.fncToDouble(lvAmountL);
@@ -868,7 +885,7 @@ namespace PSOilBill
                 lvSQL += "O_Name = '" + lvName + "', O_Quota = '" + lvQuota + "', O_CarNum = '" + lvCarNum + "', O_CarFront = '" + lvFront + "', O_CaneS = '" + lvCaneS + "', O_CaneNo = '" + lvCaneNo + "', ";
                 lvSQL += "O_MeterS = '"+ lvMeterS + "', O_MeterE = '" + lvMeterE + "', O_QNo = '" + lvQ + "', ";
                 lvSQL += "O_Dept = '" + lvDept + "', O_Issue = '" + lvIssue + "', O_Objective = '" + lvObjective + "', ";
-                lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '"+ lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "' ";
+                lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '"+ lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "', O_PdIn = '" + lvproductIn + "', O_PdOut = '" + lvproductOut + "' , O_CarnumS6 = '" + lvCarnumS6 + "' , O_CarnumE6 = '" + lvCarnumE6 + "' ";
                 lvSQL += "Where O_DocNo = '"+ lvDocNo +"' "; //O_DocS = '"+ lvDocS +"' And 
                 string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
@@ -1161,6 +1178,10 @@ namespace PSOilBill
                 txtRemark6.Text = "";
                 txtEmpID.Text = "";
                 txtEmpName.Text = "";
+                txtPdIn.Text = "";
+                txtPdOut.Text = "";
+                txtTotal6.Text = "";
+                txtType.Text = "";
 
                 if (lvMode == "")
                 {
@@ -1546,6 +1567,10 @@ namespace PSOilBill
                         txtEmpName.Text = GsysSQL.fncFindEmpFullName(DT.Rows[i]["O_EmpID"].ToString());
                     else
                         txtEmpName.Text = DT.Rows[i]["O_EmpName"].ToString();
+                    txtPdIn.Text = DT.Rows[i]["O_PdIn"].ToString();
+                    txtPdOut.Text = DT.Rows[i]["O_PdOut"].ToString();
+                    txtCarNumS6.Text = DT.Rows[i]["O_CarnumS6"].ToString();
+                    txtCarNumE6.Text = DT.Rows[i]["O_CarnumE6"].ToString();
 
                     rdIssue.Checked = true;
                     tabPageAll.SelectedIndex = 6;
@@ -1833,9 +1858,17 @@ namespace PSOilBill
 
             string lvFront = tFront.Text;
 
+            string lvproductIn = txtPdIn.Text;
+            string lvproductOut = txtPdOut.Text;
+
+            string lvCarnumS6 = txtCarNumS6.Text;
+            string lvCarnumE6 = txtCarNumE6.Text;
+
+            string lvTotal6 = txtTotal6.Text;
+
             //เพิ่ม
-            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Num4, Field10, Field11, Field12) ";//
-            lvSQL += "Values ('" + lvDocNo + "', '" + lvDay + "', '" + lvMonth + "', '" + lvYear + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvBillNo + "', '" + lvRemark + "', '" + lvLitter + "', '" + lvPricePer + "', '" + lvPrice + "', '" + lvPrice2 + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvFront + "') ";
+            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Num4, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17) ";//
+            lvSQL += "Values ('" + lvDocNo + "', '" + lvDay + "', '" + lvMonth + "', '" + lvYear + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvBillNo + "', '" + lvRemark + "', '" + lvLitter + "', '" + lvPricePer + "', '" + lvPrice + "', '" + lvPrice2 + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvFront + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvTotal6 + "') ";
             lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
             
         }
@@ -1861,6 +1894,11 @@ namespace PSOilBill
             string lvFieldHD9 = "";
             string lvFieldHD10 = "";
             string lvFieldHD11 = "";
+            string lvFieldHD12 = "";
+            string lvFieldHD13 = "";
+            string lvFieldHD14 = "";
+            string lvFieldHD15 = "";
+            string lvFieldHD16 = "";
 
             //Get Data
             DataTable DT = new DataTable();
@@ -1898,10 +1936,15 @@ namespace PSOilBill
                 lvFieldHD9 = DT.Rows[i]["O_CarFront"].ToString();
                 lvFieldHD10 = DT.Rows[i]["O_CaneS"].ToString();
                 lvFieldHD11 = DT.Rows[i]["O_CaneNo"].ToString();
+                lvFieldHD12 = DT.Rows[i]["O_PdIn"].ToString();
+                lvFieldHD13 = DT.Rows[i]["O_PdOut"].ToString();
+                lvFieldHD14 = DT.Rows[i]["O_CarnumS6"].ToString();
+                lvFieldHD15 = DT.Rows[i]["O_CarnumE6"].ToString();
+
 
                 //เพิ่ม HD
-                lvSQL = "Insert into SysTempOilBill (S_Fieid1, S_Fieid2, S_Fieid3, S_Fieid4, S_Fieid5, S_Fieid6, S_Fieid7, S_Fieid8, S_Fieid9, S_Fieid10, S_Fieid11) ";
-                lvSQL += "Values ('" + lvFieldHD1 + "', '" + lvFieldHD2 + "', '" + lvFieldHD3 + "', '" + lvFieldHD4 + "', '" + lvFieldHD5 + "', '" + lvFieldHD6 + "', '" + lvFieldHD7 + "', '" + lvFieldHD8 + "', '" + lvFieldHD9 + "', '" + lvFieldHD10 + "', '" + lvFieldHD11 + "')";
+                lvSQL = "Insert into SysTempOilBill (S_Fieid1, S_Fieid2, S_Fieid3, S_Fieid4, S_Fieid5, S_Fieid6, S_Fieid7, S_Fieid8, S_Fieid9, S_Fieid10, S_Fieid11, S_Field12, S_Field13, S_Field14, S_Field15) ";
+                lvSQL += "Values ('" + lvFieldHD1 + "', '" + lvFieldHD2 + "', '" + lvFieldHD3 + "', '" + lvFieldHD4 + "', '" + lvFieldHD5 + "', '" + lvFieldHD6 + "', '" + lvFieldHD7 + "', '" + lvFieldHD8 + "', '" + lvFieldHD9 + "', '" + lvFieldHD10 + "', '" + lvFieldHD11 + "', '" + lvFieldHD12 + "', '" + lvFieldHD13 + "', '" + lvFieldHD14 + "', '" + lvFieldHD15 + "')";
                 GsysSQL.fncExecuteQueryData(lvSQL);
 
                 //DT
@@ -2235,6 +2278,11 @@ namespace PSOilBill
                 txtDept.Focus();
             else
                 txtQuota.Focus();
+
+            if (rdIssue.Checked)
+                txtType.Visible = true;
+            else
+                txtType.Visible = false;
         }
 
         private void txtCarNum1_KeyDown(object sender, KeyEventArgs e)
