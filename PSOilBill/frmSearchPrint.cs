@@ -413,7 +413,7 @@ namespace PSOilBill
                 string lvField8 = DT.Rows[i]["O_CarNum"].ToString(); //ทะเบียนรถ
                 string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
                 string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
-                string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString(""); //ราคาน้ำมันต่อลิตร
+                string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString("#,###"); //ราคาน้ำมันต่อลิตร
                 string lvField12 = DT.Rows[i]["O_PdIN"].ToString(); //ใบรับ
                 string lvField13 = DT.Rows[i]["O_PdOut"].ToString(); //ใบสั่งจ่าย
                 string lvField14 = DT.Rows[i]["O_Budjet"].ToString(); //รหัสงบประมาณ
@@ -422,7 +422,7 @@ namespace PSOilBill
                 string lvField17 = DT.Rows[i]["O_Name"].ToString(); //ชื่อหน่วยงาน
                 string lvField18 = DT.Rows[i]["O_CarnumS6"].ToString(); //อักษรรถ
                 string lvField19 = DT.Rows[i]["O_CarnumE6"].ToString(); //ทะเบียนรถ
-                string lvField20 = DT.Rows[i]["O_Total"].ToString(); //ราคารวม
+                string lvField20 = Gstr.fncToDouble(DT.Rows[i]["O_Total"].ToString()).ToString("#,###"); //ราคารวม
                 string lvField21 = DT.Rows[i]["O_Type"].ToString(); //ประเภทรถ
 
                 //เพิ่ม

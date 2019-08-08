@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBill));
-            FarPoint.Win.Spread.CellType.TextCellType textCellType5 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType6 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType7 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType5 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType6 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType7 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType8 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType8 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType1 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType2 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType3 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType1 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType2 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType3 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType4 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType4 = new FarPoint.Win.Spread.CellType.TextCellType();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -318,11 +317,11 @@
             this.btnEditPrice6 = new DevExpress.XtraEditors.SimpleButton();
             this.txtLitter6 = new DevExpress.XtraEditors.TextEdit();
             this.txtFront6 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.CPrint = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CPrint = new System.Windows.Forms.ContextMenuStrip();
             this.ใบเสรจToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.พิมพ์ต่อเนื่องToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.รายงานสรปToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -733,51 +732,51 @@
             this.sp1_Sheet1.ColumnHeader.Cells.Get(0, 7).Value = "ทะเบียนรถ";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 5).Value = "บาท";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 6).Value = "สต.";
-            this.sp1_Sheet1.Columns.Get(0).CellType = textCellType5;
+            this.sp1_Sheet1.Columns.Get(0).CellType = textCellType1;
             this.sp1_Sheet1.Columns.Get(0).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(1).CellType = textCellType6;
+            this.sp1_Sheet1.Columns.Get(1).CellType = textCellType2;
             this.sp1_Sheet1.Columns.Get(1).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(1).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(1).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(2).CellType = textCellType7;
+            this.sp1_Sheet1.Columns.Get(2).CellType = textCellType3;
             this.sp1_Sheet1.Columns.Get(2).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Left;
             this.sp1_Sheet1.Columns.Get(2).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(2).Width = 200F;
-            numberCellType5.NullDisplay = "0.00";
-            numberCellType5.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(3).CellType = numberCellType5;
+            numberCellType1.NullDisplay = "0.00";
+            numberCellType1.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(3).CellType = numberCellType1;
             this.sp1_Sheet1.Columns.Get(3).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(3).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(3).Width = 100F;
-            numberCellType6.MaximumValue = 99999999999999D;
-            numberCellType6.MinimumValue = -99999999999999D;
-            numberCellType6.NullDisplay = "0.00";
-            numberCellType6.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(4).CellType = numberCellType6;
+            numberCellType2.MaximumValue = 99999999999999D;
+            numberCellType2.MinimumValue = -99999999999999D;
+            numberCellType2.NullDisplay = "0.00";
+            numberCellType2.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(4).CellType = numberCellType2;
             this.sp1_Sheet1.Columns.Get(4).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(4).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(4).Width = 100F;
-            numberCellType7.DecimalPlaces = 0;
-            numberCellType7.MaximumValue = 99999999999999D;
-            numberCellType7.MinimumValue = -99999999999999D;
-            numberCellType7.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(5).CellType = numberCellType7;
+            numberCellType3.DecimalPlaces = 0;
+            numberCellType3.MaximumValue = 99999999999999D;
+            numberCellType3.MinimumValue = -99999999999999D;
+            numberCellType3.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(5).CellType = numberCellType3;
             this.sp1_Sheet1.Columns.Get(5).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(5).Label = "บาท";
             this.sp1_Sheet1.Columns.Get(5).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(5).Width = 100F;
-            numberCellType8.DecimalPlaces = 0;
-            numberCellType8.MaximumValue = 100000000000D;
-            numberCellType8.MinimumValue = -1000000000000D;
-            numberCellType8.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(6).CellType = numberCellType8;
+            numberCellType4.DecimalPlaces = 0;
+            numberCellType4.MaximumValue = 100000000000D;
+            numberCellType4.MinimumValue = -1000000000000D;
+            numberCellType4.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(6).CellType = numberCellType4;
             this.sp1_Sheet1.Columns.Get(6).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(6).Label = "สต.";
             this.sp1_Sheet1.Columns.Get(6).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(6).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(7).CellType = textCellType8;
+            this.sp1_Sheet1.Columns.Get(7).CellType = textCellType4;
             this.sp1_Sheet1.Columns.Get(7).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(7).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(7).Width = 170F;
@@ -815,7 +814,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(225, 96);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(985, 93);
+            this.groupBox5.Size = new System.Drawing.Size(811, 93);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -823,7 +822,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(788, 35);
+            this.txtType.Location = new System.Drawing.Point(625, 32);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -844,7 +843,7 @@
             // 
             this.rdIssue.AutoSize = true;
             this.rdIssue.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdIssue.Location = new System.Drawing.Point(684, 27);
+            this.rdIssue.Location = new System.Drawing.Point(530, 27);
             this.rdIssue.Name = "rdIssue";
             this.rdIssue.Size = new System.Drawing.Size(98, 35);
             this.rdIssue.TabIndex = 46;
@@ -856,7 +855,7 @@
             // 
             this.rdCarry.AutoSize = true;
             this.rdCarry.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdCarry.Location = new System.Drawing.Point(292, 27);
+            this.rdCarry.Location = new System.Drawing.Point(211, 27);
             this.rdCarry.Name = "rdCarry";
             this.rdCarry.Size = new System.Drawing.Size(249, 35);
             this.rdCarry.TabIndex = 45;
