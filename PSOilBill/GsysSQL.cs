@@ -928,6 +928,64 @@ namespace PSOilBill
             return lvReturn;
         }
 
+        //
+        public static string fncGenDocNoX(string lvDocCode)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT * FROM SysDocNo WHERE S_MCode = '" + lvDocCode + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    //GenDoc
+                    string lvShort = dr["S_ShortCode"].ToString();
+                    int lvYearChk = DateTime.Now.Year;
+                    if (lvYearChk < 2500) lvYearChk += 543;
+                    string lvYear = (lvYearChk - 2500).ToString();
+                    int lvMonth = DateTime.Now.Month;
+                    int lvDay = DateTime.Now.Day;
+                    string lvSection = "121";
+                    int lvRunDoc = Gstr.fncToInt(dr["S_RunNo"].ToString());
+                    if (lvRunDoc == 0)
+                        lvRunDoc = 1;
+                    else
+                        lvRunDoc += 1;
+
+                    string lvDocID = "";
+                    if (dr["S_TypeGen"].ToString() == "YYMMDept")
+                        lvDocID = lvShort + lvYear.ToString() + lvMonth.ToString("00") + lvSection + lvRunDoc.ToString(dr["S_Format"].ToString());
+                    else if (dr["S_TypeGen"].ToString() == "YYMMdd")
+                        lvDocID = lvShort + lvYear.ToString() + lvMonth.ToString("00") + lvDay.ToString("00") + lvRunDoc.ToString(dr["S_Format"].ToString());
+                    else if (lvDocID == "")
+                    {
+                        lvDocID = (lvRunDoc + 1).ToString(dr["S_Format"].ToString());
+                    }
+
+                    lvReturn = lvDocID;
+                }
+            }
+            else
+            {
+                lvReturn = "";
+            }
+
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        //
         public static string fncGetLastDocNo(string lvDocCode)
         {
             string lvReturn = "";
@@ -970,6 +1028,59 @@ namespace PSOilBill
 
                     return lvReturn;
                     #endregion
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        public static string fncGetLastDocNoX(string lvDate2)
+
+        {
+            string lvReturn = "";
+            try
+            {
+                #region ONLINE
+                #region //Connect Database 
+                SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader dr;
+                #endregion
+
+                cmd.Connection = con;
+                con.Open();
+                cmd.CommandText = "SELECT Top 1 O_DocNo FROM Cane_OilBillHD Where O_CloseStatus = '' and O_Date = '" + lvDate2 + "' Order by O_DocNo Desc  ";
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //GenDoc
+                        string lvQNo = dr["O_DocNo"].ToString();
+                        if (lvQNo == "")
+                        {
+                            lvReturn = "000001";
+                        }
+                        else
+                        {
+                            string[] lvArr = lvQNo.Split('-');
+                            //string lvnewQ = (Gstr.fncToInt(lvArr[1]) + 1).ToString();
+                            lvReturn = lvArr[0] + " - " + lvArr[1];
+                        }
+                    }
+                }
+                else
+                {
+                    lvReturn = "000001";
+                }
+
+                dr.Close();
+                con.Close();
+
+                return lvReturn;
+                #endregion
             }
             catch
             {

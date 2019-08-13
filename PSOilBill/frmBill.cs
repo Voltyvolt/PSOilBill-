@@ -453,17 +453,20 @@ namespace PSOilBill
             ClearData(lvTabIndex, pvMode);
 
             sp1.ActiveSheet.RowCount = 0;
-            
+
             //GenDoc
             if (rdOil.Checked)
                 cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
             else if (rdCarry.Checked)
                 cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
             else
+                //cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
                 cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
 
             txtDocS.Enabled = false;
             cmbDocNo.Enabled = false;
+            string lvd = "";
+            GsysSQL.fncGetLastDocNoX(lvd);
 
             //โหลดราคาน้ำมัน
             string lvOilPrice = "";
@@ -3538,6 +3541,23 @@ namespace PSOilBill
         private void txtDocS_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+         
+        }
+        private void LoadData(string lvDocNo)
+        {
+            string lvDate2 = Gstr.fncChangeTDate(lvDocNo);
+            string lvResult = GsysSQL.fncGetLastDocNoX(lvDate2);
+
+
+        }
+
+        private void txtDate_EditValueChanged(object sender, EventArgs e)
+        {
+            LoadData(txtDate.Text);
         }
     }
 }

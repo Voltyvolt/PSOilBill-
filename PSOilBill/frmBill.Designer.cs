@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBill));
             FarPoint.Win.Spread.CellType.TextCellType textCellType1 = new FarPoint.Win.Spread.CellType.TextCellType();
             FarPoint.Win.Spread.CellType.TextCellType textCellType2 = new FarPoint.Win.Spread.CellType.TextCellType();
@@ -45,6 +46,7 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelDoc = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -317,11 +319,11 @@
             this.btnEditPrice6 = new DevExpress.XtraEditors.SimpleButton();
             this.txtLitter6 = new DevExpress.XtraEditors.TextEdit();
             this.txtFront6 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.CPrint = new System.Windows.Forms.ContextMenuStrip();
+            this.CPrint = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ใบเสรจToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.พิมพ์ต่อเนื่องToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.รายงานสรปToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -545,6 +547,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.btnDelDoc);
             this.groupBox2.Controls.Add(this.labelControl3);
@@ -559,6 +562,16 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "เอกสาร";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(183, 95);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 31);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnSearch
             // 
@@ -611,6 +624,7 @@
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtDate.Size = new System.Drawing.Size(227, 30);
             this.txtDate.TabIndex = 4;
+            this.txtDate.EditValueChanged += new System.EventHandler(this.txtDate_EditValueChanged);
             this.txtDate.TextChanged += new System.EventHandler(this.txtDate_TextChanged);
             this.txtDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDate_KeyDown);
             // 
@@ -814,7 +828,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(225, 96);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 93);
+            this.groupBox5.Size = new System.Drawing.Size(811, 62);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -822,7 +836,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(625, 32);
+            this.txtType.Location = new System.Drawing.Point(625, 16);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -3701,11 +3715,11 @@
             // 
             this.labelControl116.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl116.Appearance.Options.UseFont = true;
-            this.labelControl116.Location = new System.Drawing.Point(58, 239);
+            this.labelControl116.Location = new System.Drawing.Point(6, 239);
             this.labelControl116.Name = "labelControl116";
-            this.labelControl116.Size = new System.Drawing.Size(103, 24);
+            this.labelControl116.Size = new System.Drawing.Size(165, 24);
             this.labelControl116.TabIndex = 93;
-            this.labelControl116.Text = "ใบรับสินค้า :";
+            this.labelControl116.Text = "ใบรับ/ใบเบิกสินค้า :";
             // 
             // txtEmpName
             // 
@@ -4663,6 +4677,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl118;
         private DevExpress.XtraEditors.LabelControl labelControl116;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
