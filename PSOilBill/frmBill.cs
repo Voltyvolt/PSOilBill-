@@ -3557,7 +3557,14 @@ namespace PSOilBill
 
         private void txtDate_EditValueChanged(object sender, EventArgs e)
         {
-            LoadData(txtDate.Text);
+           string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
+           string lvstm = GsysSQL.fncGetLastDocNoX(lvDate2);
+
+            if (pvMode == "New")
+            {
+                cmbDocNo.Text = 
+            }
+
         }
     }
 }

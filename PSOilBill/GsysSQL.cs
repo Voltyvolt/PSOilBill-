@@ -1067,7 +1067,7 @@ namespace PSOilBill
                         {
                             string[] lvArr = lvQNo.Split('-');
                             //string lvnewQ = (Gstr.fncToInt(lvArr[1]) + 1).ToString();
-                            lvReturn = lvArr[0] + " - " + lvArr[1];
+                            lvReturn = /*lvArr[0] + " - " + */ lvArr[1];
                         }
                     }
                 }
