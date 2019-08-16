@@ -449,6 +449,9 @@ namespace PSOilBill
                 txtDate.Text = DTNow.ToString("dd/MM/yyyy");
             }
 
+            string lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
+            lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+
             //ล้างข้อมูล ตาม Tab
             ClearData(lvTabIndex, pvMode);
 
@@ -3557,14 +3560,20 @@ namespace PSOilBill
 
         private void txtDate_EditValueChanged(object sender, EventArgs e)
         {
-           string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
-           string lvstm = GsysSQL.fncGetLastDocNoX(lvDate2);
+           
+
+        }
+
+        private void btnPast_Click(object sender, EventArgs e)
+        {
+            string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
+            long lvstm = Convert.ToInt64(GsysSQL.fncGetLastDocNoX(lvDate2));
 
             if (pvMode == "New")
             {
-                cmbDocNo.Text = 
+                string lvDoc = (lvstm + 1).ToString();
+                cmbDocNo.Text = "C-" + lvDoc;
             }
-
         }
     }
 }
