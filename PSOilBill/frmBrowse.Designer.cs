@@ -78,7 +78,7 @@
             sp1_Sheet1.SheetName = "Sheet1";
             // Formulas and custom names must be loaded with R1C1 reference style
             this.sp1_Sheet1.ReferenceStyle = FarPoint.Win.Spread.Model.ReferenceStyle.R1C1;
-            sp1_Sheet1.ColumnCount = 10;
+            sp1_Sheet1.ColumnCount = 11;
             sp1_Sheet1.ColumnHeader.RowCount = 2;
             sp1_Sheet1.RowCount = 10;
             this.sp1_Sheet1.ColumnHeader.Cells.Get(0, 0).RowSpan = 2;
@@ -102,6 +102,7 @@
             this.sp1_Sheet1.ColumnHeader.Cells.Get(0, 9).Value = "สิ้นสุด";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 8).Value = "เริ่มต้น";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 9).Value = "สิ้นสุด";
+            this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 10).Value = "เวลา";
             this.sp1_Sheet1.Columns.Get(0).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).Width = 87F;
@@ -140,6 +141,9 @@
             this.sp1_Sheet1.Columns.Get(9).Label = "สิ้นสุด";
             this.sp1_Sheet1.Columns.Get(9).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(9).Width = 90F;
+            this.sp1_Sheet1.Columns.Get(10).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
+            this.sp1_Sheet1.Columns.Get(10).Label = "เวลา";
+            this.sp1_Sheet1.Columns.Get(10).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.OperationMode = FarPoint.Win.Spread.OperationMode.ReadOnly;
             this.sp1_Sheet1.RowHeader.Columns.Default.Resizable = false;
             this.sp1_Sheet1.ReferenceStyle = FarPoint.Win.Spread.Model.ReferenceStyle.A1;

@@ -150,6 +150,7 @@ namespace PSOilBill
         }
 
         public static string fncChangeTDate(string strDate)
+
         {
             //--เก็บประเภทของปฏิทิน
             var myCal = DateTimeFormatInfo.CurrentInfo.Calendar;

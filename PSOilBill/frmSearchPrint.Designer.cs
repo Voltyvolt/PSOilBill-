@@ -207,7 +207,9 @@
             "รถชาวไร่",
             "รถน้ำตาล",
             "ใช้ในตัวโรง",
-            "โรงในเครือ"});
+            "โรงในเครือ",
+            "หน่วยงาน",
+            "ชื่อลูกค้า/ร้านค้า"});
             this.txtType.Size = new System.Drawing.Size(174, 30);
             this.txtType.TabIndex = 96;
             // 
@@ -322,7 +324,7 @@
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(688, 113);
+            this.btnClear.Location = new System.Drawing.Point(688, 92);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(147, 66);
             this.btnClear.TabIndex = 23;
@@ -333,7 +335,7 @@
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(688, 41);
+            this.btnSearch.Location = new System.Drawing.Point(688, 20);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(147, 66);
             this.btnSearch.TabIndex = 22;

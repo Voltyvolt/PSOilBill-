@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBill));
-            FarPoint.Win.Spread.CellType.TextCellType textCellType5 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType6 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType7 = new FarPoint.Win.Spread.CellType.TextCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType5 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType6 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType7 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.NumberCellType numberCellType8 = new FarPoint.Win.Spread.CellType.NumberCellType();
-            FarPoint.Win.Spread.CellType.TextCellType textCellType8 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType1 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType2 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType3 = new FarPoint.Win.Spread.CellType.TextCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType1 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType2 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType3 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.NumberCellType numberCellType4 = new FarPoint.Win.Spread.CellType.NumberCellType();
+            FarPoint.Win.Spread.CellType.TextCellType textCellType4 = new FarPoint.Win.Spread.CellType.TextCellType();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -46,6 +46,8 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelDoc = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTime = new DevExpress.XtraEditors.TextEdit();
+            this.chkPast = new DevExpress.XtraEditors.CheckEdit();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -323,9 +325,10 @@
             this.พิมพ์ต่อเนื่องToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.รายงานสรปToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.btnPast = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPast.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDocNo.Properties)).BeginInit();
@@ -547,7 +550,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnPast);
+            this.groupBox2.Controls.Add(this.txtTime);
+            this.groupBox2.Controls.Add(this.chkPast);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.btnDelDoc);
             this.groupBox2.Controls.Add(this.labelControl3);
@@ -562,6 +566,24 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "เอกสาร";
+            // 
+            // txtTime
+            // 
+            this.txtTime.Location = new System.Drawing.Point(222, 59);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtTime.Properties.Appearance.Options.UseFont = true;
+            this.txtTime.Size = new System.Drawing.Size(83, 30);
+            this.txtTime.TabIndex = 8;
+            // 
+            // chkPast
+            // 
+            this.chkPast.Location = new System.Drawing.Point(158, 101);
+            this.chkPast.Name = "chkPast";
+            this.chkPast.Properties.Caption = "ทำรายการย้อนหลัง";
+            this.chkPast.Size = new System.Drawing.Size(110, 19);
+            this.chkPast.TabIndex = 7;
+            this.chkPast.CheckedChanged += new System.EventHandler(this.chkPast_CheckedChanged);
             // 
             // btnSearch
             // 
@@ -612,8 +634,9 @@
             this.txtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.txtDate.Properties.Mask.EditMask = "";
             this.txtDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtDate.Size = new System.Drawing.Size(227, 30);
+            this.txtDate.Size = new System.Drawing.Size(138, 30);
             this.txtDate.TabIndex = 4;
+            this.txtDate.EditValueChanged += new System.EventHandler(this.txtDate_EditValueChanged_1);
             this.txtDate.TextChanged += new System.EventHandler(this.txtDate_TextChanged);
             this.txtDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDate_KeyDown);
             // 
@@ -735,51 +758,51 @@
             this.sp1_Sheet1.ColumnHeader.Cells.Get(0, 7).Value = "ทะเบียนรถ";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 5).Value = "บาท";
             this.sp1_Sheet1.ColumnHeader.Cells.Get(1, 6).Value = "สต.";
-            this.sp1_Sheet1.Columns.Get(0).CellType = textCellType5;
+            this.sp1_Sheet1.Columns.Get(0).CellType = textCellType1;
             this.sp1_Sheet1.Columns.Get(0).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(0).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(1).CellType = textCellType6;
+            this.sp1_Sheet1.Columns.Get(1).CellType = textCellType2;
             this.sp1_Sheet1.Columns.Get(1).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(1).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(1).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(2).CellType = textCellType7;
+            this.sp1_Sheet1.Columns.Get(2).CellType = textCellType3;
             this.sp1_Sheet1.Columns.Get(2).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Left;
             this.sp1_Sheet1.Columns.Get(2).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(2).Width = 200F;
-            numberCellType5.NullDisplay = "0.00";
-            numberCellType5.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(3).CellType = numberCellType5;
+            numberCellType1.NullDisplay = "0.00";
+            numberCellType1.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(3).CellType = numberCellType1;
             this.sp1_Sheet1.Columns.Get(3).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(3).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(3).Width = 100F;
-            numberCellType6.MaximumValue = 99999999999999D;
-            numberCellType6.MinimumValue = -99999999999999D;
-            numberCellType6.NullDisplay = "0.00";
-            numberCellType6.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(4).CellType = numberCellType6;
+            numberCellType2.MaximumValue = 99999999999999D;
+            numberCellType2.MinimumValue = -99999999999999D;
+            numberCellType2.NullDisplay = "0.00";
+            numberCellType2.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(4).CellType = numberCellType2;
             this.sp1_Sheet1.Columns.Get(4).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(4).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(4).Width = 100F;
-            numberCellType7.DecimalPlaces = 0;
-            numberCellType7.MaximumValue = 99999999999999D;
-            numberCellType7.MinimumValue = -99999999999999D;
-            numberCellType7.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(5).CellType = numberCellType7;
+            numberCellType3.DecimalPlaces = 0;
+            numberCellType3.MaximumValue = 99999999999999D;
+            numberCellType3.MinimumValue = -99999999999999D;
+            numberCellType3.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(5).CellType = numberCellType3;
             this.sp1_Sheet1.Columns.Get(5).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(5).Label = "บาท";
             this.sp1_Sheet1.Columns.Get(5).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(5).Width = 100F;
-            numberCellType8.DecimalPlaces = 0;
-            numberCellType8.MaximumValue = 100000000000D;
-            numberCellType8.MinimumValue = -1000000000000D;
-            numberCellType8.ShowSeparator = true;
-            this.sp1_Sheet1.Columns.Get(6).CellType = numberCellType8;
+            numberCellType4.DecimalPlaces = 0;
+            numberCellType4.MaximumValue = 100000000000D;
+            numberCellType4.MinimumValue = -1000000000000D;
+            numberCellType4.ShowSeparator = true;
+            this.sp1_Sheet1.Columns.Get(6).CellType = numberCellType4;
             this.sp1_Sheet1.Columns.Get(6).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Right;
             this.sp1_Sheet1.Columns.Get(6).Label = "สต.";
             this.sp1_Sheet1.Columns.Get(6).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(6).Width = 100F;
-            this.sp1_Sheet1.Columns.Get(7).CellType = textCellType8;
+            this.sp1_Sheet1.Columns.Get(7).CellType = textCellType4;
             this.sp1_Sheet1.Columns.Get(7).HorizontalAlignment = FarPoint.Win.Spread.CellHorizontalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(7).VerticalAlignment = FarPoint.Win.Spread.CellVerticalAlignment.Center;
             this.sp1_Sheet1.Columns.Get(7).Width = 170F;
@@ -817,7 +840,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(225, 96);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 92);
+            this.groupBox5.Size = new System.Drawing.Size(811, 93);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -825,7 +848,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(625, 31);
+            this.txtType.Location = new System.Drawing.Point(625, 32);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -3680,6 +3703,7 @@
             this.txtPdOut.Properties.Appearance.Options.UseFont = true;
             this.txtPdOut.Size = new System.Drawing.Size(276, 30);
             this.txtPdOut.TabIndex = 96;
+            this.txtPdOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPdOut_KeyDown);
             // 
             // txtPdIn
             // 
@@ -3687,28 +3711,29 @@
             this.txtPdIn.Name = "txtPdIn";
             this.txtPdIn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtPdIn.Properties.Appearance.Options.UseFont = true;
-            this.txtPdIn.Size = new System.Drawing.Size(174, 30);
+            this.txtPdIn.Size = new System.Drawing.Size(143, 30);
             this.txtPdIn.TabIndex = 95;
+            this.txtPdIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPdIn_KeyDown);
             // 
             // labelControl118
             // 
             this.labelControl118.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl118.Appearance.Options.UseFont = true;
-            this.labelControl118.Location = new System.Drawing.Point(389, 239);
+            this.labelControl118.Location = new System.Drawing.Point(327, 239);
             this.labelControl118.Name = "labelControl118";
-            this.labelControl118.Size = new System.Drawing.Size(90, 24);
+            this.labelControl118.Size = new System.Drawing.Size(152, 24);
             this.labelControl118.TabIndex = 94;
-            this.labelControl118.Text = "ใบสั่งจ่าย :";
+            this.labelControl118.Text = "ใบสั่งจ่าย/ใบเบิก :";
             // 
             // labelControl116
             // 
             this.labelControl116.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl116.Appearance.Options.UseFont = true;
-            this.labelControl116.Location = new System.Drawing.Point(6, 239);
+            this.labelControl116.Location = new System.Drawing.Point(101, 239);
             this.labelControl116.Name = "labelControl116";
-            this.labelControl116.Size = new System.Drawing.Size(165, 24);
+            this.labelControl116.Size = new System.Drawing.Size(57, 24);
             this.labelControl116.TabIndex = 93;
-            this.labelControl116.Text = "ใบรับ/ใบเบิกสินค้า :";
+            this.labelControl116.Text = "ใบรับ :";
             // 
             // txtEmpName
             // 
@@ -4216,15 +4241,6 @@
             this.รายงานสรปToolStripMenuItem.Text = "รายงานสรุป (F6)";
             this.รายงานสรปToolStripMenuItem.Click += new System.EventHandler(this.รายงานสรปToolStripMenuItem_Click);
             // 
-            // btnPast
-            // 
-            this.btnPast.Location = new System.Drawing.Point(161, 95);
-            this.btnPast.Name = "btnPast";
-            this.btnPast.Size = new System.Drawing.Size(107, 31);
-            this.btnPast.TabIndex = 6;
-            this.btnPast.Text = "ทำข้อมูลย้อนหลัง";
-            this.btnPast.Click += new System.EventHandler(this.btnPast_Click);
-            // 
             // frmBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4245,6 +4261,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPast.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDocNo.Properties)).EndInit();
@@ -4675,7 +4693,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl118;
         private DevExpress.XtraEditors.LabelControl labelControl116;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
-        private DevExpress.XtraEditors.SimpleButton btnPast;
+        private DevExpress.XtraEditors.CheckEdit chkPast;
+        private DevExpress.XtraEditors.TextEdit txtTime;
     }
 }
 

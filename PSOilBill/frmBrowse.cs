@@ -84,6 +84,7 @@ namespace PSOilBill
                 sp1.ActiveSheet.Cells[i, 7].Text = DT.Rows[i]["O_Litter"].ToString();
                 sp1.ActiveSheet.Cells[i, 8].Text = DT.Rows[i]["O_MeterS"].ToString();
                 sp1.ActiveSheet.Cells[i, 9].Text = DT.Rows[i]["O_MeterE"].ToString();
+                sp1.ActiveSheet.Cells[i, 10].Text = DT.Rows[i]["O_Time"].ToString();
             }
 
             txtSearch.Focus();

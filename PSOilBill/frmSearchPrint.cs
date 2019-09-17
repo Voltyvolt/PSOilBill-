@@ -323,7 +323,7 @@ namespace PSOilBill
             string lvSQL = "Delete From SysTemp";
             string lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
 
-            //Get Data
+            //////Get Data
             DataTable DT = new DataTable();
             lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID,O_CarFront,O_MeterS,O_MeterE,Cane_OilBillHD.O_Remark,O_EmpName,O_PdIn,O_PdOut,O_Type,O_Budjet,O_Asset,O_CarnumS6,O_CarnumE6 ";
             lvSQL += "from Cane_OilBillHD ";
@@ -375,9 +375,9 @@ namespace PSOilBill
                 lvSQL += "And Cane_OilBillHD.O_CarNum like '%" + txtCarNum.Text + "%' ";
             }
 
-            if(txtType.Text != "")
+            if(txtType.Text != "หน่วยงาน" && txtType.Text != "ชื่อลูกค้า/ร้านค้า" && txtType.Text != "")
             {
-                lvSQL += "And  Cane_OilBillHD.O_Type = '"+ txtType.Text +"' ";
+                lvSQL += "And Cane_OilBillHD.O_Type = '" + txtType.Text + "' ";
             }
 
             lvSQL += "Order by Cane_OilBillHD.O_DocNo ";
@@ -407,27 +407,54 @@ namespace PSOilBill
                 else
                     lvField4 = DT.Rows[i]["O_EmpName"].ToString();
 
-                string lvField5 = Gstr.fncToInt(DT.Rows[i]["O_MeterS"].ToString()).ToString(); //มิเตอร์ ก่อน
-                string lvField6 = Gstr.fncToInt(DT.Rows[i]["O_Litter"].ToString()).ToString("#,###"); //จำนวนลิตร
-                string lvField7 = Gstr.fncToInt(DT.Rows[i]["O_MeterE"].ToString()).ToString(); //มิเตอร์ หลัง
+                string lvField5 = "";
+                string lvField7 = "";
+                string lvNameChk = DT.Rows[i]["O_Name"].ToString();
+                if (lvNameChk == "บรรทุกน้ำตาล (สยามศรี)")
+                {
+                    lvField5 = "";
+                    lvField7 = "";
+                }
+                else
+                {
+                    lvField5 = Gstr.fncToInt(DT.Rows[i]["O_MeterS"].ToString()).ToString(); //มิเตอร์ ก่อน
+                    lvField7 = Gstr.fncToInt(DT.Rows[i]["O_MeterE"].ToString()).ToString(); //มิเตอร์ หลัง
+                }
+                
+                double lvField6 = Gstr.fncToInt(DT.Rows[i]["O_Litter"].ToString()); //จำนวนลิตร
                 string lvField8 = DT.Rows[i]["O_CarNum"].ToString(); //ทะเบียนรถ
                 string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
                 string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
-                string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString("#,###"); //ราคาน้ำมันต่อลิตร
+                double lvNum1 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()); //ราคาน้ำมันต่อลิตร
                 string lvField12 = DT.Rows[i]["O_PdIN"].ToString(); //ใบรับ
                 string lvField13 = DT.Rows[i]["O_PdOut"].ToString(); //ใบสั่งจ่าย
                 string lvField14 = DT.Rows[i]["O_Budjet"].ToString(); //รหัสงบประมาณ
                 string lvField15 = DT.Rows[i]["O_Asset"].ToString(); //รหัสทรัพย์สิน
-                string lvField16 = DT.Rows[i]["O_Dept"].ToString(); //รหัสหน่วยงาน
+                string lvField16 = "";
+                if(txtType.Text == "หน่วยงาน")
+                {
+                    lvField16 = DT.Rows[i]["O_Name"].ToString(); //หน่วยงาน
+                }
+                else if(txtType.Text == "ชื่อลูกค้า/ร้านค้า")
+                {
+                    lvField16 = DT.Rows[i]["O_EmpName"].ToString(); //ชื่อร้านค้า
+                }
+                else
+                {
+                    lvField16 = DT.Rows[i]["O_Type"].ToString(); //ประเภทรถ
+                }
+                
                 string lvField17 = DT.Rows[i]["O_Name"].ToString(); //ชื่อหน่วยงาน
                 string lvField18 = DT.Rows[i]["O_CarnumS6"].ToString(); //อักษรรถ
                 string lvField19 = DT.Rows[i]["O_CarnumE6"].ToString(); //ทะเบียนรถ
-                string lvField20 = Gstr.fncToDouble(DT.Rows[i]["O_Total"].ToString()).ToString("#,###"); //ราคารวม
-                string lvField21 = DT.Rows[i]["O_Type"].ToString(); //ประเภทรถ
+                double lvNum2 = Gstr.fncToDouble(DT.Rows[i]["O_Total"].ToString()); //ราคารวม
+                string lvField21 = DT.Rows[i]["O_DocNo"].ToString(); //เลขเอกสาร
+                string lvField22 = DT.Rows[i]["O_Dept"].ToString(); //รหัส
+                string lvField23 = Gstr.fncChangeSDate(DT.Rows[i]["O_Date"].ToString()); //ประเภทรถ
 
                 //เพิ่ม
-                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21) ";
-                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvField11 + "', '" + lvField12 + "', '" + lvField13 + "', '" + lvField14 + "', '" + lvField15 + "', '" + lvField16 + "', '" + lvField17 + "', '" + lvField18 + "', '" + lvField19 + "', '" + lvField20 + "', '" + lvField21 + "')";
+                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Num1, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Num2, Field21, Field22, Field23) ";
+                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvNum1 + "', '" + lvField12 + "', '" + lvField13 + "', '" + lvField14 + "', '" + lvField15 + "', '" + lvField16 + "', '" + lvField17 + "', '" + lvField18 + "', '" + lvField19 + "', '" + lvNum2 + "',  '" + lvField21 + "', '" + lvField22 + "', '" + lvField23 + "')";
                 lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
 
                 progressBar1.Value += 1;

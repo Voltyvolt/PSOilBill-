@@ -882,6 +882,8 @@ namespace PSOilBill
             #endregion  
 
             string lvReturn = "";
+            DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy 15:00:00")); // 20/08/2562 15:00:00
+            DateTime lvTimeNow = DateTime.Now;
 
             cmd.Connection = con;
             con.Open();
@@ -897,8 +899,17 @@ namespace PSOilBill
                     if (lvYearChk < 2500) lvYearChk += 543;
                     string lvYear = (lvYearChk - 2500).ToString();
                     int lvMonth = DateTime.Now.Month;
-                    int lvDay = DateTime.Now.Day;
+                    int lvDay = 0;
+                    if (lvTimeNow > lvTimeChk)
+                    {
+                        lvDay = DateTime.Now.Day + 1;
+                    }
+                    else
+                    {
+                        lvDay = DateTime.Now.Day;
+                    }
                     string lvSection = "121";
+                    string lvTypeGen = dr["S_TypeGen"].ToString();
                     int lvRunDoc = Gstr.fncToInt(dr["S_RunNo"].ToString());
 
                     if (lvRunDoc == 0)
@@ -907,9 +918,9 @@ namespace PSOilBill
                         lvRunDoc += 1;
 
                     string lvDocID = "";
-                    if (dr["S_TypeGen"].ToString() == "YYMMDept")
+                    if (lvTypeGen == "YYMMDept")
                         lvDocID = lvShort + lvYear.ToString() + lvMonth.ToString("00") + lvSection + lvRunDoc.ToString(dr["S_Format"].ToString());
-                    else if (dr["S_TypeGen"].ToString() == "YYMMdd")
+                    else if (lvTypeGen == "YYMMdd")
                         lvDocID = lvShort + lvYear.ToString() + lvMonth.ToString("00") + lvDay.ToString("00") + lvRunDoc.ToString(dr["S_Format"].ToString());
                     else
                         lvDocID = lvShort + lvRunDoc.ToString(dr["S_Format"].ToString());
@@ -1073,7 +1084,7 @@ namespace PSOilBill
                 }
                 else
                 {
-                    lvReturn = "000001";
+                    lvReturn = "0";
                 }
 
                 dr.Close();
