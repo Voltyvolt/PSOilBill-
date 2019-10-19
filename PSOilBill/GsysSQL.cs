@@ -248,7 +248,7 @@ namespace PSOilBill
 
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo = '"+ lvDocNo +"' ";//O_DocS = '" + lvDocS + "' And
+            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo = '"+ lvDocNo +"' And O_Status = '' ";//O_DocS = '" + lvDocS + "' And
             dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {
@@ -1126,6 +1126,34 @@ namespace PSOilBill
             {
                 return ex.Message;
             }
+        }
+
+        public static string fncGetStat(string lvDocCode)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT S_ResetStatus FROM SysDocNo WHERE S_MCode = '" + lvDocCode + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["S_ResetStatus"].ToString();
+                }
+            }
+
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
         }
     }
 }

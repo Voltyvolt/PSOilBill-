@@ -43,8 +43,12 @@
             this.cmbType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnClear = new DevExpress.XtraEditors.SimpleButton();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.txtDocBillE = new DevExpress.XtraEditors.TextEdit();
             this.txtDocE = new DevExpress.XtraEditors.TextEdit();
+            this.txtDocBillS = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.txtDocS = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.txtQuotaE = new DevExpress.XtraEditors.TextEdit();
@@ -138,7 +142,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocE.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuotaE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuotaS.Properties)).BeginInit();
@@ -167,8 +173,12 @@
             this.groupBox1.Controls.Add(this.cmbType);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.txtDocBillE);
             this.groupBox1.Controls.Add(this.txtDocE);
+            this.groupBox1.Controls.Add(this.txtDocBillS);
+            this.groupBox1.Controls.Add(this.labelControl13);
             this.groupBox1.Controls.Add(this.txtDocS);
+            this.groupBox1.Controls.Add(this.labelControl12);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Controls.Add(this.labelControl8);
             this.groupBox1.Controls.Add(this.txtQuotaE);
@@ -186,7 +196,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1008, 240);
+            this.groupBox1.Size = new System.Drawing.Size(1008, 282);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ค้นหา";
@@ -194,7 +204,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(762, 199);
+            this.txtType.Location = new System.Drawing.Point(760, 238);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtType.Properties.Appearance.Options.UseFont = true;
@@ -218,7 +228,7 @@
             this.labelControl125.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl125.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl125.Appearance.Options.UseFont = true;
-            this.labelControl125.Location = new System.Drawing.Point(679, 202);
+            this.labelControl125.Location = new System.Drawing.Point(677, 241);
             this.labelControl125.Name = "labelControl125";
             this.labelControl125.Size = new System.Drawing.Size(77, 24);
             this.labelControl125.TabIndex = 95;
@@ -227,7 +237,7 @@
             // txtCarNum
             // 
             this.txtCarNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCarNum.Location = new System.Drawing.Point(264, 199);
+            this.txtCarNum.Location = new System.Drawing.Point(264, 235);
             this.txtCarNum.Name = "txtCarNum";
             this.txtCarNum.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtCarNum.Properties.Appearance.Options.UseFont = true;
@@ -241,7 +251,7 @@
             this.labelControl11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(157, 202);
+            this.labelControl11.Location = new System.Drawing.Point(157, 238);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(101, 24);
             this.labelControl11.TabIndex = 30;
@@ -324,7 +334,7 @@
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(688, 92);
+            this.btnClear.Location = new System.Drawing.Point(677, 92);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(147, 66);
             this.btnClear.TabIndex = 23;
@@ -335,12 +345,24 @@
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(688, 20);
+            this.btnSearch.Location = new System.Drawing.Point(677, 20);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(147, 66);
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "พิมพ์";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtDocBillE
+            // 
+            this.txtDocBillE.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDocBillE.Location = new System.Drawing.Point(489, 199);
+            this.txtDocBillE.Name = "txtDocBillE";
+            this.txtDocBillE.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDocBillE.Properties.Appearance.Options.UseFont = true;
+            this.txtDocBillE.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
+            this.txtDocBillE.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtDocBillE.Size = new System.Drawing.Size(174, 30);
+            this.txtDocBillE.TabIndex = 21;
             // 
             // txtDocE
             // 
@@ -354,6 +376,30 @@
             this.txtDocE.Size = new System.Drawing.Size(174, 30);
             this.txtDocE.TabIndex = 21;
             // 
+            // txtDocBillS
+            // 
+            this.txtDocBillS.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDocBillS.Location = new System.Drawing.Point(264, 199);
+            this.txtDocBillS.Name = "txtDocBillS";
+            this.txtDocBillS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDocBillS.Properties.Appearance.Options.UseFont = true;
+            this.txtDocBillS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
+            this.txtDocBillS.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtDocBillS.Size = new System.Drawing.Size(174, 30);
+            this.txtDocBillS.TabIndex = 20;
+            this.txtDocBillS.Click += new System.EventHandler(this.txtDocBillS_Click);
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Location = new System.Drawing.Point(448, 202);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(35, 24);
+            this.labelControl13.TabIndex = 19;
+            this.labelControl13.Text = "ถึง :";
+            // 
             // txtDocS
             // 
             this.txtDocS.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -365,6 +411,18 @@
             this.txtDocS.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtDocS.Size = new System.Drawing.Size(174, 30);
             this.txtDocS.TabIndex = 20;
+            this.txtDocS.Click += new System.EventHandler(this.txtDocS_Click);
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Location = new System.Drawing.Point(121, 202);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(137, 24);
+            this.labelControl12.TabIndex = 18;
+            this.labelControl12.Text = "เลขที่บิล(พัสดุ) :";
             // 
             // labelControl7
             // 
@@ -382,11 +440,11 @@
             this.labelControl8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(175, 166);
+            this.labelControl8.Location = new System.Drawing.Point(101, 166);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(83, 24);
+            this.labelControl8.Size = new System.Drawing.Size(157, 24);
             this.labelControl8.TabIndex = 18;
-            this.labelControl8.Text = "เลขที่บิล :";
+            this.labelControl8.Text = "เลขที่บิล(ห้องชั่ง) :";
             // 
             // txtQuotaE
             // 
@@ -556,9 +614,9 @@
             this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.documentViewer1.DocumentSource = typeof(PSOilBill.rptSumReport);
             this.documentViewer1.IsMetric = true;
-            this.documentViewer1.Location = new System.Drawing.Point(0, 293);
+            this.documentViewer1.Location = new System.Drawing.Point(0, 335);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1008, 436);
+            this.documentViewer1.Size = new System.Drawing.Size(1008, 394);
             this.documentViewer1.TabIndex = 1;
             // 
             // documentViewerBarManager1
@@ -1379,7 +1437,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocE.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuotaE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuotaS.Properties)).EndInit();
@@ -1502,5 +1562,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl125;
         private DevExpress.XtraEditors.ComboBoxEdit txtType;
+        private DevExpress.XtraEditors.TextEdit txtDocBillE;
+        private DevExpress.XtraEditors.TextEdit txtDocBillS;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
     }
 }

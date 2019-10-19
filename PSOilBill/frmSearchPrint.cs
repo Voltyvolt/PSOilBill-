@@ -21,9 +21,60 @@ namespace PSOilBill
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            string lvKa = txtKa.Text;
+            string lvDue = txtDue.Text;
+            string lvDateS = txtDateS.Text;
+            string lvDateE = txtDateE.Text;
+            string lvQuotaS = txtQuotaS.Text;
+            string lvQuotaE = txtQuotaE.Text;
+            string lvDocS = txtDocS.Text;
+            string lvDocE = txtDocE.Text;
+            string lvDocBillE = txtDocBillE.Text;
+            string lvDocBillS = txtDocBillS.Text;
+            string lvCarNum = txtCarNum.Text;
+            string lvType = txtType.Text;
+
+            if(lvKa == "" && lvDue == "" && lvDateS == "" && lvDateS == "" && lvDateE == "" && lvQuotaS == "" && lvQuotaE == "" && lvDocS == "" && lvDocE == "" && lvDocBillS == "" && lvDocBillE == "" && lvCarNum == "" && lvType == "")
+            {
+                DialogResult dialogResultP = MessageBox.Show("ต้องการพิมพ์ใบเสร็จหรือไม่?", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResultP == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+
+                }
+            }
+
             this.Cursor = Cursors.WaitCursor;
             btnSearch.Enabled = false;
 
+            //รับค่าบิล
+            string lvInS = txtDocBillS.Text;
+
+            string ChklvInS = Gstr.Left(lvInS, 2);
+
+            if(txtDocBillS.Text != "")
+            {
+                //เช็ครูปแบบ
+                if (ChklvInS != "A-" && ChklvInS != "C-")
+                {
+                    cmbType.Text = "บิลน้ำมัน";
+                }
+
+                else if (ChklvInS == "A-")
+                {
+                    cmbType.Text = "บิลเรียกเก็บค่าบรรทุก";
+                }
+
+                else if (ChklvInS == "C-")
+                {
+                    cmbType.Text = "บิลรถโรงงาน";
+                }
+            }
+
+            //สั่งพิมพ์
             if (cmbType.Text == "บิลรถโรงงาน")
             {
                 //fncReportPrint1();
@@ -34,6 +85,7 @@ namespace PSOilBill
                 //รายงานอื่นๆ
                 fncReportPrint();
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void fncReportPrint()
@@ -71,9 +123,18 @@ namespace PSOilBill
             {
                 string lvDocS = txtDocS.Text;
                 string lvDocE = txtDocE.Text;
-                if (lvDocE == "") lvDocE = lvDocS;
 
+                if (lvDocE == "") lvDocE = lvDocS;
                 lvSQL += "And Cast(Cane_OilBillHD.O_CaneNo as int) >= '" + lvDocS + "' And Cast(Cane_OilBillHD.O_CaneNo as int) <= '" + lvDocE + "' ";
+            }
+
+            if (txtDocBillS.Text != "")
+            {
+                string lvDocBillS = txtDocBillS.Text;
+                string lvDocBillE = txtDocBillE.Text;
+
+                if (lvDocBillE == "") lvDocBillE = lvDocBillS;
+                lvSQL += "And Cane_OilBillHD.O_DocNo  >= '" + lvDocBillS + "' And Cane_OilBillHD.O_DocNo <= '" + lvDocBillE + "' ";
             }
 
             if (cmbType.Text == "บิลเรียกเก็บค่าบรรทุก")
@@ -82,7 +143,7 @@ namespace PSOilBill
             }
             else if (cmbType.Text == "บิลน้ำมัน")
             {
-                lvSQL += "And Cane_OilBillHD.O_DocNo not like 'A-%' ";
+                lvSQL += "And Cane_OilBillHD.O_DocNo not like 'A-%' And Cane_OilBillHD.O_DocNo not like 'C-%'";
             }
             else if (cmbType.Text == "บิลรถโรงงาน")
             {
@@ -325,7 +386,7 @@ namespace PSOilBill
 
             //////Get Data
             DataTable DT = new DataTable();
-            lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID,O_CarFront,O_MeterS,O_MeterE,Cane_OilBillHD.O_Remark,O_EmpName,O_PdIn,O_PdOut,O_Type,O_Budjet,O_Asset,O_CarnumS6,O_CarnumE6 ";
+            lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo,O_Litter,O_Price,O_Total,O_CarNum,O_CaneNo,O_Date,O_Dept,O_Objective,O_EmpID,O_CarFront,O_MeterS,O_MeterE,Cane_OilBillHD.O_Remark,O_EmpName,O_PdIn,O_PdOut,O_Type,O_Budjet,O_Asset,O_CarnumS6,O_CarnumE6,O_Time ";
             lvSQL += "from Cane_OilBillHD ";
             lvSQL += "inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo ";
             lvSQL += "where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' ";
@@ -348,13 +409,23 @@ namespace PSOilBill
                 lvSQL += "And O_Quota >= '" + lvQS + "' And O_Quota <= '" + lvQE + "' ";
             }
 
-            if (txtDocS.Text != "")
-            {
-                string lvDocS = txtDocS.Text;
-                string lvDocE = txtDocE.Text;
-                if (lvDocE == "") lvDocE = lvDocS;
+            //if (txtDocS.Text != "")
+            //{
+            //    string lvDocS = txtDocS.Text;
+            //    string lvDocE = txtDocE.Text;
+            //    if (lvDocE == "") lvDocE = lvDocS;
 
-                lvSQL += "And Cane_OilBillHD.O_DocNo >= '" + lvDocS + "' And Cane_OilBillHD.O_DocNo <= '" + lvDocE + "' ";
+
+            //    lvSQL += "And Cane_OilBillHD.O_DocNo >= '" + lvDocS + "' And Cane_OilBillHD.O_DocNo <= '" + lvDocE + "' ";
+            //}
+
+            if (txtDocBillS.Text != "")
+            {
+                string lvDocBillS = txtDocBillS.Text;
+                string lvDocBillE = txtDocBillE.Text;
+
+                if (lvDocBillE == "") lvDocBillE = lvDocBillS;
+                lvSQL += "And Cane_OilBillHD.O_DocNo  >= '" + lvDocBillS + "' And Cane_OilBillHD.O_DocNo <= '" + lvDocBillE + "' ";
             }
 
             //เฉพาะบิลโรงงาน
@@ -421,7 +492,7 @@ namespace PSOilBill
                     lvField7 = Gstr.fncToInt(DT.Rows[i]["O_MeterE"].ToString()).ToString(); //มิเตอร์ หลัง
                 }
                 
-                double lvField6 = Gstr.fncToInt(DT.Rows[i]["O_Litter"].ToString()); //จำนวนลิตร
+                double lvNum3 = Gstr.fncToInt(DT.Rows[i]["O_Litter"].ToString()); //จำนวนลิตร
                 string lvField8 = DT.Rows[i]["O_CarNum"].ToString(); //ทะเบียนรถ
                 string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
                 string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
@@ -431,10 +502,12 @@ namespace PSOilBill
                 string lvField14 = DT.Rows[i]["O_Budjet"].ToString(); //รหัสงบประมาณ
                 string lvField15 = DT.Rows[i]["O_Asset"].ToString(); //รหัสทรัพย์สิน
                 string lvField16 = "";
+
                 if(txtType.Text == "หน่วยงาน")
                 {
                     lvField16 = DT.Rows[i]["O_Name"].ToString(); //หน่วยงาน
                 }
+
                 else if(txtType.Text == "ชื่อลูกค้า/ร้านค้า")
                 {
                     lvField16 = DT.Rows[i]["O_EmpName"].ToString(); //ชื่อร้านค้า
@@ -451,10 +524,11 @@ namespace PSOilBill
                 string lvField21 = DT.Rows[i]["O_DocNo"].ToString(); //เลขเอกสาร
                 string lvField22 = DT.Rows[i]["O_Dept"].ToString(); //รหัส
                 string lvField23 = Gstr.fncChangeSDate(DT.Rows[i]["O_Date"].ToString()); //ประเภทรถ
+                string lvField6 = DT.Rows[i]["O_Time"].ToString(); //เวลา
 
                 //เพิ่ม
-                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Num1, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Num2, Field21, Field22, Field23) ";
-                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvField6 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvNum1 + "', '" + lvField12 + "', '" + lvField13 + "', '" + lvField14 + "', '" + lvField15 + "', '" + lvField16 + "', '" + lvField17 + "', '" + lvField18 + "', '" + lvField19 + "', '" + lvNum2 + "',  '" + lvField21 + "', '" + lvField22 + "', '" + lvField23 + "')";
+                lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Num3, Field7, Field8, Field9, Field10, Num1, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Num2, Field21, Field22, Field23, Field6) ";
+                lvSQL += "Values ('" + lvField1 + "', '" + lvField2 + "', '" + lvField3 + "', '" + lvField4 + "', '" + lvField5 + "', '" + lvNum3 + "', '" + lvField7 + "', '" + lvField8 + "', '" + lvField9 + "', '" + lvField10 + "', '" + lvNum1 + "', '" + lvField12 + "', '" + lvField13 + "', '" + lvField14 + "', '" + lvField15 + "', '" + lvField16 + "', '" + lvField17 + "', '" + lvField18 + "', '" + lvField19 + "', '" + lvNum2 + "',  '" + lvField21 + "', '" + lvField22 + "', '" + lvField23 + "', '" + lvField6 + "')";
                 lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
 
                 progressBar1.Value += 1;
@@ -635,6 +709,24 @@ namespace PSOilBill
             txtQuotaE.Text = "";
             txtDocS.Text = "";
             txtDocE.Text = "";
+            txtDocBillS.Text = "";
+            txtDocBillE.Text = "";
+            txtDocS.Enabled = true;
+            txtDocE.Enabled = true;
+            txtDocBillS.Enabled = true;
+            txtDocBillE.Enabled = true;
+        }
+
+        private void txtDocS_Click(object sender, EventArgs e)
+        {
+            txtDocBillS.Enabled = false;
+            txtDocBillE.Enabled = false;
+        }
+
+        private void txtDocBillS_Click(object sender, EventArgs e)
+        {
+            txtDocS.Enabled = false;
+            txtDocE.Enabled = false;
         }
     }
 }

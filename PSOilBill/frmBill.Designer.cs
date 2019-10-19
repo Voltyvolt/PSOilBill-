@@ -46,7 +46,8 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelDoc = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtTime = new DevExpress.XtraEditors.TextEdit();
+            this.txtTime = new DevExpress.XtraEditors.TimeEdit();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.chkPast = new DevExpress.XtraEditors.CheckEdit();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -541,9 +542,9 @@
             // btnDelDoc
             // 
             this.btnDelDoc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelDoc.ImageOptions.Image")));
-            this.btnDelDoc.Location = new System.Drawing.Point(274, 95);
+            this.btnDelDoc.Location = new System.Drawing.Point(241, 95);
             this.btnDelDoc.Name = "btnDelDoc";
-            this.btnDelDoc.Size = new System.Drawing.Size(31, 31);
+            this.btnDelDoc.Size = new System.Drawing.Size(31, 33);
             this.btnDelDoc.TabIndex = 3;
             this.btnDelDoc.ToolTip = "ยกเลิกเอกสาร";
             this.btnDelDoc.Click += new System.EventHandler(this.btnDelDoc_Click);
@@ -551,6 +552,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtTime);
+            this.groupBox2.Controls.Add(this.simpleButton6);
             this.groupBox2.Controls.Add(this.chkPast);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.btnDelDoc);
@@ -569,16 +571,35 @@
             // 
             // txtTime
             // 
+            this.txtTime.EditValue = new System.DateTime(2019, 9, 30, 0, 0, 0, 0);
             this.txtTime.Location = new System.Drawing.Point(222, 59);
             this.txtTime.Name = "txtTime";
             this.txtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtTime.Properties.Appearance.Options.UseFont = true;
+            this.txtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtTime.Properties.Mask.EditMask = "t";
             this.txtTime.Size = new System.Drawing.Size(83, 30);
-            this.txtTime.TabIndex = 8;
+            this.txtTime.TabIndex = 2;
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton6.Appearance.Options.UseFont = true;
+            this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
+            this.simpleButton6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.BottomCenter;
+            this.simpleButton6.Location = new System.Drawing.Point(278, 95);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(27, 33);
+            this.simpleButton6.TabIndex = 60;
+            this.simpleButton6.Tag = "";
+            this.simpleButton6.ToolTip = "แก้ไขราคาบิลน้ำมัน";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
             // 
             // chkPast
             // 
-            this.chkPast.Location = new System.Drawing.Point(158, 101);
+            this.chkPast.Location = new System.Drawing.Point(125, 102);
             this.chkPast.Name = "chkPast";
             this.chkPast.Properties.Caption = "ทำรายการย้อนหลัง";
             this.chkPast.Size = new System.Drawing.Size(110, 19);
@@ -4694,7 +4715,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl116;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.CheckEdit chkPast;
-        private DevExpress.XtraEditors.TextEdit txtTime;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.TimeEdit txtTime;
     }
 }
 

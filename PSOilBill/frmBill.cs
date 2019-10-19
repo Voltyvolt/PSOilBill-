@@ -353,6 +353,7 @@ namespace PSOilBill
                 btnEdit.Enabled = false;
                 btnCancel.Enabled = true;
                 btnSave.Enabled = true;
+
                 chkPast.Checked = false;
 
                 if (cmbDocNo.Text != "" && pvMode == "")
@@ -464,22 +465,45 @@ namespace PSOilBill
             FncGetModeTab("New");
             ShowBtn();
 
+            //รับค่า
             txtDocS.Text = "";
             cmbDocNo.Text = "";
+            string lvSQL = "";
             string lvTabIndex = tabPageAll.SelectedIndex.ToString();
-            string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
-            string lvLastdoc = fncGetLastDocNoX(lvDate2);
 
+            //เช็คเวลา
             DateTime DTBreak = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy") + " 15:00:00");
             DateTime DTNow = DateTime.Now;
+
+            //รีสเตตัสเมื่อถึง 15:00
             if (DTNow >= DTBreak)
             {
-                DTNow = DTNow.AddDays(1);
-                txtDate.Text = DTNow.ToString("dd/MM/yyyy");
-            }
+                //เช็คสเตตัส
+                string lvSQLChkStat = GsysSQL.fncGetStat("OilBill_02");
+                string lvStatNow = Gstr.fncChangeTDate(txtDate.Text);
 
-            string lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
-            lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+                //แปลง
+                if (lvStatNow == lvSQLChkStat)
+                {
+                    DTNow = DTNow.AddDays(1);
+                    txtDate.Text = DTNow.ToString("dd/MM/yyyy");
+                    lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '"+ Gstr.fncChangeTDate(txtDate.Text) +"' WHERE S_MCode = 'OilBill_02' ";
+                    lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+                }
+                else
+                {
+                    DTNow = DTNow.AddDays(1);
+                    txtDate.Text = DTNow.ToString("dd/MM/yyyy");
+                }
+                //DTNow = DTNow.AddDays(1);
+                //txtDate.Text = DTNow.ToString("dd/MM/yyyy");
+                //lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
+                //lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+            }
+            else
+            {
+
+            }
 
             //ล้างข้อมูล ตาม Tab
             //ClearData(lvTabIndex, pvMode);
@@ -491,18 +515,18 @@ namespace PSOilBill
                 cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
             else if (rdCarry.Checked)
                 cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
-            else if (lvLastdoc == "0" && rdIssue.Checked == true)
-                //cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
-                cmbDocNo.Text = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-            else if (lvLastdoc != "0" && rdIssue.Checked == true)
-            {
-                string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-                string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-                string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-                //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
-                cmbDocNo.Text = "C-" + lvstl + lvstr;
-            }
+            else //if (lvLastdoc == "0" && rdIssue.Checked == true)
+                cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
+            //else if (lvLastdoc != "0" && rdIssue.Checked == true)
+            //{
+            //    string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
+            //    string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
+            //    string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
+            //    //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
+            //    cmbDocNo.Text = "C-" + lvstl + lvstr;
+            //}
 
+            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             txtDocS.Enabled = false;
             cmbDocNo.Enabled = false;
             string lvd = "";
@@ -576,29 +600,59 @@ namespace PSOilBill
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (pvMode == "New")
-            {
-                string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
-                string lvLastdoc = fncGetLastDocNoX(lvDate2);
-                //GenDoc
-                if (rdOil.Checked)
-                    cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
-                else if (rdCarry.Checked)
-                    cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
-                else if (lvLastdoc == "0" && rdIssue.Checked == true)
-                    //cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
-                    cmbDocNo.Text = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-                else if (lvLastdoc != "0" && rdIssue.Checked == true)
-                {
-                    string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-                    string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-                    string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-                    //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
-                    cmbDocNo.Text = "C-" + lvstl + lvstr;
-                }
-            }
+            //if (pvMode == "New")
+            //{
+            //    //GenDoc
+            //    if (rdOil.Checked)
+            //        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
+            //    else if (rdCarry.Checked)
+            //        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
+            //    else
+            //        //cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
+            //        cmbDocNo.Text = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
+            //}
 
+            //if(pvMode == "Past")
+            //{
+            //    string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
+            //    string lvDayChk = DateTime.Now.ToString("dd/MM/yyyy");
 
+            //    //เช็ควันที่
+            //    DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy 15:00:00")); // 20/08/2562 15:00:00
+            //    DateTime lvTimeNow = DateTime.Now;
+            //    string lvLastdoc = fncGetLastDocNoX(lvDate2);
+
+            //    if (pvMode == "Past" && chkPast.Checked == true)
+            //    {
+            //        if (txtDate.Text == lvDayChk && lvTimeNow < lvTimeChk || lvLastdoc == "0")
+            //        {
+            //            string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
+            //            cmbDocNo.Text = lvstu;
+            //        }
+            //        else
+            //        {
+            //            string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
+            //            string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
+            //            string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
+            //            cmbDocNo.Text = "C-" + lvstl + lvstr;
+            //        }
+            //    }
+            //}
+
+            //if(pvMode == "Pasttwo")
+            //{
+            //    DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("15:00:00"));
+            //    DateTime lvtxtTime = DateTime.Parse(txtTime.Text);
+
+            //    if (lvtxtTime > lvTimeChk)
+            //    {
+            //        string lvst1 = (cmbDocNo.Text).Substring(2, 4);
+            //        string lvst2 = (cmbDocNo.Text).Substring(6, 2);
+            //        string lvst3 = (cmbDocNo.Text).Substring(8, 4);
+            //        string lvst2plus = (Gstr.fncToInt(lvst2) + 1).ToString();
+            //        cmbDocNo.Text = "C-" + lvst1 + lvst2plus + lvst3;
+            //    }
+            //}
 
             //คำนวนยอดใหม่
             FncKeyDownLitAmountNoSave(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
@@ -636,6 +690,11 @@ namespace PSOilBill
             string lvproductOut = "";
             string lvCarnumS6 = "";
             string lvCarnumE6 = "";
+            string lvTimePast = "";
+
+            //เช็คเวลาของเลขที่ 01
+            string lvDocNolast = lvDocNo.Substring(10, 2);
+
 
             #region เก็บค่า
 
@@ -763,8 +822,17 @@ namespace PSOilBill
                 lvCarnumS6 = txtCarNumS6.Text;
                 lvCarnumE6 = txtCarNumE6.Text;
                 lvType = txtType.Text;
+
+                if(pvMode == "New")
+                {
+                    txtTime.Text = lvTime;
+                }
+                else if(pvMode == "Past" || pvMode == "Pasttwo")
+                {
+                    lvTimePast = txtTime.Text;
+                }
             }
-            #endregion  
+            #endregion
 
             #region //เช็คข้อมูล            
             //if (lvDocS == "")
@@ -820,6 +888,13 @@ namespace PSOilBill
                 MessageBox.Show("กรุณาระบุจำนวนที่เติม", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtAmount.Focus();
                 return;
+            }
+
+            if(pvMode == "Past" && lvTimePast == "" || pvMode == "Pasttwo" && lvTimePast == "")
+            {
+                 MessageBox.Show("กรุณาระบุเวลา", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 txtAmount.Focus();
+                 return;
             }
 
             string lvChkBill = GsysSQL.fncCheckBillNo(lvCaneNo, lvDocNo);
@@ -974,33 +1049,8 @@ namespace PSOilBill
 
             }
 
-            else if (pvMode == "Past")
+            else if (pvMode == "Past" || pvMode == "Pasttwo")
             {
-                string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
-                string lvDayChk = DateTime.Now.ToString("dd/MM/yyyy");
-                string lvTimePast = txtTime.Text;
-
-                //เช็ควันที่
-                DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy 15:00:00")); // 20/08/2562 15:00:00
-                DateTime lvTimeNow = DateTime.Now;
-                string lvLastdoc = fncGetLastDocNoX(lvDate2);
-
-                if (pvMode == "Past" && chkPast.Checked == true)
-                {
-                    if (txtDate.Text == lvDayChk && lvTimeNow < lvTimeChk || lvLastdoc == "0")
-                    {
-                        string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-                        cmbDocNo.Text = lvstu;
-                    }
-                    else
-                    {
-                        string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-                        string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-                        string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-                        cmbDocNo.Text = "C-" + lvstl + lvstr;
-                    }
-                }
-
                 //ลบข้อมูล
                 string lvSQL = "Delete From Cane_OilBillHD Where O_DocNo = '" + lvDocNo + "' "; //HD
                 string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
@@ -1020,16 +1070,6 @@ namespace PSOilBill
 
                 lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
                 lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //Update เลขที่เอกสาร
-                if (rdOil.Checked)
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_00' ";
-                else if (rdCarry.Checked)
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_01' ";
-                else
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_02' ";
-
                 lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
                 //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
@@ -1103,8 +1143,8 @@ namespace PSOilBill
                 //}
             }
 
-            
-            if(pvMode == "Past")
+            //รีเซ็ตข้อมูล
+            if(pvMode == "Past" || pvMode == "Pasttwo")
             {
                 ShowBtn();
                 txtDate_EditValueChanged_1(sender, e);
@@ -1127,33 +1167,6 @@ namespace PSOilBill
                 txtMeterE6.Text = "";
                 txtCarNumS6.Text = "";
                 txtCarNumE6.Text = "";
-
-            }
-
-            else if (pvMode == "New")
-            {
-                ShowBtn();
-                txtDate_EditValueChanged_1(sender, e);
-                txtTime.Text = "";
-                txtType.Text = "";
-                txtDept.Text = "";
-                txtName6.Text = "";
-                txtObjective.Text = "";
-                txtEmpID.Text = "";
-                txtEmpName.Text = "";
-                txtBudjet.Text = "";
-                txtAsset.Text = "";
-                txtPdIn.Text = "";
-                txtPdOut.Text = "";
-                txtOil6.Text = "01 : โซล่า";
-                txtAmount6.Text = "";
-                txtTotal6.Text = "";
-                txtFront6.Text = "";
-                txtMeterS6.Text = "";
-                txtMeterE6.Text = "";
-                txtCarNumS6.Text = "";
-                txtCarNumE6.Text = "";
-
             }
 
             else
@@ -1373,6 +1386,8 @@ namespace PSOilBill
                 txtTotal6.Text = "";
                 txtType.Text = "";
                 txtTime.Text = "";
+                txtTime.Enabled = false;
+                chkPast.Checked = false;
 
                 if (lvMode == "")
                 {
@@ -2488,7 +2503,7 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past")
+                if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past" && pvMode != "Pasttwo")
                 {
                     MessageBox.Show("กรุณากดเพิ่มข้อมูลก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -3760,7 +3775,7 @@ namespace PSOilBill
                 {
                     if (pvMode == "Past" && chkPast.Checked == true)
                     {
-                        if (txtDate.Text == lvDayChk && lvTimeNow < lvTimeChk || lvLastdoc == "0")
+                        if (lvLastdoc == "0")
                         {
                             string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
                             cmbDocNo.Text = lvstu;
@@ -3787,22 +3802,22 @@ namespace PSOilBill
                 pvMode = "New";
                 try
                 {
-                    if (pvMode == "New")
-                    {
-                        if (lvTimeNow > lvTimeChk || lvLastdoc == "0")
-                        {
-                            string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-                            cmbDocNo.Text = lvstu;
-                        }
-                        else
-                        {
-                            string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-                            string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-                            string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-                            //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
-                            cmbDocNo.Text = "C-" + lvstl + lvstr;
-                        }
-                    }
+                    //if (pvMode == "New")
+                    //{
+                    //    if (lvTimeNow > lvTimeChk || lvLastdoc == "0")
+                    //    {
+                    //        string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
+                    //        cmbDocNo.Text = lvstu;
+                    //    }
+                        //else
+                        //{
+                        //    string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
+                        //    string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
+                        //    string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
+                        //    //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
+                        //    cmbDocNo.Text = "C-" + lvstl + lvstr;
+                        //}
+                    //}
                 }
                 catch(Exception ex)
                 {
@@ -3971,14 +3986,12 @@ namespace PSOilBill
             if (chkPast.Checked == true)
             {
                 txtTime.Enabled = true;
-                cmbDocNo.Enabled = true;
             } 
             if (chkPast.Checked == false)
             {
                 txtTime.Text = "";
                 txtTime.Enabled = false;
             } 
-            txtTime.Text = DateTime.Now.ToString("HH:mm");
         }
 
         private void txtPdIn_KeyDown(object sender, KeyEventArgs e)
@@ -3995,6 +4008,39 @@ namespace PSOilBill
             {
                 txtAmount6.Focus();
             }
+        }
+
+        private void txtTime_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtTime_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                pvMode = "Pasttwo";
+                string lvDocNo = cmbDocNo.Text;
+
+                DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("15:00:00"));
+                DateTime lvtxtTime = DateTime.Parse(txtTime.Text);
+
+                if (lvtxtTime > lvTimeChk)
+                {
+                    string lvst1 = lvDocNo.Substring(2, 4);
+                    string lvst2 = lvDocNo.Substring(6, 2);
+                    string lvst3 = lvDocNo.Substring(8, 4);
+                    lvst3 = "0001";
+                    string lvst2plus = (Gstr.fncToInt(lvst2) + 1).ToString();
+                    cmbDocNo.Text = "C-" + lvst1 + lvst2plus + lvst3;
+                }
+            }
+        }
+
+        private void simpleButton6_Click(object sender, EventArgs e)
+        {
+            frmOilChange frm = new frmOilChange();
+            frm.ShowDialog();
         }
     }
 }
