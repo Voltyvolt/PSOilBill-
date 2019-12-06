@@ -633,14 +633,13 @@
             // 
             // xrLabel3
             // 
-            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.S_Fieid8")});
             this.xrLabel3.Font = new System.Drawing.Font("Tahoma", 12F);
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(90.20835F, 130.2083F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(90.625F, 23F);
             this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.Text = "62/63";
             // 
             // xrTable1
             // 

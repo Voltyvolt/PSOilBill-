@@ -475,15 +475,15 @@ namespace PSOilBill
             DateTime DTBreak = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy") + " 15:00:00");
             DateTime DTNow = DateTime.Now;
 
-            //รีสเตตัสเมื่อถึง 15:00
-            if (DTNow >= DTBreak)
-            {
-                //เช็คสเตตัส
-                string lvSQLChkStat = GsysSQL.fncGetStat("OilBill_02");
-                string lvStatNow = Gstr.fncChangeTDate(txtDate.Text);
+            //เช็คสเตตัส
+            string lvSQLChkStat = GsysSQL.fncGetStat("OilBill_02");
+            string lvStatNow = Gstr.fncChangeTDate(txtDate.Text);
 
+            //รีสเตตัสเมื่อถึง 15:00
+            if (DTNow >= DTBreak || lvStatNow != lvSQLChkStat)
+            {
                 //แปลง
-                if (lvStatNow == lvSQLChkStat)
+                if (lvStatNow != lvSQLChkStat)
                 {
                     DTNow = DTNow.AddDays(1);
                     txtDate.Text = DTNow.ToString("dd/MM/yyyy");
@@ -500,6 +500,7 @@ namespace PSOilBill
                 //lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
                 //lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
             }
+
             else
             {
 
@@ -550,28 +551,28 @@ namespace PSOilBill
             }
             else if (lvTabIndex == "2")
             {
-                txtOil1.Text = "01 : โซล่า";
+                txtOil2.Text = "01 : โซล่า";
                 lvOilPrice = GsysSQL.fncFindOilPrice(Gstr.fncGetDataCode(txtOil2.Text, ":"));
                 txtlitter2.Text = lvOilPrice;
                 txtCaneNo2.Focus();
             }
             else if (lvTabIndex == "3")
             {
-                txtOil1.Text = "01 : โซล่า";
+                txtOil3.Text = "01 : โซล่า";
                 lvOilPrice = GsysSQL.fncFindOilPrice(Gstr.fncGetDataCode(txtOil3.Text, ":"));
                 txtlitter3.Text = lvOilPrice;
                 txtCaneNo3.Focus();
             }
             else if (lvTabIndex == "4")
             {
-                txtOil1.Text = "01 : โซล่า";
+                txtOil4.Text = "01 : โซล่า";
                 lvOilPrice = GsysSQL.fncFindOilPrice(Gstr.fncGetDataCode(txtOil4.Text, ":"));
                 txtlitter4.Text = lvOilPrice;
                 txtCaneNo4.Focus();
             }
             else if (lvTabIndex == "5")
             {
-                txtOil1.Text = "01 : โซล่า";
+                txtOil5.Text = "01 : โซล่า";
                 lvOilPrice = GsysSQL.fncFindOilPrice(Gstr.fncGetDataCode(txtOil5.Text, ":"));
                 txtlitter5.Text = lvOilPrice;
                 txtCaneNo5.Focus();
@@ -682,7 +683,7 @@ namespace PSOilBill
             string lvOilPrice = "";
             string lvDue = GsysSQL.fncFindDue(lvDate);
             string lvTime = DateTime.Now.ToString("HH:mm");
-            string lvYear = "61/62";
+            string lvYear = "";
             string lvEmpID = txtEmpID.Text;
             string lvEmpName = txtEmpName.Text;
             string lvType = "";
@@ -693,7 +694,7 @@ namespace PSOilBill
             string lvTimePast = "";
 
             //เช็คเวลาของเลขที่ 01
-            string lvDocNolast = lvDocNo.Substring(10, 2);
+            //string lvDocNolast = lvDocNo.Substring(10, 2);
 
 
             #region เก็บค่า
@@ -827,9 +828,15 @@ namespace PSOilBill
                 {
                     txtTime.Text = lvTime;
                 }
+
                 else if(pvMode == "Past" || pvMode == "Pasttwo")
                 {
                     lvTimePast = txtTime.Text;
+
+                    if(lvTimePast == "00:00")
+                    {
+                        lvTimePast = "08:00";
+                    }
                 }
             }
             #endregion
@@ -905,7 +912,7 @@ namespace PSOilBill
                 return;
             }
 
-            if (txtType.Text == "")
+            if (txtType.Text == "" && rdIssue.Checked == true)
             {
                 MessageBox.Show("กรุณาเลือกประเภท", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtType.Focus();
@@ -1148,7 +1155,7 @@ namespace PSOilBill
             {
                 ShowBtn();
                 txtDate_EditValueChanged_1(sender, e);
-                txtTime.Text = "";
+                txtTime.Text = "";  
                 txtType.Text = "";
                 txtDept.Text = "";
                 txtName6.Text = "";
@@ -3456,7 +3463,6 @@ namespace PSOilBill
                 return;
             }
 
-
             //Update ราคา
             string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
             GsysSQL.fncExecuteQueryData(lvSQL);
@@ -3793,7 +3799,7 @@ namespace PSOilBill
                 }
                 catch (Exception ex)
                 {
-                    
+                    MessageBox.Show(ex.ToString());  
                 }
             }
 
@@ -3821,7 +3827,7 @@ namespace PSOilBill
                 }
                 catch(Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString());
                 }
             }
             else
@@ -3833,8 +3839,9 @@ namespace PSOilBill
         private string fncGetLastDocNoX(string lvDate2)
         {
             string lvReturn = "";
+
             string lvDate1 = Gstr.fncChangeTDate(txtDate.Text);
-            if (lvDate1 == "20190901") lvDate1 = "20190832";
+            if (lvDate1 == "20191101") lvDate1 = "20191032";
             string lvDate = Gstr.fncChangeTDate(txtDate.Text);
             try
             {

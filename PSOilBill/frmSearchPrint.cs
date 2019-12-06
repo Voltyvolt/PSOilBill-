@@ -152,7 +152,7 @@ namespace PSOilBill
 
             if (txtYear.Text != "")
             {
-                lvSQL += "And Cane_OilBillHD.O_Year = '" + txtYear.Text + "' ";
+                lvSQL += "And Cane_OilBillHD.O_Year = '' ";
             }
 
             if (txtDue.Text != "")

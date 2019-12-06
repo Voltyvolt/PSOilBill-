@@ -275,7 +275,7 @@ namespace PSOilBill
 
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo <> '"+ lvDocNo +"' And O_CaneNo = '" + lvSearch + "' And O_Status = '' ";//
+            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo <> '"+ lvDocNo +"' And O_CaneNo = '" + lvSearch + "' And O_Status = '' And O_Year = '' ";//
             dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {

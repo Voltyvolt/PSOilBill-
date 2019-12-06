@@ -26,7 +26,7 @@ namespace PSOilBill
         {
             this.Cursor = Cursors.WaitCursor;
 
-            //Get Data
+            //Get Data 1
             DataTable DT = new DataTable();
             string lvSQL = "";
 
@@ -64,8 +64,10 @@ namespace PSOilBill
                 lvSQL += "And HD.O_CarFront = '" + txtFront.Text + "' ";
             }
 
-            lvSQL += "And HD.O_Status = '' ";
-            lvSQL += "Order by HD.O_DocNo desc ";//by HD.O_CaneNo desc,HD.O_Date,
+            lvSQL += "And HD.O_Status = '' and (O_Year = '' or HD.O_DocNo like 'C-%' )  "; //And HD.O_HStatus = '1'
+            
+
+            lvSQL += "Order by HD.O_PK desc ";//by HD.O_CaneNo desc,HD.O_Date,
 
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
