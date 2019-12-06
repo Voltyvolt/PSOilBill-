@@ -61,8 +61,9 @@ namespace PSOilBill
                 lvSQL += "And Q_OilBillNo = '' ";
             }            
 
-            lvSQL += "And Q_BillingNo != '' ";
-            lvSQL += "Order by Q_BillingNo Desc,Q_Date";
+            lvSQL += "And Q_BillingNo != '' And Q_Year = '' ";
+            lvSQL += "Order by Q_DATE DESC";
+            //lvSQL += "Order by Q_Date Desc,Q_BillingNo";
 
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 

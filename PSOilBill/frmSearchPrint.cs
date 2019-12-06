@@ -80,6 +80,7 @@ namespace PSOilBill
                 //fncReportPrint1();
                 fncReportPrint2();
             }
+
             else
             {
                 //รายงานอื่นๆ
@@ -552,7 +553,7 @@ namespace PSOilBill
             string lvSQL = "Delete From SysTempOilBill ";
             string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
-            txtYear.Text = "61/62";
+            txtYear.Text = "62/63";
         }
 
         private void txtYear_QueryPopUp(object sender, CancelEventArgs e)
