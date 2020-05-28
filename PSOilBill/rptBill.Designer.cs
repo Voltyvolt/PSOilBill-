@@ -420,18 +420,19 @@
             // 
             this.lbFront.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dot;
             this.lbFront.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.lbFront.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.Field18")});
             this.lbFront.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lbFront.LocationFloat = new DevExpress.Utils.PointFloat(475.7087F, 144.7917F);
             this.lbFront.Multiline = true;
             this.lbFront.Name = "lbFront";
             this.lbFront.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbFront.SizeF = new System.Drawing.SizeF(142.6251F, 22.91666F);
+            this.lbFront.SizeF = new System.Drawing.SizeF(254.0835F, 22.91666F);
             this.lbFront.StylePriority.UseBorderDashStyle = false;
             this.lbFront.StylePriority.UseBorders = false;
             this.lbFront.StylePriority.UseFont = false;
             this.lbFront.StylePriority.UseTextAlignment = false;
             this.lbFront.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter;
-            this.lbFront.Visible = false;
             // 
             // lbCarNum
             // 

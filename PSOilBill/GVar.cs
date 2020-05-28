@@ -34,5 +34,9 @@ namespace PSOilBill
         internal static string gvSampleNo;
         internal static string gvCarFront;
         internal static string gvCarryPriceStatus;
+        internal static string gvLockS;
+        internal static string gvLockE;
+        internal static string gvPass;
+        internal static bool gvAlertLine;
     }
 }

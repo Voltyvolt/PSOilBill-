@@ -128,6 +128,33 @@ namespace PSOilBill
             return lvReturn;
         }
 
+        public static string fncCheckCancel(string lvSearch)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT O_Status FROM Cane_OilBillHD WHERE O_CaneNo = '" + lvSearch + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["O_Status"].ToString();
+                }
+            }
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
         public static string fncCheckEmpPrefix(string lvSearch)
         {
             #region //Connect Database 
@@ -1150,6 +1177,143 @@ namespace PSOilBill
                 }
             }
 
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        public static string fncGetQlock(string lvDocCode)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT S_RunNo FROM SysDocNo WHERE S_MCode = '" + lvDocCode + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["S_RunNo"].ToString();
+                }
+            }
+
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        public static string fncGetLitter(string DocCode)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT O_Litter FROM Cane_OilBillDT WHERE O_DocNo like '%" + DocCode + "%' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["O_Litter"].ToString();
+                }
+            }
+
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        public static string fncFindShotEngCar(string lvTXT)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT P_ShotEng FROM SysProvince2 WHERE P_ShotThai = '" + lvTXT + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["P_ShotEng"].ToString().ToUpper();
+                }
+            }
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        public static string fncFindShotThaiCar(string lvTXT)
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT P_ShotThai FROM SysProvince2 WHERE P_ShotEng = '" + lvTXT + "' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["P_ShotThai"].ToString().ToUpper();
+                }
+            }
+            dr.Close();
+            con.Close();
+
+            return lvReturn;
+        }
+
+        public static string fncCheckOilPrice()
+        {
+            #region //Connect Database 
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PSConnection"].ToString());
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader dr;
+            #endregion  
+
+            string lvReturn = "";
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "SELECT C_ItemPrice FROM Cane_OillItem WHERE C_ItemName = 'โซล่า' ";
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lvReturn = dr["C_ItemPrice"].ToString().ToUpper();
+                }
+            }
             dr.Close();
             con.Close();
 

@@ -1,6 +1,6 @@
 ﻿namespace PSOilBill
 {
-    partial class frmSearchPrint
+    partial class frmPrintCarnum
     {
         /// <summary>
         /// Required designer variable.
@@ -29,47 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchPrint));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrintCarnum));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbDept = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl125 = new DevExpress.XtraEditors.LabelControl();
-            this.txtAsset = new DevExpress.XtraEditors.TextEdit();
-            this.txtBudjet = new DevExpress.XtraEditors.TextEdit();
-            this.txtCarNum = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDue = new DevExpress.XtraEditors.TextEdit();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btntxt = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbType = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.btnClear = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
-            this.txtDocBillE = new DevExpress.XtraEditors.TextEdit();
-            this.txtDocE = new DevExpress.XtraEditors.TextEdit();
-            this.txtDocBillS = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDocS = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.txtQuotaE = new DevExpress.XtraEditors.TextEdit();
-            this.txtQuotaS = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDateE = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDateS = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtKa = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtYear = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
             this.documentViewerBarManager1 = new DevExpress.XtraPrinting.Preview.DocumentViewerBarManager(this.components);
             this.previewBar1 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.bbiDocumentMap = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
@@ -101,6 +62,16 @@
             this.bbiExportFile = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
             this.bbiSendFile = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
             this.bbiClosePreview = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
+            this.previewBar2 = new DevExpress.XtraPrinting.Preview.PreviewBar();
+            this.printPreviewStaticItem1 = new DevExpress.XtraPrinting.Preview.PrintPreviewStaticItem();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.progressBarEditItem1 = new DevExpress.XtraPrinting.Preview.ProgressBarEditItem();
+            this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
+            this.printPreviewBarItem1 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.printPreviewStaticItem2 = new DevExpress.XtraPrinting.Preview.PrintPreviewStaticItem();
+            this.zoomTrackBarEditItem1 = new DevExpress.XtraPrinting.Preview.ZoomTrackBarEditItem();
+            this.repositoryItemZoomTrackBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemZoomTrackBar();
             this.previewBar3 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.miFile = new DevExpress.XtraPrinting.Preview.PrintPreviewSubItem();
             this.miView = new DevExpress.XtraPrinting.Preview.PrintPreviewSubItem();
@@ -113,15 +84,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.printPreviewStaticItem1 = new DevExpress.XtraPrinting.Preview.PrintPreviewStaticItem();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.progressBarEditItem1 = new DevExpress.XtraPrinting.Preview.ProgressBarEditItem();
-            this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-            this.printPreviewBarItem1 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.printPreviewStaticItem2 = new DevExpress.XtraPrinting.Preview.PrintPreviewStaticItem();
-            this.zoomTrackBarEditItem1 = new DevExpress.XtraPrinting.Preview.ZoomTrackBarEditItem();
-            this.repositoryItemZoomTrackBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemZoomTrackBar();
+            this.documentViewer1 = new DevExpress.XtraPrinting.Preview.DocumentViewer();
             this.printPreviewBarCheckItem1 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem2 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem3 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
@@ -141,624 +104,42 @@
             this.printPreviewBarCheckItem17 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtCarnum = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDept = new DevExpress.XtraEditors.TextEdit();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDept.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAsset.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBudjet.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCarNum.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuotaE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuotaS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateE.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateS.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtYear.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerBarManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbDept);
-            this.groupBox1.Controls.Add(this.txtType);
-            this.groupBox1.Controls.Add(this.labelControl125);
-            this.groupBox1.Controls.Add(this.txtAsset);
-            this.groupBox1.Controls.Add(this.txtBudjet);
-            this.groupBox1.Controls.Add(this.txtCarNum);
-            this.groupBox1.Controls.Add(this.labelControl16);
-            this.groupBox1.Controls.Add(this.labelControl15);
-            this.groupBox1.Controls.Add(this.labelControl14);
-            this.groupBox1.Controls.Add(this.labelControl11);
-            this.groupBox1.Controls.Add(this.labelControl10);
-            this.groupBox1.Controls.Add(this.txtDue);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.labelControl9);
-            this.groupBox1.Controls.Add(this.cmbType);
-            this.groupBox1.Controls.Add(this.btnClear);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.txtDocBillE);
-            this.groupBox1.Controls.Add(this.txtDocE);
-            this.groupBox1.Controls.Add(this.txtDocBillS);
-            this.groupBox1.Controls.Add(this.labelControl13);
-            this.groupBox1.Controls.Add(this.txtDocS);
-            this.groupBox1.Controls.Add(this.labelControl12);
-            this.groupBox1.Controls.Add(this.labelControl7);
-            this.groupBox1.Controls.Add(this.labelControl8);
-            this.groupBox1.Controls.Add(this.txtQuotaE);
-            this.groupBox1.Controls.Add(this.txtQuotaS);
-            this.groupBox1.Controls.Add(this.labelControl5);
-            this.groupBox1.Controls.Add(this.labelControl6);
-            this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Controls.Add(this.txtDateE);
-            this.groupBox1.Controls.Add(this.labelControl3);
-            this.groupBox1.Controls.Add(this.txtDateS);
-            this.groupBox1.Controls.Add(this.labelControl1);
-            this.groupBox1.Controls.Add(this.txtKa);
-            this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.txtYear);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 53);
+            this.groupBox1.Controls.Add(this.btnCancel);
+            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Controls.Add(this.txtDept);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtCarnum);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1008, 388);
+            this.groupBox1.Size = new System.Drawing.Size(783, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ค้นหา";
-            // 
-            // cmbDept
-            // 
-            this.cmbDept.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbDept.Location = new System.Drawing.Point(264, 273);
-            this.cmbDept.Name = "cmbDept";
-            this.cmbDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.cmbDept.Properties.Appearance.Options.UseFont = true;
-            this.cmbDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbDept.Properties.Items.AddRange(new object[] {
-            "121",
-            "116",
-            "117",
-            "118",
-            "119",
-            "120",
-            "122",
-            "123",
-            "125",
-            "126",
-            "127",
-            "129",
-            "130",
-            "131",
-            "132",
-            "133",
-            "134",
-            "135",
-            "137",
-            "141",
-            "142",
-            "143",
-            "144",
-            "145",
-            "146",
-            "147",
-            "148",
-            "152",
-            "161",
-            "162",
-            "163",
-            "164",
-            "165",
-            "166",
-            "167",
-            "168",
-            "169",
-            "170",
-            "171",
-            "172",
-            "174",
-            "191",
-            "192",
-            "111",
-            "231",
-            "234",
-            "900",
-            "901",
-            "902",
-            "903",
-            "904",
-            "905",
-            "107",
-            "120",
-            "201"});
-            this.cmbDept.Size = new System.Drawing.Size(399, 30);
-            this.cmbDept.TabIndex = 96;
-            // 
-            // txtType
-            // 
-            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtType.Location = new System.Drawing.Point(759, 174);
-            this.txtType.Name = "txtType";
-            this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtType.Properties.Appearance.Options.UseFont = true;
-            this.txtType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtType.Properties.Items.AddRange(new object[] {
-            "รถบริษัท",
-            "รถเช่า",
-            "โรงในเครือ"});
-            this.txtType.Size = new System.Drawing.Size(174, 30);
-            this.txtType.TabIndex = 96;
-            // 
-            // labelControl125
-            // 
-            this.labelControl125.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl125.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl125.Appearance.Options.UseFont = true;
-            this.labelControl125.Location = new System.Drawing.Point(676, 177);
-            this.labelControl125.Name = "labelControl125";
-            this.labelControl125.Size = new System.Drawing.Size(77, 24);
-            this.labelControl125.TabIndex = 95;
-            this.labelControl125.Text = "ประเภท :";
-            // 
-            // txtAsset
-            // 
-            this.txtAsset.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtAsset.Location = new System.Drawing.Point(264, 344);
-            this.txtAsset.Name = "txtAsset";
-            this.txtAsset.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtAsset.Properties.Appearance.Options.UseFont = true;
-            this.txtAsset.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtAsset.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtAsset.Size = new System.Drawing.Size(399, 30);
-            this.txtAsset.TabIndex = 31;
-            // 
-            // txtBudjet
-            // 
-            this.txtBudjet.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBudjet.Location = new System.Drawing.Point(264, 308);
-            this.txtBudjet.Name = "txtBudjet";
-            this.txtBudjet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtBudjet.Properties.Appearance.Options.UseFont = true;
-            this.txtBudjet.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtBudjet.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtBudjet.Size = new System.Drawing.Size(399, 30);
-            this.txtBudjet.TabIndex = 31;
-            // 
-            // txtCarNum
-            // 
-            this.txtCarNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCarNum.Location = new System.Drawing.Point(264, 235);
-            this.txtCarNum.Name = "txtCarNum";
-            this.txtCarNum.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtCarNum.Properties.Appearance.Options.UseFont = true;
-            this.txtCarNum.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtCarNum.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtCarNum.Size = new System.Drawing.Size(399, 30);
-            this.txtCarNum.TabIndex = 31;
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl16.Appearance.Options.UseFont = true;
-            this.labelControl16.Location = new System.Drawing.Point(138, 347);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(120, 24);
-            this.labelControl16.TabIndex = 30;
-            this.labelControl16.Text = "รหัสทรัพย์สิน :";
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(118, 311);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(140, 24);
-            this.labelControl15.TabIndex = 30;
-            this.labelControl15.Text = "รหัสงบประมาณ :";
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(166, 274);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(92, 24);
-            this.labelControl14.TabIndex = 30;
-            this.labelControl14.Text = "หน่วยงาน :";
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(157, 238);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(101, 24);
-            this.labelControl11.TabIndex = 30;
-            this.labelControl11.Text = "ทะเบียนรถ :";
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(558, 58);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(55, 24);
-            this.labelControl10.TabIndex = 29;
-            this.labelControl10.Text = "Due : ";
-            // 
-            // txtDue
-            // 
-            this.txtDue.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDue.Location = new System.Drawing.Point(619, 55);
-            this.txtDue.Name = "txtDue";
-            this.txtDue.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDue.Properties.Appearance.Options.UseFont = true;
-            this.txtDue.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDue.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDue.Size = new System.Drawing.Size(44, 30);
-            this.txtDue.TabIndex = 28;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.btntxt);
-            this.groupBox2.Location = new System.Drawing.Point(919, 11);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(77, 74);
-            this.groupBox2.TabIndex = 27;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Export";
-            // 
-            // btntxt
-            // 
-            this.btntxt.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btntxt.ImageOptions.Image")));
-            this.btntxt.Location = new System.Drawing.Point(16, 19);
-            this.btntxt.Name = "btntxt";
-            this.btntxt.Size = new System.Drawing.Size(44, 45);
-            this.btntxt.TabIndex = 26;
-            this.btntxt.Click += new System.EventHandler(this.btntxt_Click);
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(156, 22);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(102, 24);
-            this.labelControl9.TabIndex = 25;
-            this.labelControl9.Text = "ประเภทบิล :";
-            // 
-            // cmbType
-            // 
-            this.cmbType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbType.EditValue = "บิลน้ำมัน";
-            this.cmbType.Location = new System.Drawing.Point(264, 19);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.cmbType.Properties.Appearance.Options.UseFont = true;
-            this.cmbType.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.cmbType.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.cmbType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbType.Properties.Items.AddRange(new object[] {
-            "บิลน้ำมัน",
-            "บิลเรียกเก็บค่าบรรทุก",
-            "น้ำมันโซล่าประจำวัน",
-            "บิลรวม",
-            "บิลรวมรายทะเบียน"});
-            this.cmbType.Size = new System.Drawing.Size(399, 30);
-            this.cmbType.TabIndex = 24;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(678, 88);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(147, 66);
-            this.btnClear.TabIndex = 23;
-            this.btnClear.Text = "ล้างข้อมูล";
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(678, 19);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(147, 66);
-            this.btnSearch.TabIndex = 22;
-            this.btnSearch.Text = "พิมพ์";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtDocBillE
-            // 
-            this.txtDocBillE.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDocBillE.Location = new System.Drawing.Point(489, 199);
-            this.txtDocBillE.Name = "txtDocBillE";
-            this.txtDocBillE.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDocBillE.Properties.Appearance.Options.UseFont = true;
-            this.txtDocBillE.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDocBillE.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDocBillE.Size = new System.Drawing.Size(174, 30);
-            this.txtDocBillE.TabIndex = 21;
-            // 
-            // txtDocE
-            // 
-            this.txtDocE.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDocE.Location = new System.Drawing.Point(489, 163);
-            this.txtDocE.Name = "txtDocE";
-            this.txtDocE.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDocE.Properties.Appearance.Options.UseFont = true;
-            this.txtDocE.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDocE.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDocE.Size = new System.Drawing.Size(174, 30);
-            this.txtDocE.TabIndex = 21;
-            // 
-            // txtDocBillS
-            // 
-            this.txtDocBillS.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDocBillS.Location = new System.Drawing.Point(264, 199);
-            this.txtDocBillS.Name = "txtDocBillS";
-            this.txtDocBillS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDocBillS.Properties.Appearance.Options.UseFont = true;
-            this.txtDocBillS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDocBillS.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDocBillS.Size = new System.Drawing.Size(174, 30);
-            this.txtDocBillS.TabIndex = 20;
-            this.txtDocBillS.Click += new System.EventHandler(this.txtDocBillS_Click);
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(448, 202);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(35, 24);
-            this.labelControl13.TabIndex = 19;
-            this.labelControl13.Text = "ถึง :";
-            // 
-            // txtDocS
-            // 
-            this.txtDocS.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDocS.Location = new System.Drawing.Point(264, 163);
-            this.txtDocS.Name = "txtDocS";
-            this.txtDocS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDocS.Properties.Appearance.Options.UseFont = true;
-            this.txtDocS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDocS.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDocS.Size = new System.Drawing.Size(174, 30);
-            this.txtDocS.TabIndex = 20;
-            this.txtDocS.Click += new System.EventHandler(this.txtDocS_Click);
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(121, 202);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(137, 24);
-            this.labelControl12.TabIndex = 18;
-            this.labelControl12.Text = "เลขที่บิล(พัสดุ) :";
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(448, 166);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(35, 24);
-            this.labelControl7.TabIndex = 19;
-            this.labelControl7.Text = "ถึง :";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(101, 166);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(157, 24);
-            this.labelControl8.TabIndex = 18;
-            this.labelControl8.Text = "เลขที่บิล(ห้องชั่ง) :";
-            // 
-            // txtQuotaE
-            // 
-            this.txtQuotaE.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtQuotaE.Location = new System.Drawing.Point(489, 127);
-            this.txtQuotaE.Name = "txtQuotaE";
-            this.txtQuotaE.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtQuotaE.Properties.Appearance.Options.UseFont = true;
-            this.txtQuotaE.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtQuotaE.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtQuotaE.Size = new System.Drawing.Size(174, 30);
-            this.txtQuotaE.TabIndex = 17;
-            // 
-            // txtQuotaS
-            // 
-            this.txtQuotaS.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtQuotaS.Location = new System.Drawing.Point(264, 127);
-            this.txtQuotaS.Name = "txtQuotaS";
-            this.txtQuotaS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtQuotaS.Properties.Appearance.Options.UseFont = true;
-            this.txtQuotaS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtQuotaS.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtQuotaS.Size = new System.Drawing.Size(174, 30);
-            this.txtQuotaS.TabIndex = 16;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(448, 130);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(35, 24);
-            this.labelControl5.TabIndex = 15;
-            this.labelControl5.Text = "ถึง :";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(177, 130);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(81, 24);
-            this.labelControl6.TabIndex = 13;
-            this.labelControl6.Text = "โควต้าที่ :";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(448, 94);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(35, 24);
-            this.labelControl4.TabIndex = 11;
-            this.labelControl4.Text = "ถึง :";
-            // 
-            // txtDateE
-            // 
-            this.txtDateE.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDateE.EditValue = null;
-            this.txtDateE.Location = new System.Drawing.Point(489, 91);
-            this.txtDateE.Name = "txtDateE";
-            this.txtDateE.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDateE.Properties.Appearance.Options.UseFont = true;
-            this.txtDateE.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDateE.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDateE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDateE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDateE.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.txtDateE.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.txtDateE.Properties.EditFormat.FormatString = "dd/MM/yyyy";
-            this.txtDateE.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.txtDateE.Properties.Mask.EditMask = "";
-            this.txtDateE.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtDateE.Size = new System.Drawing.Size(174, 30);
-            this.txtDateE.TabIndex = 10;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(176, 94);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(82, 24);
-            this.labelControl3.TabIndex = 9;
-            this.labelControl3.Text = "ช่วงวันที่ :";
-            // 
-            // txtDateS
-            // 
-            this.txtDateS.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDateS.EditValue = null;
-            this.txtDateS.Location = new System.Drawing.Point(264, 91);
-            this.txtDateS.Name = "txtDateS";
-            this.txtDateS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDateS.Properties.Appearance.Options.UseFont = true;
-            this.txtDateS.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDateS.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDateS.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDateS.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDateS.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.txtDateS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.txtDateS.Properties.EditFormat.FormatString = "dd/MM/yyyy";
-            this.txtDateS.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.txtDateS.Properties.Mask.EditMask = "";
-            this.txtDateS.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.txtDateS.Size = new System.Drawing.Size(174, 30);
-            this.txtDateS.TabIndex = 8;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(448, 58);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(40, 24);
-            this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "กะ : ";
-            // 
-            // txtKa
-            // 
-            this.txtKa.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtKa.Location = new System.Drawing.Point(489, 55);
-            this.txtKa.Name = "txtKa";
-            this.txtKa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtKa.Properties.Appearance.Options.UseFont = true;
-            this.txtKa.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtKa.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtKa.Size = new System.Drawing.Size(62, 30);
-            this.txtKa.TabIndex = 6;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(164, 58);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(94, 24);
-            this.labelControl2.TabIndex = 5;
-            this.labelControl2.Text = "ปีการผลิต :";
-            // 
-            // txtYear
-            // 
-            this.txtYear.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtYear.Location = new System.Drawing.Point(264, 55);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtYear.Properties.Appearance.Options.UseFont = true;
-            this.txtYear.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtYear.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtYear.Size = new System.Drawing.Size(174, 30);
-            this.txtYear.TabIndex = 4;
-            this.txtYear.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.txtYear_QueryPopUp);
-            // 
-            // documentViewer1
-            // 
-            this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.documentViewer1.DocumentSource = typeof(PSOilBill.rptSumReport);
-            this.documentViewer1.IsMetric = true;
-            this.documentViewer1.Location = new System.Drawing.Point(0, 441);
-            this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1008, 288);
-            this.documentViewer1.TabIndex = 1;
             // 
             // documentViewerBarManager1
             // 
             this.documentViewerBarManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.previewBar1,
+            this.previewBar2,
             this.previewBar3});
             this.documentViewerBarManager1.DockControls.Add(this.barDockControlTop);
             this.documentViewerBarManager1.DockControls.Add(this.barDockControlBottom);
@@ -836,6 +217,7 @@
             this.repositoryItemProgressBar1,
             this.repositoryItemZoomTrackBar1,
             this.printPreviewRepositoryItemComboBox1});
+            this.documentViewerBarManager1.StatusBar = this.previewBar2;
             this.documentViewerBarManager1.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
             // 
             // previewBar1
@@ -1150,6 +532,105 @@
             this.bbiClosePreview.Id = 34;
             this.bbiClosePreview.Name = "bbiClosePreview";
             // 
+            // previewBar2
+            // 
+            this.previewBar2.BarName = "Status Bar";
+            this.previewBar2.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.previewBar2.DockCol = 0;
+            this.previewBar2.DockRow = 0;
+            this.previewBar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.previewBar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.printPreviewStaticItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.progressBarEditItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.printPreviewBarItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.printPreviewStaticItem2, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.zoomTrackBarEditItem1)});
+            this.previewBar2.OptionsBar.AllowQuickCustomization = false;
+            this.previewBar2.OptionsBar.DrawDragBorder = false;
+            this.previewBar2.OptionsBar.UseWholeRow = true;
+            this.previewBar2.Text = "Status Bar";
+            // 
+            // printPreviewStaticItem1
+            // 
+            this.printPreviewStaticItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.printPreviewStaticItem1.Caption = "Nothing";
+            this.printPreviewStaticItem1.Id = 0;
+            this.printPreviewStaticItem1.LeftIndent = 1;
+            this.printPreviewStaticItem1.Name = "printPreviewStaticItem1";
+            this.printPreviewStaticItem1.RightIndent = 1;
+            this.printPreviewStaticItem1.Type = "PageOfPages";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.barStaticItem1.Id = 1;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+            // 
+            // progressBarEditItem1
+            // 
+            this.progressBarEditItem1.Edit = this.repositoryItemProgressBar1;
+            this.progressBarEditItem1.EditHeight = 12;
+            this.progressBarEditItem1.EditWidth = 150;
+            this.progressBarEditItem1.Id = 2;
+            this.progressBarEditItem1.Name = "progressBarEditItem1";
+            this.progressBarEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // repositoryItemProgressBar1
+            // 
+            this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
+            // 
+            // printPreviewBarItem1
+            // 
+            this.printPreviewBarItem1.Caption = "Stop";
+            this.printPreviewBarItem1.Command = DevExpress.XtraPrinting.PrintingSystemCommand.StopPageBuilding;
+            this.printPreviewBarItem1.Enabled = false;
+            this.printPreviewBarItem1.Hint = "Stop";
+            this.printPreviewBarItem1.Id = 3;
+            this.printPreviewBarItem1.Name = "printPreviewBarItem1";
+            this.printPreviewBarItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
+            this.barButtonItem1.Enabled = false;
+            this.barButtonItem1.Id = 4;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+            // 
+            // printPreviewStaticItem2
+            // 
+            this.printPreviewStaticItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.printPreviewStaticItem2.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.printPreviewStaticItem2.Caption = "100%";
+            this.printPreviewStaticItem2.Id = 5;
+            this.printPreviewStaticItem2.Name = "printPreviewStaticItem2";
+            this.printPreviewStaticItem2.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.printPreviewStaticItem2.Type = "ZoomFactor";
+            // 
+            // zoomTrackBarEditItem1
+            // 
+            this.zoomTrackBarEditItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.zoomTrackBarEditItem1.Edit = this.repositoryItemZoomTrackBar1;
+            this.zoomTrackBarEditItem1.EditValue = 90;
+            this.zoomTrackBarEditItem1.EditWidth = 140;
+            this.zoomTrackBarEditItem1.Enabled = false;
+            this.zoomTrackBarEditItem1.Id = 6;
+            this.zoomTrackBarEditItem1.Name = "zoomTrackBarEditItem1";
+            this.zoomTrackBarEditItem1.Range = new int[] {
+        10,
+        500};
+            // 
+            // repositoryItemZoomTrackBar1
+            // 
+            this.repositoryItemZoomTrackBar1.Alignment = DevExpress.Utils.VertAlignment.Center;
+            this.repositoryItemZoomTrackBar1.AllowFocused = false;
+            this.repositoryItemZoomTrackBar1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.repositoryItemZoomTrackBar1.Maximum = 180;
+            this.repositoryItemZoomTrackBar1.Name = "repositoryItemZoomTrackBar1";
+            // 
             // previewBar3
             // 
             this.previewBar3.BarName = "Main Menu";
@@ -1240,15 +721,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.documentViewerBarManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1008, 53);
+            this.barDockControlTop.Size = new System.Drawing.Size(800, 53);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 729);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 452);
             this.barDockControlBottom.Manager = this.documentViewerBarManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1008, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(800, 26);
             // 
             // barDockControlLeft
             // 
@@ -1256,94 +737,24 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 53);
             this.barDockControlLeft.Manager = this.documentViewerBarManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 676);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 399);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1008, 53);
+            this.barDockControlRight.Location = new System.Drawing.Point(800, 53);
             this.barDockControlRight.Manager = this.documentViewerBarManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 676);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 399);
             // 
-            // printPreviewStaticItem1
+            // documentViewer1
             // 
-            this.printPreviewStaticItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.printPreviewStaticItem1.Caption = "Nothing";
-            this.printPreviewStaticItem1.Id = 0;
-            this.printPreviewStaticItem1.LeftIndent = 1;
-            this.printPreviewStaticItem1.Name = "printPreviewStaticItem1";
-            this.printPreviewStaticItem1.RightIndent = 1;
-            this.printPreviewStaticItem1.Type = "PageOfPages";
-            // 
-            // barStaticItem1
-            // 
-            this.barStaticItem1.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.barStaticItem1.Id = 1;
-            this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-            // 
-            // progressBarEditItem1
-            // 
-            this.progressBarEditItem1.Edit = this.repositoryItemProgressBar1;
-            this.progressBarEditItem1.EditHeight = 12;
-            this.progressBarEditItem1.EditWidth = 150;
-            this.progressBarEditItem1.Id = 2;
-            this.progressBarEditItem1.Name = "progressBarEditItem1";
-            this.progressBarEditItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // repositoryItemProgressBar1
-            // 
-            this.repositoryItemProgressBar1.Name = "repositoryItemProgressBar1";
-            // 
-            // printPreviewBarItem1
-            // 
-            this.printPreviewBarItem1.Caption = "Stop";
-            this.printPreviewBarItem1.Command = DevExpress.XtraPrinting.PrintingSystemCommand.StopPageBuilding;
-            this.printPreviewBarItem1.Enabled = false;
-            this.printPreviewBarItem1.Hint = "Stop";
-            this.printPreviewBarItem1.Id = 3;
-            this.printPreviewBarItem1.Name = "printPreviewBarItem1";
-            this.printPreviewBarItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-            this.barButtonItem1.Enabled = false;
-            this.barButtonItem1.Id = 4;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
-            // 
-            // printPreviewStaticItem2
-            // 
-            this.printPreviewStaticItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.printPreviewStaticItem2.Border = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.printPreviewStaticItem2.Caption = "100%";
-            this.printPreviewStaticItem2.Id = 5;
-            this.printPreviewStaticItem2.Name = "printPreviewStaticItem2";
-            this.printPreviewStaticItem2.TextAlignment = System.Drawing.StringAlignment.Far;
-            this.printPreviewStaticItem2.Type = "ZoomFactor";
-            // 
-            // zoomTrackBarEditItem1
-            // 
-            this.zoomTrackBarEditItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.zoomTrackBarEditItem1.Edit = this.repositoryItemZoomTrackBar1;
-            this.zoomTrackBarEditItem1.EditValue = 90;
-            this.zoomTrackBarEditItem1.EditWidth = 140;
-            this.zoomTrackBarEditItem1.Enabled = false;
-            this.zoomTrackBarEditItem1.Id = 6;
-            this.zoomTrackBarEditItem1.Name = "zoomTrackBarEditItem1";
-            this.zoomTrackBarEditItem1.Range = new int[] {
-        10,
-        500};
-            // 
-            // repositoryItemZoomTrackBar1
-            // 
-            this.repositoryItemZoomTrackBar1.Alignment = DevExpress.Utils.VertAlignment.Center;
-            this.repositoryItemZoomTrackBar1.AllowFocused = false;
-            this.repositoryItemZoomTrackBar1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.repositoryItemZoomTrackBar1.Maximum = 180;
-            this.repositoryItemZoomTrackBar1.Name = "repositoryItemZoomTrackBar1";
+            this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.documentViewer1.IsMetric = true;
+            this.documentViewer1.Location = new System.Drawing.Point(3, 16);
+            this.documentViewer1.Name = "documentViewer1";
+            this.documentViewer1.Size = new System.Drawing.Size(777, 254);
+            this.documentViewer1.TabIndex = 0;
             // 
             // printPreviewBarCheckItem1
             // 
@@ -1539,59 +950,95 @@
             this.printPreviewBarCheckItem19.Id = 60;
             this.printPreviewBarCheckItem19.Name = "printPreviewBarCheckItem19";
             // 
-            // progressBar1
+            // btnSave
             // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 690);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1008, 39);
-            this.progressBar1.TabIndex = 6;
+            this.btnSave.Location = new System.Drawing.Point(424, 49);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(96, 36);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "ตกลง";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // frmSearchPrint
+            // txtCarnum
+            // 
+            this.txtCarnum.Location = new System.Drawing.Point(177, 55);
+            this.txtCarnum.MenuManager = this.documentViewerBarManager1;
+            this.txtCarnum.Name = "txtCarnum";
+            this.txtCarnum.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtCarnum.Properties.Appearance.Options.UseFont = true;
+            this.txtCarnum.Size = new System.Drawing.Size(225, 30);
+            this.txtCarnum.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(73, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ทะเบียนรถ :";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.documentViewer1);
+            this.groupBox2.Location = new System.Drawing.Point(12, 165);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(783, 273);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(73, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 24);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "หน่วยงาน :";
+            // 
+            // txtDept
+            // 
+            this.txtDept.Location = new System.Drawing.Point(177, 19);
+            this.txtDept.Name = "txtDept";
+            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDept.Properties.Appearance.Options.UseFont = true;
+            this.txtDept.Size = new System.Drawing.Size(225, 30);
+            this.txtDept.TabIndex = 1;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(526, 49);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(96, 36);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "ยกเลิก";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // frmPrintCarnum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.documentViewer1);
+            this.ClientSize = new System.Drawing.Size(800, 478);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.KeyPreview = true;
-            this.Name = "frmSearchPrint";
-            this.Text = "พิมพ์รายงานสรุป";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmSearchPrint_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSearchPrint_KeyDown);
+            this.Name = "frmPrintCarnum";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmPrintCarnum";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDept.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAsset.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBudjet.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCarNum.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cmbType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocBillS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDocS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuotaE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtQuotaS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateE.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateS.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDateS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtYear.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerBarManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1600,23 +1047,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit txtYear;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtKa;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.DateEdit txtDateE;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.DateEdit txtDateS;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit txtDocE;
-        private DevExpress.XtraEditors.TextEdit txtDocS;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.TextEdit txtQuotaE;
-        private DevExpress.XtraEditors.TextEdit txtQuotaS;
-        private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.TextEdit txtCarnum;
         private DevExpress.XtraPrinting.Preview.DocumentViewerBarManager documentViewerBarManager1;
         private DevExpress.XtraPrinting.Preview.PreviewBar previewBar1;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarItem bbiDocumentMap;
@@ -1648,6 +1080,7 @@
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarItem bbiExportFile;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarItem bbiSendFile;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarItem bbiClosePreview;
+        private DevExpress.XtraPrinting.Preview.PreviewBar previewBar2;
         private DevExpress.XtraPrinting.Preview.PrintPreviewStaticItem printPreviewStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraPrinting.Preview.ProgressBarEditItem progressBarEditItem1;
@@ -1669,6 +1102,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraPrinting.Preview.DocumentViewer documentViewer1;
+        private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem1;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem2;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem3;
@@ -1688,28 +1123,9 @@
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem17;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem18;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem19;
-        private DevExpress.XtraEditors.SimpleButton btnClear;
-        private DevExpress.XtraEditors.SimpleButton btnSearch;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbType;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private DevExpress.XtraEditors.SimpleButton btntxt;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit txtDue;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private DevExpress.XtraEditors.TextEdit txtCarNum;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.LabelControl labelControl125;
-        private DevExpress.XtraEditors.ComboBoxEdit txtType;
-        private DevExpress.XtraEditors.TextEdit txtDocBillE;
-        private DevExpress.XtraEditors.TextEdit txtDocBillS;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbDept;
-        private DevExpress.XtraEditors.TextEdit txtAsset;
-        private DevExpress.XtraEditors.TextEdit txtBudjet;
-        private DevExpress.XtraEditors.LabelControl labelControl16;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.TextEdit txtDept;
+        private System.Windows.Forms.Label label2;
     }
 }

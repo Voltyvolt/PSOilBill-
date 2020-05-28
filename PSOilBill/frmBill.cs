@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
+using System.Net;
+using System.IO;
 
 namespace PSOilBill
 {
@@ -33,16 +35,20 @@ namespace PSOilBill
         private void Main_Load(object sender, EventArgs e)
         {
             txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            
+            txtRealdate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
             pvMode = "";
             ShowBtn();
             txtType.Visible = false;
             txtTime.Enabled = false;
 
             this.WindowState = FormWindowState.Maximized;
+
+            string lvOilPrice = GsysSQL.fncCheckOilPrice();
+            label2.Text = lvOilPrice;
         }
 
-        public void LoadWeightData(string lvQ,string lvBill)
+        public void LoadWeightData(string lvQ, string lvBill)
         {
             //Get Data
             DataTable DT = new DataTable();
@@ -52,10 +58,18 @@ namespace PSOilBill
 
             if (lvQ != "")
             {
-                lvSQL += "And Q_No = '"+ lvQ + "' ";
+                lvSQL += "And Q_No = '" + lvQ + "' ";
             }
+
             else if (lvBill != "")
             {
+                //    string lvCaneStatusChk = GsysSQL.fncCheckCancel(lvBill);
+
+                //    if(lvCaneStatusChk == "Cancel")
+                //    {
+
+                //        //lvBill = "";
+                //    }
                 lvSQL += "And Q_BillingNo = '" + lvBill + "' ";
             }
 
@@ -301,7 +315,7 @@ namespace PSOilBill
         private void GridResize()
         {
             float lvWDesktop = sp1.Width;
-  
+
             sp1.ActiveSheet.Columns[0].Width = Convert.ToSingle(lvWDesktop * 0.1);
             sp1.ActiveSheet.Columns[1].Width = Convert.ToSingle(lvWDesktop * 0.1);
             sp1.ActiveSheet.Columns[2].Width = Convert.ToSingle(lvWDesktop * 0.2);
@@ -395,7 +409,7 @@ namespace PSOilBill
                 txtDocS.Enabled = false;
                 cmbDocNo.Enabled = true;
             }
-            else if(pvMode == "Past")
+            else if (pvMode == "Past")
             {
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
@@ -476,36 +490,29 @@ namespace PSOilBill
             DateTime DTNow = DateTime.Now;
 
             //เช็คสเตตัส
-            string lvSQLChkStat = GsysSQL.fncGetStat("OilBill_02");
-            string lvStatNow = Gstr.fncChangeTDate(txtDate.Text);
+            int lvSQLChkStat = Gstr.fncToInt(GsysSQL.fncGetStat("OilBill_02"));
+            int lvStatNow = Gstr.fncToInt(Gstr.fncChangeTDate(txtDate.Text));
 
             //รีสเตตัสเมื่อถึง 15:00
-            if (DTNow >= DTBreak || lvStatNow != lvSQLChkStat)
+            if (DTNow >= DTBreak || lvStatNow > lvSQLChkStat)
             {
-                //แปลง
-                if (lvStatNow != lvSQLChkStat)
-                {
                     DTNow = DTNow.AddDays(1);
                     txtDate.Text = DTNow.ToString("dd/MM/yyyy");
-                    lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '"+ Gstr.fncChangeTDate(txtDate.Text) +"' WHERE S_MCode = 'OilBill_02' ";
+                    lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '" + Gstr.fncChangeTDate(txtDate.Text) + "' WHERE S_MCode = 'OilBill_02' ";
                     lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
-                }
-                else
-                {
-                    DTNow = DTNow.AddDays(1);
-                    txtDate.Text = DTNow.ToString("dd/MM/yyyy");
-                }
+             }
+
                 //DTNow = DTNow.AddDays(1);
                 //txtDate.Text = DTNow.ToString("dd/MM/yyyy");
                 //lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
                 //lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
-            }
 
             else
             {
-
+                //DTNow = DTNow.AddDays(1);
+                txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             }
-
+             
             //ล้างข้อมูล ตาม Tab
             //ClearData(lvTabIndex, pvMode);
 
@@ -527,7 +534,6 @@ namespace PSOilBill
             //    cmbDocNo.Text = "C-" + lvstl + lvstr;
             //}
 
-            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             txtDocS.Enabled = false;
             cmbDocNo.Enabled = false;
             string lvd = "";
@@ -582,11 +588,12 @@ namespace PSOilBill
                 txtOil6.Text = "01 : โซล่า";
                 lvOilPrice = GsysSQL.fncFindOilPrice(Gstr.fncGetDataCode(txtOil6.Text, ":"));
                 txtLitter6.Text = lvOilPrice;
-                txtDept.Focus();
+                txtCarNumE6.Focus();
+                txtType.Text = "รถบริษัท";
             }
 
         }
-
+         
         private void btnEdit_Click(object sender, EventArgs e)
         {
             pvMode = "Edit";
@@ -596,593 +603,581 @@ namespace PSOilBill
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pvMode = "";
-            ClearData(tabPageAll.SelectedIndex.ToString() , "");
+            ClearData(tabPageAll.SelectedIndex.ToString(), "");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (pvMode == "New")
-            //{
-            //    //GenDoc
-            //    if (rdOil.Checked)
-            //        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
-            //    else if (rdCarry.Checked)
-            //        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
-            //    else
-            //        //cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
-            //        cmbDocNo.Text = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-            //}
-
-            //if(pvMode == "Past")
-            //{
-            //    string lvDate2 = Gstr.fncChangeTDate(txtDate.Text);
-            //    string lvDayChk = DateTime.Now.ToString("dd/MM/yyyy");
-
-            //    //เช็ควันที่
-            //    DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy 15:00:00")); // 20/08/2562 15:00:00
-            //    DateTime lvTimeNow = DateTime.Now;
-            //    string lvLastdoc = fncGetLastDocNoX(lvDate2);
-
-            //    if (pvMode == "Past" && chkPast.Checked == true)
-            //    {
-            //        if (txtDate.Text == lvDayChk && lvTimeNow < lvTimeChk || lvLastdoc == "0")
-            //        {
-            //            string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-            //            cmbDocNo.Text = lvstu;
-            //        }
-            //        else
-            //        {
-            //            string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-            //            string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-            //            string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-            //            cmbDocNo.Text = "C-" + lvstl + lvstr;
-            //        }
-            //    }
-            //}
-
-            //if(pvMode == "Pasttwo")
-            //{
-            //    DateTime lvTimeChk = DateTime.Parse(DateTime.Now.ToString("15:00:00"));
-            //    DateTime lvtxtTime = DateTime.Parse(txtTime.Text);
-
-            //    if (lvtxtTime > lvTimeChk)
-            //    {
-            //        string lvst1 = (cmbDocNo.Text).Substring(2, 4);
-            //        string lvst2 = (cmbDocNo.Text).Substring(6, 2);
-            //        string lvst3 = (cmbDocNo.Text).Substring(8, 4);
-            //        string lvst2plus = (Gstr.fncToInt(lvst2) + 1).ToString();
-            //        cmbDocNo.Text = "C-" + lvst1 + lvst2plus + lvst3;
-            //    }
-            //}
-
-            //คำนวนยอดใหม่
-            FncKeyDownLitAmountNoSave(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
-
-            //เก็บข้อมูล
-            string lvDocS = txtDocS.Text;
-            string lvDocNo = cmbDocNo.Text;
-            string lvDate = Gstr.fncChangeTDate(txtDate.Text);
-            //string lvYear = Gstr.Left(lvDate, 4);
-            string lvQuota = "";
-            string lvCarNum = "";
-            string lvName = "";
-            string lvCaneS = "";
-            string lvCaneNo = "";
-            string lvFront = "";
-            string lvMeterS = "";
-            string lvMeterE = "";
-            string lvDept = "";
-            string lvIssue = "";
-            string lvObjective = "";
-            string lvBudjet = "";
-            string lvAsset = "";
-            string lvRemark = "";
-            string lvQ = "";
-            string lvAmountL = "";
-            string lvOilType = "";
-            string lvOilPrice = "";
-            string lvDue = GsysSQL.fncFindDue(lvDate);
-            string lvTime = DateTime.Now.ToString("HH:mm");
-            string lvYear = "";
-            string lvEmpID = txtEmpID.Text;
-            string lvEmpName = txtEmpName.Text;
-            string lvType = "";
-            string lvproductIn = "";
-            string lvproductOut = "";
-            string lvCarnumS6 = "";
-            string lvCarnumE6 = "";
-            string lvTimePast = "";
-
-            //เช็คเวลาของเลขที่ 01
-            //string lvDocNolast = lvDocNo.Substring(10, 2);
-
-
-            #region เก็บค่า
-
-            if (tabPageAll.SelectedIndex == 0)
+            try
             {
-                lvQuota = txtQuota.Text;
-                lvCarNum = txtCarNumS.Text + "-" + txtCarNumE.Text;
-                lvName = txtName.Text;
-                lvCaneS = txtCaneS.Text;
-                lvCaneNo = txtCaneNo.Text;
-                lvFront = txtFront.Text;
-                lvMeterS = txtMeterS.Text;
-                lvMeterE = txtMeterE.Text;
-                lvRemark = txtRemark.Text;
-                lvQ = txtQ.Text;
-                lvAmountL = txtAmount.Text;
-                lvOilType = txtOil.Text;
-                lvOilPrice = txtlitter.Text;
-                lvType = txtType.Text;
-            }
-            else if (tabPageAll.SelectedIndex == 1)
-            {
-                lvQuota = txtQuota1.Text;
-                lvCarNum = txtCarNumS1.Text + "-" + txtCarNumE1.Text;
-                lvName = txtName1.Text;
-                lvCaneS = txtCaneS1.Text;
-                lvCaneNo = txtCaneNo1.Text;
-                lvFront = txtFront1.Text;
-                lvMeterS = txtMeterS1.Text;
-                lvMeterE = txtMeterE1.Text;
-                lvRemark = txtRemark1.Text;
-                lvQ = txtQ1.Text;
-                lvAmountL = txtAmount1.Text;
-                lvOilType = txtOil1.Text;
-                lvOilPrice = txtlitter1.Text;
-                //lvType = txtType1.Text;
-            }
-            else if(tabPageAll.SelectedIndex == 2)
-            {
-                lvQuota = txtQuota2.Text;
-                lvCarNum = txtCarNumS2.Text + "-" + txtCarNumE2.Text;
-                lvName = txtName2.Text;
-                lvCaneS = txtCaneS2.Text;
-                lvCaneNo = txtCaneNo2.Text;
-                lvFront = txtFront2.Text;
-                lvMeterS = txtMeterS2.Text;
-                lvMeterE = txtMeterE2.Text;
-                lvRemark = txtRemark2.Text;
-                lvQ = txtQ2.Text;
-                lvAmountL = txtAmount2.Text;
-                lvOilType = txtOil2.Text;
-                lvOilPrice = txtlitter2.Text;
-                //lvType = txtType2.Text;
-            }
-            else if (tabPageAll.SelectedIndex == 3)
-            {
-                lvQuota = txtQuota3.Text;
-                lvCarNum = txtCarNumS3.Text + "-" + txtCarNumE3.Text;
-                lvName = txtName3.Text;
-                lvCaneS = txtCaneS3.Text;
-                lvCaneNo = txtCaneNo3.Text;
-                lvFront = txtFront3.Text;
-                lvMeterS = txtMeterS3.Text;
-                lvMeterE = txtMeterE3.Text;
-                lvRemark = txtRemark3.Text;
-                lvAmountL = txtAmount3.Text;
-                lvQ = txtQ3.Text;
-                lvOilType = txtOil3.Text;
-                lvOilPrice = txtlitter3.Text;
-                //lvType = txtType3.Text;
-            }
-            else if (tabPageAll.SelectedIndex == 4)
-            {
-                lvQuota = txtQuota4.Text;
-                lvCarNum = txtCarNumS4.Text + "-" + txtCarNumE4.Text;
-                lvName = txtName4.Text;
-                lvCaneS = txtCaneS4.Text;
-                lvCaneNo = txtCaneNo4.Text;
-                lvFront = txtFront4.Text;
-                lvMeterS = txtMeterS4.Text;
-                lvMeterE = txtMeterE4.Text;
-                lvRemark = txtRemark4.Text;
-                lvAmountL = txtAmount4.Text;
-                lvQ = txtQ4.Text;
-                lvOilType = txtOil4.Text;
-                lvOilPrice = txtlitter4.Text;
-                //lvType = txtType4.Text;
-            }
-            else if (tabPageAll.SelectedIndex == 5)
-            {
-                lvQuota = txtQuota5.Text;
-                lvCarNum = txtCarNumS5.Text + "-" + txtCarNumE5.Text;
-                lvName = txtName5.Text;
-                lvCaneS = txtCaneS5.Text;
-                lvCaneNo = txtCaneNo5.Text;
-                lvFront = txtFront5.Text;
-                lvMeterS = txtMeterS5.Text;
-                lvMeterE = txtMeterE5.Text;
-                lvRemark = txtRemark5.Text;
-                lvAmountL = txtAmount5.Text;
-                lvQ = txtQ5.Text;
-                lvOilType = txtOil5.Text;
-                lvOilPrice = txtlitter5.Text;
-                //lvType = txtType5.Text;
-            }
-            else if (tabPageAll.SelectedIndex == 6)
-            {
-                lvCarNum = txtCarNumS6.Text + "-" + txtCarNumE6.Text;
-                lvName = txtName6.Text;
-                lvFront = txtFront6.Text;
-                lvMeterS = txtMeterS6.Text;
-                lvMeterE = txtMeterE6.Text;
-                lvAmountL = txtAmount6.Text;
-                lvDept = txtDept.Text;
-                lvIssue = txtIssue.Text;
-                lvObjective = txtObjective.Text;
-                lvBudjet = txtBudjet.Text;
-                lvAsset = txtAsset.Text;
-                lvRemark = txtRemark6.Text;
-                lvOilType = Gstr.fncGetDataCode(txtOil6.Text, ":");
-                lvOilPrice = txtLitter6.Text;
-                lvEmpID = txtEmpID.Text;
-                lvproductIn = txtPdIn.Text;
-                lvproductOut = txtPdOut.Text;
-                lvCarnumS6 = txtCarNumS6.Text;
-                lvCarnumE6 = txtCarNumE6.Text;
-                lvType = txtType.Text;
+                //คำนวนยอดใหม่
+                FncKeyDownLitAmountNoSave(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
 
-                if(pvMode == "New")
-                {
-                    txtTime.Text = lvTime;
-                }
+                //เก็บข้อมูล
+                string lvDocS = txtDocS.Text;
+                string lvDocNo = cmbDocNo.Text;
+                string lvDate = Gstr.fncChangeTDate(txtDate.Text);
+                string lvRealDate = Gstr.fncChangeTDate(DateTime.Now.ToString());
+                //string lvYear = Gstr.Left(lvDate, 4);
+                string lvQuota = "";
+                string lvCarNum = "";
+                string lvName = "";
+                string lvCaneS = "";
+                string lvCaneNo = "";
+                string lvFront = "";
+                string lvMeterS = "";
+                string lvMeterE = "";
+                string lvDept = "";
+                string lvIssue = "";
+                string lvObjective = "";
+                string lvBudjet = "";
+                string lvAsset = "";
+                string lvRemark = "";
+                string lvQ = "";
+                string lvAmountL = "";
+                string lvOilType = "";
+                string lvOilPrice = "";
+                string lvDue = GsysSQL.fncFindDue(lvDate);
+                string lvTime = DateTime.Now.ToString("HH:mm");
+                string lvYear = "";
+                string lvEmpID = "";
+                string lvEmpName = txtEmpName.Text;
+                string lvType = "";
+                string lvproductIn = "";
+                string lvproductOut = "";
+                string lvCarnumS6 = "";
+                string lvCarnumE6 = "";
+                string lvTimePast = "";
 
-                else if(pvMode == "Past" || pvMode == "Pasttwo")
-                {
-                    lvTimePast = txtTime.Text;
+                //เช็คเวลาของเลขที่ 01
+                //string lvDocNolast = lvDocNo.Substring(10, 2);
 
-                    if(lvTimePast == "00:00")
-                    {
-                        lvTimePast = "08:00";
-                    }
-                }
-            }
-            #endregion
 
-            #region //เช็คข้อมูล            
-            //if (lvDocS == "")
-            //{
-            //    MessageBox.Show("กรุณาระบุเล่มที่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    txtDocS.Focus();
-            //    return;
-            //}
-            if (lvDocNo == "")
-            {
-                MessageBox.Show("กรุณาระบุเลขที่เอกสาร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                cmbDocNo.Focus();
-                return;
-            }
-            else if (lvDate == "")
-            {
-                MessageBox.Show("กรุณาระบุวันที่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtDate.Focus();
-                return;
-            }
-            else if (lvQuota == "" && !rdIssue.Checked)
-            {
-                MessageBox.Show("กรุณาระบุโควต้า", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtQuota.Focus();
-                return;
-            }
-            else if (lvCarNum == ".")
-            {
-                MessageBox.Show("กรุณาระบุเลขทะเบียนรถ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtCarNumS.Focus();
-                return;
-            }
-            else if (lvName == "")
-            {
-                MessageBox.Show("กรุณาระบุชื่อ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtName.Focus();
-                return;
-            }
-            else if (lvCaneS == "" && !rdIssue.Checked)
-            {
-                MessageBox.Show("กรุณาระบุเลขที่ตัวอย่าง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtCaneS.Focus();
-                return;
-            }
-            else if (lvCaneNo == "" && !rdIssue.Checked)
-            {
-                MessageBox.Show("กรุณาระบุเลขที่ใบรับอ้อย", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtCaneNo.Focus();
-                return;
-            }
-            else if (lvAmountL == "")
-            {
-                MessageBox.Show("กรุณาระบุจำนวนที่เติม", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtAmount.Focus();
-                return;
-            }
-
-            if(pvMode == "Past" && lvTimePast == "" || pvMode == "Pasttwo" && lvTimePast == "")
-            {
-                 MessageBox.Show("กรุณาระบุเวลา", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 txtAmount.Focus();
-                 return;
-            }
-
-            string lvChkBill = GsysSQL.fncCheckBillNo(lvCaneNo, lvDocNo);
-            
-            if (lvChkBill != "" && tabPageAll.SelectedTab != tabPage2)//pvMode == "New" && 
-            {
-                MessageBox.Show("เลขที่บิล " + lvCaneNo + " ซ้ำ กับเอกสารที่ " + lvChkBill + " กรุณาตรวจสอบใหม่อีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (txtType.Text == "" && rdIssue.Checked == true)
-            {
-                MessageBox.Show("กรุณาเลือกประเภท", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtType.Focus();
-                return;
-            }
-
-            //เช็ครายการ
-            //for (int i = 0; i < sp1.ActiveSheet.RowCount; i++)
-            //{
-            //    string lvAmount = sp1.ActiveSheet.Cells[i,0].Text;
-            //    string lvPrice = sp1.ActiveSheet.Cells[i, 3].Text;
-
-            //    if (lvAmount == "" || lvAmount == "0.00")
-            //    {
-            //        MessageBox.Show("กรุณาระบุจำนวนลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        sp1.ActiveSheet.SetActiveCell(i, 0);
-            //        return;
-            //    }
-            //    else if (lvPrice == "" || lvPrice == "0.00")
-            //    {
-            //        MessageBox.Show("กรุณาระบุราคา", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        sp1.ActiveSheet.SetActiveCell(i, 3);
-            //        return;
-            //    }
-            //}
-            #endregion
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
-            {
-                return;
-            }
-
-            //บันทึก
-            if (pvMode == "New")
-            {
-                //เช็คเลขที่ซ้ำ
-                string lvDocChk = GsysSQL.fncCheckDocNo(lvDocS, lvDocNo);
-
-                if (lvDocChk != "")
-                {
-                    MessageBox.Show("เลขที่เอกสารซ้ำ กรุณากดบันทึกอีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Update เลขที่เอกสาร
-                    string lvSQLDoc = "";
-                    if (rdOil.Checked)
-                        lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_00' ";
-                    else if (rdCarry.Checked)
-                        lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_01' ";
-                    else
-                        lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_02' ";
-
-                    GsysSQL.fncExecuteQueryData(lvSQLDoc);
-
-                    //GenDoc
-                    if (rdOil.Checked)
-                        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
-                    else if (rdCarry.Checked)
-                        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
-                    else
-                        cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
-
-                    cmbDocNo.Focus();
-                    return;
-                }
-
-                //ลบข้อมูล
-                string lvSQL = "Delete From Cane_OilBillHD Where O_DocNo = '"+ lvDocNo +"' "; //HD
-                string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //เพิ่ม
-                //HD
-                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName ,O_Type, O_PdIn, O_PdOut, O_CarnumS6, O_CarnumE6) ";
-                lvSQL += "Values ('"+ lvDocS +"', '"+ lvDocNo +"', '"+ lvDate +"', '"+ lvName +"', '"+ lvQuota +"', '"+ lvCarNum +"', '"+ lvFront +"', '"+ lvCaneS +"', '"+ lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "', '" + lvproductIn + "', '"+ lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                //DT
-                double lvAmount = Gstr.fncToDouble(lvAmountL);
-                string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
-                double lvPrice = Gstr.fncToDouble(lvOilPrice);
-                double lvTotal = lvAmount * lvPrice;
-
-                lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
-                lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //Update เลขที่เอกสาร
-                if (rdOil.Checked)
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_00' ";
-                else if(rdCarry.Checked)
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_01' ";
-                else
-                    lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_02' ";
-
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
-                //clear อันเก่า
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
-                if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '"+ lvDocNo +"' Where Q_BillingNo = '" + lvCaneNo + "' "; 
-                if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-            }
-            else if (pvMode == "Edit")
-            {
-                //Update
-                string lvSQL = "Update Cane_OilBillHD set O_Date = '"+ lvDate +"', "; //DT
-                lvSQL += "O_Name = '" + lvName + "', O_Quota = '" + lvQuota + "', O_CarNum = '" + lvCarNum + "', O_CarFront = '" + lvFront + "', O_CaneS = '" + lvCaneS + "', O_CaneNo = '" + lvCaneNo + "', ";
-                lvSQL += "O_MeterS = '"+ lvMeterS + "', O_MeterE = '" + lvMeterE + "', O_QNo = '" + lvQ + "', ";
-                lvSQL += "O_Dept = '" + lvDept + "', O_Issue = '" + lvIssue + "', O_Objective = '" + lvObjective + "', ";
-                lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '"+ lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "', O_PdIn = '" + lvproductIn + "', O_PdOut = '" + lvproductOut + "' , O_CarnumS6 = '" + lvCarnumS6 + "' , O_CarnumE6 = '" + lvCarnumE6 + "' ";
-                lvSQL += "Where O_DocNo = '"+ lvDocNo +"' "; //O_DocS = '"+ lvDocS +"' And 
-                string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //DT
-                lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
-                GsysSQL.fncExecuteQueryData(lvSQL);
-
-                double lvAmount = Gstr.fncToDouble(lvAmountL);
-                string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
-                double lvPrice = Gstr.fncToDouble(lvOilPrice);
-                double lvTotal = lvAmount * lvPrice;
-
-                lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
-                lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
-                //clear อันเก่า
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
-                if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
-                if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-            }
-
-            else if (pvMode == "Past" || pvMode == "Pasttwo")
-            {
-                //ลบข้อมูล
-                string lvSQL = "Delete From Cane_OilBillHD Where O_DocNo = '" + lvDocNo + "' "; //HD
-                string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //เพิ่ม
-                //HD
-                lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName ,O_Type, O_PdIn, O_PdOut, O_CarnumS6, O_CarnumE6) ";
-                lvSQL += "Values ('" + lvDocS + "', '" + lvDocNo + "', '" + lvDate + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvFront + "', '" + lvCaneS + "', '" + lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTimePast + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                //DT
-                double lvAmount = Gstr.fncToDouble(lvAmountL);
-                string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
-                double lvPrice = Gstr.fncToDouble(lvOilPrice);
-                double lvTotal = lvAmount * lvPrice;
-
-                lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
-                lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
-                //clear อันเก่า
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
-                if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
-                if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-                lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
-                lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-
-            }
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //พิมพ์อัตโนมัติ
-            //ยืนยัน
-            DialogResult dialogResultP = MessageBox.Show("ต้องการพิมพ์ใบเสร็จหรือไม่?", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResultP == DialogResult.Yes)
-            {
                 #region เก็บค่า
+
                 if (tabPageAll.SelectedIndex == 0)
                 {
-                    FncPrint(txtName, txtQuota, txtCarNumS, txtCarNumE, txtCaneNo, txtAmount, txtlitter, txtTotal, txtRemark, txtMeterS, txtMeterE, txtFront);
+                    lvQuota = txtQuota.Text;
+                    lvCarNum = txtCarNumS.Text + "-" + txtCarNumE.Text;
+                    lvName = txtName.Text;
+                    lvCaneS = txtCaneS.Text;
+                    lvCaneNo = txtCaneNo.Text;
+                    lvFront = txtFront.Text;
+                    lvMeterS = txtMeterS.Text;
+                    lvMeterE = txtMeterE.Text;
+                    lvRemark = txtRemark.Text;
+                    lvQ = txtQ.Text;
+                    lvAmountL = txtAmount.Text;
+                    lvOilType = txtOil.Text;
+                    lvOilPrice = txtlitter.Text;
+                    lvType = txtType.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 1)
                 {
-                    FncPrint(txtName1, txtQuota1, txtCarNumS1, txtCarNumE1, txtCaneNo1, txtAmount1, txtlitter1, txtTotal1, txtRemark1, txtMeterS1, txtMeterE1, txtFront1);
+                    lvQuota = txtQuota1.Text;
+                    lvCarNum = txtCarNumS1.Text + "-" + txtCarNumE1.Text;
+                    lvName = txtName1.Text;
+                    lvCaneS = txtCaneS1.Text;
+                    lvCaneNo = txtCaneNo1.Text;
+                    lvFront = txtFront1.Text;
+                    lvMeterS = txtMeterS1.Text;
+                    lvMeterE = txtMeterE1.Text;
+                    lvRemark = txtRemark1.Text;
+                    lvQ = txtQ1.Text;
+                    lvAmountL = txtAmount1.Text;
+                    lvOilType = txtOil1.Text;
+                    lvOilPrice = txtlitter1.Text;
+                    //lvType = txtType1.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 2)
                 {
-                    FncPrint(txtName2, txtQuota2, txtCarNumS2, txtCarNumE2, txtCaneNo2, txtAmount2, txtlitter2, txtTotal2, txtRemark2, txtMeterS2, txtMeterE2, txtFront2);
+                    lvQuota = txtQuota2.Text;
+                    lvCarNum = txtCarNumS2.Text + "-" + txtCarNumE2.Text;
+                    lvName = txtName2.Text;
+                    lvCaneS = txtCaneS2.Text;
+                    lvCaneNo = txtCaneNo2.Text;
+                    lvFront = txtFront2.Text;
+                    lvMeterS = txtMeterS2.Text;
+                    lvMeterE = txtMeterE2.Text;
+                    lvRemark = txtRemark2.Text;
+                    lvQ = txtQ2.Text;
+                    lvAmountL = txtAmount2.Text;
+                    lvOilType = txtOil2.Text;
+                    lvOilPrice = txtlitter2.Text;
+                    //lvType = txtType2.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 3)
                 {
-                    FncPrint(txtName3, txtQuota3, txtCarNumS3, txtCarNumE3, txtCaneNo3, txtAmount3, txtlitter3, txtTotal3, txtRemark3, txtMeterS3, txtMeterE3, txtFront3);
+                    lvQuota = txtQuota3.Text;
+                    lvCarNum = txtCarNumS3.Text + "-" + txtCarNumE3.Text;
+                    lvName = txtName3.Text;
+                    lvCaneS = txtCaneS3.Text;
+                    lvCaneNo = txtCaneNo3.Text;
+                    lvFront = txtFront3.Text;
+                    lvMeterS = txtMeterS3.Text;
+                    lvMeterE = txtMeterE3.Text;
+                    lvRemark = txtRemark3.Text;
+                    lvAmountL = txtAmount3.Text;
+                    lvQ = txtQ3.Text;
+                    lvOilType = txtOil3.Text;
+                    lvOilPrice = txtlitter3.Text;
+                    //lvType = txtType3.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 4)
                 {
-                    FncPrint(txtName4, txtQuota4, txtCarNumS4, txtCarNumE4, txtCaneNo4, txtAmount4, txtlitter4, txtTotal4, txtRemark4, txtMeterS4, txtMeterE4, txtFront4);
+                    lvQuota = txtQuota4.Text;
+                    lvCarNum = txtCarNumS4.Text + "-" + txtCarNumE4.Text;
+                    lvName = txtName4.Text;
+                    lvCaneS = txtCaneS4.Text;
+                    lvCaneNo = txtCaneNo4.Text;
+                    lvFront = txtFront4.Text;
+                    lvMeterS = txtMeterS4.Text;
+                    lvMeterE = txtMeterE4.Text;
+                    lvRemark = txtRemark4.Text;
+                    lvAmountL = txtAmount4.Text;
+                    lvQ = txtQ4.Text;
+                    lvOilType = txtOil4.Text;
+                    lvOilPrice = txtlitter4.Text;
+                    //lvType = txtType4.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 5)
                 {
-                    FncPrint(txtName5, txtQuota5, txtCarNumS5, txtCarNumE5, txtCaneNo5, txtAmount5, txtlitter5, txtTotal5, txtRemark5, txtMeterS5, txtMeterE5, txtFront5);
+                    lvQuota = txtQuota5.Text;
+                    lvCarNum = txtCarNumS5.Text + "-" + txtCarNumE5.Text;
+                    lvName = txtName5.Text;
+                    lvCaneS = txtCaneS5.Text;
+                    lvCaneNo = txtCaneNo5.Text;
+                    lvFront = txtFront5.Text;
+                    lvMeterS = txtMeterS5.Text;
+                    lvMeterE = txtMeterE5.Text;
+                    lvRemark = txtRemark5.Text;
+                    lvAmountL = txtAmount5.Text;
+                    lvQ = txtQ5.Text;
+                    lvOilType = txtOil5.Text;
+                    lvOilPrice = txtlitter5.Text;
+                    //lvType = txtType5.Text;
                 }
                 else if (tabPageAll.SelectedIndex == 6)
                 {
-                    //ใบเบิกไม่มี
-                }
+                    lvCarNum = txtCarNumS6.Text + "-" + txtCarNumE6.Text;
+                    lvName = txtName6.Text;
+                    lvFront = txtFront6.Text;
+                    lvMeterS = txtMeterS6.Text;
+                    lvMeterE = txtMeterE6.Text;
+                    lvAmountL = txtAmount6.Text;
+                    lvDept = txtDept.Text;
+                    lvIssue = txtIssue.Text;
+                    lvObjective = txtObjective.Text;
+                    lvBudjet = txtBudjet.Text;
+                    lvAsset = txtAsset.Text;
+                    lvRemark = txtRemark6.Text;
+                    lvOilType = Gstr.fncGetDataCode(txtOil6.Text, ":");
+                    lvOilPrice = txtLitter6.Text;
+                    lvproductIn = "";
+                    lvproductOut = txtPdOut.Text;
+                    lvCarnumS6 = txtCarNumS6.Text;
+                    lvCarnumE6 = txtCarNumE6.Text;
+                    lvType = txtType.Text;
 
-                GVar.gvCarryPriceStatus = "";
-                if (rdCarry.Checked) GVar.gvCarryPriceStatus = "1";
+                    if (pvMode == "New")
+                    {
+                        txtTime.Text = lvTime;
+                    }
+
+                    else if (pvMode == "Past" || pvMode == "Pasttwo")
+                    {
+                        lvTimePast = txtTime.Text;
+
+                        if (lvTimePast == "00:00")
+                        {
+                            lvTimePast = "11:00";
+                        }
+                    }
+                }
                 #endregion
 
-                // แสดงก่อนพิมพ์
-                frmPrint frm = new frmPrint();
-                frm.documentViewer1.DocumentSource = typeof(PSOilBill.rptBill);
-                frm.ShowDialog();
-
-                ////PrinterSettings settings = new PrinterSettings();
-                //rptBill Report = new rptBill();
-                ////Report.PrinterName = settings.PrinterName;
-                //Report.PrintingSystem.ShowMarginsWarning = false;
-                //Report.ExportOptions.Pdf.ShowPrintDialogOnOpen = true;
-                //Report.CreateDocument();
-
-                //using (ReportPrintTool printTool = new ReportPrintTool(Report))
+                #region //เช็คข้อมูล            
+                //if (lvDocS == "")
                 //{
-                //    printTool.ShowPreview();
+                //    MessageBox.Show("กรุณาระบุเล่มที่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    txtDocS.Focus();
+                //    return;
                 //}
-            }
+                if (lvDocNo == "")
+                {
+                    MessageBox.Show("กรุณาระบุเลขที่เอกสาร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbDocNo.Focus();
+                    return;
+                }
+                else if (lvDate == "")
+                {
+                    MessageBox.Show("กรุณาระบุวันที่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtDate.Focus();
+                    return;
+                }
+                else if (lvQuota == "" && !rdIssue.Checked)
+                {
+                    MessageBox.Show("กรุณาระบุโควต้า", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtQuota.Focus();
+                    return;
+                }
+                else if (lvCarNum == ".")
+                {
+                    MessageBox.Show("กรุณาระบุเลขทะเบียนรถ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCarNumS.Focus();
+                    return;
+                }
+                else if (lvName == "")
+                {
+                    MessageBox.Show("กรุณาระบุชื่อ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtName.Focus();
+                    return;
+                }
+                else if (lvCaneS == "" && !rdIssue.Checked)
+                {
+                    MessageBox.Show("กรุณาระบุเลขที่ตัวอย่าง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCaneS.Focus();
+                    return;
+                }
+                else if (lvCaneNo == "" && !rdIssue.Checked)
+                {
+                    MessageBox.Show("กรุณาระบุเลขที่ใบรับอ้อย", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCaneNo.Focus();
+                    return;
+                }
+                else if (lvAmountL == "")
+                {
+                    MessageBox.Show("กรุณาระบุจำนวนที่เติม", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtAmount.Focus();
+                    return;
+                }
 
-            //รีเซ็ตข้อมูล
-            if(pvMode == "Past" || pvMode == "Pasttwo")
-            {
-                ShowBtn();
-                txtDate_EditValueChanged_1(sender, e);
-                txtTime.Text = "";  
-                txtType.Text = "";
-                txtDept.Text = "";
-                txtName6.Text = "";
-                txtObjective.Text = "";
-                txtEmpID.Text = "";
-                txtEmpName.Text = "";
-                txtBudjet.Text = "";
-                txtAsset.Text = "";
-                txtPdIn.Text = "";
-                txtPdOut.Text = "";
-                txtOil6.Text = "01 : โซล่า";
-                txtAmount6.Text = "";
-                txtTotal6.Text = "";
-                txtFront6.Text = "";
-                txtMeterS6.Text = "";
-                txtMeterE6.Text = "";
-                txtCarNumS6.Text = "";
-                txtCarNumE6.Text = "";
-            }
+                if (pvMode == "Past" && lvTimePast == "" || pvMode == "Pasttwo" && lvTimePast == "")
+                {
+                    MessageBox.Show("กรุณาระบุเวลา", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtAmount.Focus();
+                    return;
+                }
 
-            else
-            {
-                FncGetModeTab("");
-                ShowBtn();
-                btnAdd_Click(sender, e); //Add Auto เมื่อบันทึกเสร็จ
+                string lvChkBill = GsysSQL.fncCheckBillNo(lvCaneNo, lvDocNo);
+
+                if (lvChkBill != "" && tabPageAll.SelectedTab != tabPage2)//pvMode == "New" && 
+                {
+                    MessageBox.Show("เลขที่บิล " + lvCaneNo + " ซ้ำ กับเอกสารที่ " + lvChkBill + " กรุณาตรวจสอบใหม่อีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (txtType.Text == "" && rdIssue.Checked == true)
+                {
+                    MessageBox.Show("กรุณาเลือกประเภท", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtType.Focus();
+                    return;
+                }
+
+                //เช็ครายการ
+                //for (int i = 0; i < sp1.ActiveSheet.RowCount; i++)
+                //{
+                //    string lvAmount = sp1.ActiveSheet.Cells[i,0].Text;
+                //    string lvPrice = sp1.ActiveSheet.Cells[i, 3].Text;
+
+                //    if (lvAmount == "" || lvAmount == "0.00")
+                //    {
+                //        MessageBox.Show("กรุณาระบุจำนวนลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        sp1.ActiveSheet.SetActiveCell(i, 0);
+                //        return;
+                //    }
+                //    else if (lvPrice == "" || lvPrice == "0.00")
+                //    {
+                //        MessageBox.Show("กรุณาระบุราคา", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        sp1.ActiveSheet.SetActiveCell(i, 3);
+                //        return;
+                //    }
+                //}
+                #endregion
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                //บันทึก
+                if (pvMode == "New")
+                {
+                    //เช็คเลขที่ซ้ำ
+                    string lvDocChk = GsysSQL.fncCheckDocNo(lvDocS, lvDocNo);
+
+                    if (lvDocChk != "")
+                    {
+                        MessageBox.Show("เลขที่เอกสารซ้ำ กรุณากดบันทึกอีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        //Update เลขที่เอกสาร
+                        string lvSQLDoc = "";
+                        if (rdOil.Checked)
+                            lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_00' ";
+                        else if (rdCarry.Checked)
+                            lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_01' ";
+                        else
+                            lvSQLDoc = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_02' ";
+
+                        GsysSQL.fncExecuteQueryData(lvSQLDoc);
+
+                        //GenDoc
+                        if (rdOil.Checked)
+                            cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
+                        else if (rdCarry.Checked)
+                            cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_01");
+                        else
+                            cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
+
+                        cmbDocNo.Focus();
+                        return;
+                    }
+
+                    //ลบข้อมูล
+                    string lvSQL = "Delete From Cane_OilBillHD Where O_DocNo = '" + lvDocNo + "' "; //HD
+                    string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //เพิ่ม
+                    //HD
+                    lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName ,O_Type, O_PdIn, O_PdOut, O_CarnumS6, O_CarnumE6, O_RealDate) ";
+                    lvSQL += "Values ('" + lvDocS + "', '" + lvDocNo + "', '" + lvDate + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvFront + "', '" + lvCaneS + "', '" + lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTime + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvRealDate + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    //DT
+                    double lvAmount = Gstr.fncToDouble(lvAmountL);
+                    string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
+                    double lvPrice = Gstr.fncToDouble(lvOilPrice);
+                    double lvTotal = lvAmount * lvPrice;
+
+                    lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
+                    lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilmonth
+                    lvSQL = "Insert into Cane_Oilmonth (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilyear
+                    lvSQL = "Insert into Cane_Oilyear (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Update เลขที่เอกสาร
+                    if (rdOil.Checked)
+                        lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_00' ";
+                    else if (rdCarry.Checked)
+                        lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_01' ";
+                    else
+                        lvSQL = "Update SysDocNo set S_RunNo = S_RunNo + 1 Where S_MCode = 'OilBill_02' ";
+
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
+                    //clear อันเก่า
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
+                    if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
+                    if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                }
+                else if (pvMode == "Edit")
+                {
+                    //Update
+                    string lvSQL = "Update Cane_OilBillHD set O_Date = '" + lvDate + "', "; //DT
+                    lvSQL += "O_Name = '" + lvName + "', O_Quota = '" + lvQuota + "', O_CarNum = '" + lvCarNum + "', O_CarFront = '" + lvFront + "', O_CaneS = '" + lvCaneS + "', O_CaneNo = '" + lvCaneNo + "', ";
+                    lvSQL += "O_MeterS = '" + lvMeterS + "', O_MeterE = '" + lvMeterE + "', O_QNo = '" + lvQ + "', ";
+                    lvSQL += "O_Dept = '" + lvDept + "', O_Issue = '" + lvIssue + "', O_Objective = '" + lvObjective + "', ";
+                    lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '" + lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "', O_PdIn = '" + lvproductIn + "', O_PdOut = '" + lvproductOut + "' , O_CarnumS6 = '" + lvCarnumS6 + "' , O_CarnumE6 = '" + lvCarnumE6 + "' ";
+                    lvSQL += "Where O_DocNo = '" + lvDocNo + "' "; //O_DocS = '"+ lvDocS +"' And 
+                    string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //DT
+                    lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
+                    GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    double lvAmount = Gstr.fncToDouble(lvAmountL);
+                    string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
+                    double lvPrice = Gstr.fncToDouble(lvOilPrice);
+                    double lvTotal = lvAmount * lvPrice;
+
+                    lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
+                    lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Delete Oilmonth
+                    lvSQL = "Delete From Cane_Oilmonth Where Cane_DocNo = '" + lvDocNo + "'";
+                    GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilmonth
+                    lvSQL = "Insert into Cane_Oilmonth (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Delete OilYear
+                    lvSQL = "Delete From Cane_Oilyear Where Cane_DocNo = '" + lvDocNo + "'";
+                    GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilyear
+                    lvSQL = "Insert into Cane_Oilyear (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
+                    //clear อันเก่า
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
+                    if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
+                    if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    pvMode = "";
+
+                }
+
+                else if (pvMode == "Past" || pvMode == "Pasttwo")
+                {
+                    //ลบข้อมูล
+                    string lvSQL = "Delete From Cane_OilBillHD Where O_DocNo = '" + lvDocNo + "' "; //HD
+                    string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    lvSQL = "Delete From Cane_OilBillDT Where O_DocNo = '" + lvDocNo + "' "; //DT
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //เพิ่ม
+                    //HD
+                    lvSQL = "Insert into Cane_OilBillHD (O_DocS, O_DocNo, O_Date, O_Name, O_Quota, O_CarNum, O_CarFront, O_CaneS, O_CaneNo, O_MeterS, O_MeterE, O_QNo, O_Dept, O_Issue, O_Objective, O_Budjet, O_Asset, O_Remark, O_Due, O_Time, O_Year, O_EmpID, O_EmpName ,O_Type, O_PdIn, O_PdOut, O_CarnumS6, O_CarnumE6, O_RealDate) ";
+                    lvSQL += "Values ('" + lvDocS + "', '" + lvDocNo + "', '" + lvDate + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvFront + "', '" + lvCaneS + "', '" + lvCaneNo + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvQ + "', '" + lvDept + "', '" + lvIssue + "', '" + lvObjective + "', '" + lvBudjet + "', '" + lvAsset + "', '" + lvRemark + "', '" + lvDue + "', '" + lvTimePast + "', '" + lvYear + "', '" + lvEmpID + "', '" + lvEmpName + "','" + lvType + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvRealDate + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    //DT
+                    double lvAmount = Gstr.fncToDouble(lvAmountL);
+                    string lvItem = Gstr.fncGetDataCode(lvOilType, ":");
+                    double lvPrice = Gstr.fncToDouble(lvOilPrice);
+                    double lvTotal = lvAmount * lvPrice;
+
+                    lvSQL = "Insert into Cane_OilBillDT (O_DocNo, O_Litter, O_Item, O_Price, O_Total, O_Remark) ";
+                    lvSQL += "Values ('" + lvDocNo + "', '" + lvAmount + "', '" + lvItem + "', '" + lvPrice + "', '" + lvTotal + "', '" + lvRemark + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilmonth
+                    lvSQL = "Insert into Cane_Oilmonth (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //Insert Cane_Oilyear
+                    lvSQL = "Insert into Cane_Oilyear (Cane_Carnum, Cane_Litter, Cane_Price, Cane_Date, Cane_DocNo) Values ('" + lvCarNum + "', '" + lvAmount + "', '" + lvTotal + "', '" + lvDate + "', '" + lvDocNo + "')";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
+                    //clear อันเก่า
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
+                    if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
+                    if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
+                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                    pvMode = "";
+                }
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //พิมพ์อัตโนมัติ
+                //ยืนยัน
+                DialogResult dialogResultP = MessageBox.Show("ต้องการพิมพ์ใบเสร็จหรือไม่?", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResultP == DialogResult.Yes)
+                {
+                    string lvTime2 = DateTime.Now.ToString();
+                    #region เก็บค่า
+                    if (tabPageAll.SelectedIndex == 0)
+                    {
+                        FncPrint(txtName, txtQuota, txtCarNumS, txtCarNumE, txtCaneNo, txtAmount, txtlitter, txtTotal, txtRemark, txtMeterS, txtMeterE, txtFront, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 1)
+                    {
+                        FncPrint(txtName1, txtQuota1, txtCarNumS1, txtCarNumE1, txtCaneNo1, txtAmount1, txtlitter1, txtTotal1, txtRemark1, txtMeterS1, txtMeterE1, txtFront1, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 2)
+                    {
+                        FncPrint(txtName2, txtQuota2, txtCarNumS2, txtCarNumE2, txtCaneNo2, txtAmount2, txtlitter2, txtTotal2, txtRemark2, txtMeterS2, txtMeterE2, txtFront2, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 3)
+                    {
+                        FncPrint(txtName3, txtQuota3, txtCarNumS3, txtCarNumE3, txtCaneNo3, txtAmount3, txtlitter3, txtTotal3, txtRemark3, txtMeterS3, txtMeterE3, txtFront3, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 4)
+                    {
+                        FncPrint(txtName4, txtQuota4, txtCarNumS4, txtCarNumE4, txtCaneNo4, txtAmount4, txtlitter4, txtTotal4, txtRemark4, txtMeterS4, txtMeterE4, txtFront4, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 5)
+                    {
+                        FncPrint(txtName5, txtQuota5, txtCarNumS5, txtCarNumE5, txtCaneNo5, txtAmount5, txtlitter5, txtTotal5, txtRemark5, txtMeterS5, txtMeterE5, txtFront5, lvTime2);
+                    }
+                    else if (tabPageAll.SelectedIndex == 6)
+                    {
+                        //ใบเบิกไม่มี
+                    }
+
+                    GVar.gvCarryPriceStatus = "";
+                    if (rdCarry.Checked) GVar.gvCarryPriceStatus = "1";
+                    #endregion
+
+                    // แสดงก่อนพิมพ์
+                    frmPrint frm = new frmPrint();
+                    frm.documentViewer1.DocumentSource = typeof(PSOilBill.rptBill);
+                    frm.ShowDialog();
+
+                    ////PrinterSettings settings = new PrinterSettings();
+                    //rptBill Report = new rptBill();
+                    ////Report.PrinterName = settings.PrinterName;
+                    //Report.PrintingSystem.ShowMarginsWarning = false;
+                    //Report.ExportOptions.Pdf.ShowPrintDialogOnOpen = true;
+                    //Report.CreateDocument();
+
+                    //using (ReportPrintTool printTool = new ReportPrintTool(Report))
+                    //{
+                    //    printTool.ShowPreview();
+                    //}
+                }
+
+                //รีเซ็ตข้อมูล
+                if (pvMode == "Past" || pvMode == "Pasttwo")
+                {
+                    ShowBtn();
+                    txtDate_EditValueChanged_1(sender, e);
+                    txtTime.Text = "";
+                    txtType.Text = "";
+                    txtDept.Text = "";
+                    txtName6.Text = "";
+                    txtObjective.Text = "";
+                    txtEmpName.Text = "";
+                    txtBudjet.Text = "";
+                    txtAsset.Text = "";
+                    txtPdOut.Text = "";
+                    txtOil6.Text = "01 : โซล่า";
+                    txtAmount6.Text = ""; 
+                    txtTotal6.Text = "";
+                    txtFront6.Text = "";
+                    txtMeterS6.Text = "";
+                    txtMeterE6.Text = "";
+                    txtCarNumS6.Text = "";
+                    txtCarNumE6.Text = "";
+                }
+
+                else
+                {
+                    FncGetModeTab("");
+                    ShowBtn();
+                    btnAdd_Click(sender, e); //Add Auto เมื่อบันทึกเสร็จ
+                }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("บันทึกข้อมูลไม่สำเร็จเพราะ" + ex.ToString() + "กรุณาแจ้งแผนกคอมพิวเตอร์", "แจ้งเตือนไม่สำเร็จ", MessageBoxButtons.OK);
+                lineNotify("บันทึกข้อมูลไม่สำเร็จเพราะ" + ex.ToString());
+            }
         }
 
         private void btnDelDoc_Click(object sender, EventArgs e)
@@ -1386,9 +1381,7 @@ namespace PSOilBill
                 txtMeterS6.Text = "";
                 txtMeterE6.Text = "";
                 txtRemark6.Text = "";
-                txtEmpID.Text = "";
                 txtEmpName.Text = "";
-                txtPdIn.Text = "";
                 txtPdOut.Text = "";
                 txtTotal6.Text = "";
                 txtType.Text = "";
@@ -1776,12 +1769,7 @@ namespace PSOilBill
                     txtBudjet.Text = DT.Rows[i]["O_Budjet"].ToString();
                     txtAsset.Text = DT.Rows[i]["O_Asset"].ToString();
                     txtRemark6.Text = DT.Rows[i]["O_Remark"].ToString();
-                    txtEmpID.Text = DT.Rows[i]["O_EmpID"].ToString();
-                    if (txtEmpID.Text != "")
-                        txtEmpName.Text = GsysSQL.fncFindEmpFullName(DT.Rows[i]["O_EmpID"].ToString());
-                    else
-                        txtEmpName.Text = DT.Rows[i]["O_EmpName"].ToString();
-                    txtPdIn.Text = DT.Rows[i]["O_PdIn"].ToString();
+                    txtEmpName.Text = DT.Rows[i]["O_EmpName"].ToString();
                     txtPdOut.Text = DT.Rows[i]["O_PdOut"].ToString();
                     txtCarNumS6.Text = DT.Rows[i]["O_CarnumS6"].ToString();
                     txtCarNumE6.Text = DT.Rows[i]["O_CarnumE6"].ToString();
@@ -1984,7 +1972,18 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                {
+                    MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                }
+
+                else
+                {
+                    FncKeyDownBill(txtCaneNo);
+                }
             }
         }
 
@@ -1996,29 +1995,30 @@ namespace PSOilBill
         private void ใบเสรจToolStripMenuItem_Click(object sender, EventArgs e)
         {
             #region เก็บค่า
+            string lvTime2 = DateTime.Now.ToString();
             if (tabPageAll.SelectedIndex == 0)
             {
-                FncPrint(txtName,txtQuota,txtCarNumS,txtCarNumE, txtCaneNo,txtAmount,txtlitter,txtTotal,txtRemark, txtMeterS, txtMeterE, txtFront);
+                FncPrint(txtName,txtQuota,txtCarNumS,txtCarNumE, txtCaneNo,txtAmount,txtlitter,txtTotal,txtRemark, txtMeterS, txtMeterE, txtFront, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 1)
             {
-                FncPrint(txtName1, txtQuota1, txtCarNumS1, txtCarNumE1, txtCaneNo1, txtAmount1, txtlitter1, txtTotal1, txtRemark1, txtMeterS1, txtMeterE1, txtFront1);
+                FncPrint(txtName1, txtQuota1, txtCarNumS1, txtCarNumE1, txtCaneNo1, txtAmount1, txtlitter1, txtTotal1, txtRemark1, txtMeterS1, txtMeterE1, txtFront1, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 2)
             {
-                FncPrint(txtName2, txtQuota2, txtCarNumS2, txtCarNumE2, txtCaneNo2, txtAmount2, txtlitter2, txtTotal2, txtRemark2, txtMeterS2, txtMeterE2, txtFront2);
+                FncPrint(txtName2, txtQuota2, txtCarNumS2, txtCarNumE2, txtCaneNo2, txtAmount2, txtlitter2, txtTotal2, txtRemark2, txtMeterS2, txtMeterE2, txtFront2, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 3)
             {
-                FncPrint(txtName3, txtQuota3, txtCarNumS3, txtCarNumE3, txtCaneNo3, txtAmount3, txtlitter3, txtTotal3, txtRemark3, txtMeterS3, txtMeterE3, txtFront3);
+                FncPrint(txtName3, txtQuota3, txtCarNumS3, txtCarNumE3, txtCaneNo3, txtAmount3, txtlitter3, txtTotal3, txtRemark3, txtMeterS3, txtMeterE3, txtFront3, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 4)
             {
-                FncPrint(txtName4, txtQuota4, txtCarNumS4, txtCarNumE4, txtCaneNo4, txtAmount4, txtlitter4, txtTotal4, txtRemark4, txtMeterS4, txtMeterE4, txtFront4);
+                FncPrint(txtName4, txtQuota4, txtCarNumS4, txtCarNumE4, txtCaneNo4, txtAmount4, txtlitter4, txtTotal4, txtRemark4, txtMeterS4, txtMeterE4, txtFront4, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 5)
             {
-                FncPrint(txtName5, txtQuota5, txtCarNumS5, txtCarNumE5, txtCaneNo5, txtAmount5, txtlitter5, txtTotal5, txtRemark5, txtMeterS5, txtMeterE5, txtFront5);
+                FncPrint(txtName5, txtQuota5, txtCarNumS5, txtCarNumE5, txtCaneNo5, txtAmount5, txtlitter5, txtTotal5, txtRemark5, txtMeterS5, txtMeterE5, txtFront5, lvTime2);
             }
             else if (tabPageAll.SelectedIndex == 6)
             {
@@ -2044,7 +2044,7 @@ namespace PSOilBill
             }
         }
 
-        private void FncPrint(TextEdit tName,TextEdit tQouta,TextEdit tCarNumS, TextEdit tCarNumE, TextEdit tBillno, TextEdit tLitter, TextEdit tPricePer, TextEdit tPrice, TextEdit tRemark, TextEdit tMeterS, TextEdit tMeterE, TextEdit tFront)
+        private void FncPrint(TextEdit tName,TextEdit tQouta,TextEdit tCarNumS, TextEdit tCarNumE, TextEdit tBillno, TextEdit tLitter, TextEdit tPricePer, TextEdit tPrice, TextEdit tRemark, TextEdit tMeterS, TextEdit tMeterE, TextEdit tFront, string tTime)
         {
             //ลบข้อมูล
             string lvSQL = "Delete From SysTemp ";
@@ -2073,17 +2073,18 @@ namespace PSOilBill
 
             string lvFront = tFront.Text;
 
-            string lvproductIn = txtPdIn.Text;
+            string lvproductIn = "";
             string lvproductOut = txtPdOut.Text;
 
             string lvCarnumS6 = txtCarNumS6.Text;
             string lvCarnumE6 = txtCarNumE6.Text;
 
             string lvTotal6 = txtTotal6.Text;
+            string lvTime = tTime;
 
             //เพิ่ม
-            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Num4, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17) ";//
-            lvSQL += "Values ('" + lvDocNo + "', '" + lvDay + "', '" + lvMonth + "', '" + lvYear + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvBillNo + "', '" + lvRemark + "', '" + lvLitter + "', '" + lvPricePer + "', '" + lvPrice + "', '" + lvPrice2 + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvFront + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvTotal6 + "') ";
+            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Num4, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18) ";//
+            lvSQL += "Values ('" + lvDocNo + "', '" + lvDay + "', '" + lvMonth + "', '" + lvYear + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvBillNo + "', '" + lvRemark + "', '" + lvLitter + "', '" + lvPricePer + "', '" + lvPrice + "', '" + lvPrice2 + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvFront + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvTotal6 + "', '" + lvTime + "') ";
             lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
             
         }
@@ -2220,7 +2221,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
+                int lvAmount = Gstr.fncToInt(txtAmount.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount, txtlitter, txtTotal, txtMeterS, txtMeterE, txtFront);
+                }
             }
         }
 
@@ -2247,30 +2257,41 @@ namespace PSOilBill
 
         private void btnEditPrice_Click(object sender, EventArgs e)
         {
-            if (txtlitter.Text == "")
+            frmPassword frm = new frmPassword();
+
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+
+                if (txtlitter.Text == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                string lvItem = Gstr.fncGetDataCode(txtOil.Text, ":");
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + txtlitter.Text + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + txtlitter.Text + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            string lvItem = Gstr.fncGetDataCode(txtOil.Text, ":");
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '"+ txtlitter.Text +"' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + txtlitter.Text + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT); 
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LoadDataDetail(string lvCarFront)
@@ -2473,6 +2494,7 @@ namespace PSOilBill
         {
             if (pvMode == "New")
             {
+                txtCarNumE.Focus();
                 //GenDoc
                 if (rdOil.Checked)
                     cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_00");
@@ -2508,27 +2530,7 @@ namespace PSOilBill
 
         private void txtDept_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past" && pvMode != "Pasttwo")
-                {
-                    MessageBox.Show("กรุณากดเพิ่มข้อมูลก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
 
-                txtName6.Text = GsysSQL.fncFindFactionName(txtDept.Text);
-
-                if (txtName6.Text != "")
-                {
-                    txtObjective.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("ไม่พบข้อมูลหน่วยงาน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtDept.Text = "";
-                    txtDept.Focus();
-                }
-            }
         }
 
         private void txtIssue_KeyDown(object sender, KeyEventArgs e)
@@ -2549,7 +2551,7 @@ namespace PSOilBill
 
         private void txtSCar1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             {
                 txtCarNumE6.Focus();
             }
@@ -2559,7 +2561,23 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtEmpID.Focus();
+                if(pvMode == "")
+                {
+                    MessageBox.Show("กรุณากดปุ่มเพิ่มหรือแก้ไขก่อน", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+
+                    string lvCarnum = txtCarNumE6.Text;
+
+                    string lvCarthai = FncThaicar(lvCarnum);
+
+                    fncLoadCarnum(lvCarthai);
+
+                    txtAmount6.Focus();
+                }
+                
             }
         }
 
@@ -2575,7 +2593,7 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtPdIn.Focus();
+                txtPdOut.Focus();
             }
         }
 
@@ -2583,7 +2601,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount2, txtlitter2, txtTotal2, txtMeterS2, txtMeterE2, txtFront2);
+                int lvAmount = Gstr.fncToInt(txtAmount2.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount2, txtlitter2, txtTotal2, txtMeterS2, txtMeterE2, txtFront2);
+                }
             }
         }
 
@@ -2717,7 +2744,17 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo1);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo1.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                    {
+                        MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        FncKeyDownBill(txtCaneNo1);
+                    }
             }
         }
 
@@ -2725,7 +2762,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount1, txtlitter1, txtTotal1, txtMeterS1, txtMeterE1, txtFront1);
+                int lvAmount = Gstr.fncToInt(txtAmount1.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount1, txtlitter1, txtTotal1, txtMeterS1, txtMeterE1, txtFront1);
+                }
             }
         }
 
@@ -2774,7 +2820,17 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo2);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo2.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                {
+                    MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    FncKeyDownBill(txtCaneNo2);
+                }
             }
         }
 
@@ -2823,7 +2879,17 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo3);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo3.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                {
+                    MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    FncKeyDownBill(txtCaneNo3);
+                }
             }
         }
 
@@ -2831,7 +2897,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount3, txtlitter3, txtTotal3, txtMeterS3, txtMeterE3, txtFront3);
+                int lvAmount = Gstr.fncToInt(txtAmount3.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount3, txtlitter3, txtTotal3, txtMeterS3, txtMeterE3, txtFront3);
+                }
             }
         }
 
@@ -2880,7 +2955,17 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo4);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo4.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                {
+                    MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    FncKeyDownBill(txtCaneNo4);
+                }
             }
         }
 
@@ -2888,7 +2973,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount4, txtlitter4, txtTotal4, txtMeterS4, txtMeterE4, txtFront4);
+                int lvAmount = Gstr.fncToInt(txtAmount4.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount4, txtlitter4, txtTotal4, txtMeterS4, txtMeterE4, txtFront4);
+                }
             }
         }
 
@@ -2937,7 +3031,17 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownBill(txtCaneNo5);
+                int lvCaneNo = Gstr.fncToInt(txtCaneNo5.Text);
+                int lvLockE = Gstr.fncToInt(GsysSQL.fncGetQlock("OilBill_Lock"));
+
+                if (lvCaneNo <= lvLockE)
+                {
+                    MessageBox.Show("เลขที่บิลนี้ถูกล็อคไว้", "แจ้งเตือน", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    FncKeyDownBill(txtCaneNo5);
+                }
             }
         }
 
@@ -2945,7 +3049,16 @@ namespace PSOilBill
         {
             if (e.KeyCode == Keys.Enter)
             {
-                FncKeyDownLitAmount(txtAmount5, txtlitter5, txtTotal5, txtMeterS5, txtMeterE5, txtFront5);
+                int lvAmount = Gstr.fncToInt(txtAmount5.Text);
+                if (lvAmount > 300)
+                {
+                    MessageBox.Show("จำนวนลิตรที่เติมไม่เกิน 300 ลิตร", "แจ้งเตือน", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    FncKeyDownLitAmount(txtAmount5, txtlitter5, txtTotal5, txtMeterS5, txtMeterE5, txtFront5);
+                }
             }
         }
 
@@ -3297,177 +3410,240 @@ namespace PSOilBill
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil1.Text, ":");
-            string lvOilPrice = txtlitter1.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+
+                string lvItem = Gstr.fncGetDataCode(txtOil1.Text, ":");
+                string lvOilPrice = txtlitter1.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditPrice2_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil2.Text, ":");
-            string lvOilPrice = txtlitter2.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+
+                string lvItem = Gstr.fncGetDataCode(txtOil2.Text, ":");
+                string lvOilPrice = txtlitter2.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditPrice3_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil3.Text, ":");
-            string lvOilPrice = txtlitter3.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+                string lvItem = Gstr.fncGetDataCode(txtOil3.Text, ":");
+                string lvOilPrice = txtlitter3.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditPrice4_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil4.Text, ":");
-            string lvOilPrice = txtlitter4.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+                string lvItem = Gstr.fncGetDataCode(txtOil4.Text, ":");
+                string lvOilPrice = txtlitter4.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditPrice5_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil5.Text, ":");
-            string lvOilPrice = txtlitter5.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+                string lvItem = Gstr.fncGetDataCode(txtOil5.Text, ":");
+                string lvOilPrice = txtlitter5.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
+                GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            string lvTXT = "แก้ไขราคาน้ำมัน เป็น " + lvOilPrice + " บาท/ลิตร";
-            GsysSQL.fncKeepLogData("ป้อมน้ำมัน", "บิลน้ำมัน", lvTXT);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditPrice6_Click(object sender, EventArgs e)
         {
-            string lvItem = Gstr.fncGetDataCode(txtOil6.Text, ":");
-            string lvOilPrice = txtLitter6.Text;
+            frmPassword frm = new frmPassword();
 
-            if (lvOilPrice == "")
+            if (frm.ShowDialog() != DialogResult.OK)
             {
-                MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtlitter.Focus();
+                MessageBox.Show("กรุณาระบุรหัสผ่าน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
-            //ยืนยัน
-            DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            else
             {
-                return;
+                string lvItem = Gstr.fncGetDataCode(txtOil6.Text, ":");
+                string lvOilPrice = txtLitter6.Text;
+
+                if (lvOilPrice == "")
+                {
+                    MessageBox.Show("กรุณาระบุราคาต่อลิตร", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtlitter.Focus();
+                    return;
+                }
+
+                //ยืนยัน
+                DialogResult dialogResult = MessageBox.Show("ยืนยันการทำรายการ", "Confirm?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+
+
+                //Update ราคา
+                string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
+                GsysSQL.fncExecuteQueryData(lvSQL);
+
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            //Update ราคา
-            string lvSQL = "Update Cane_OillItem set C_ItemPrice = '" + lvOilPrice + "' Where C_Item = '" + lvItem + "' ";
-            GsysSQL.fncExecuteQueryData(lvSQL);
-
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void txtQ_KeyDown(object sender, KeyEventArgs e)
@@ -3475,14 +3651,6 @@ namespace PSOilBill
             if (e.KeyCode == Keys.Enter)
             {
                 FncKeyDownQueue(txtQ);
-            }
-        }
-
-        private void txtQ1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                FncKeyDownQueue(txtQ1);
             }
         }
 
@@ -3520,68 +3688,111 @@ namespace PSOilBill
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage1;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "1/1";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage1;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
+           
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage3;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo1.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "1/2";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage3;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo1.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage4;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo2.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "2/1";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage4;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo2.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage5;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo3.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "2/2";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage5;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo3.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
         }
 
         private void simpleButton5_Click(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage6;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo4.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "3/1";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage6;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo4.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
         }
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            tabPageAll.SelectedTab = tabPage7;
-
-            string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo5.Text);
-            if (lvStatus == "1" && lvStatus != "")
-                rdCarry.Checked = true;
+            if (rdIssue.Checked == true)
+            {
+                txtFront6.Text = "3/2";
+            }
             else
-                rdOil.Checked = true;
+            {
+                tabPageAll.SelectedTab = tabPage7;
+
+                string lvStatus = GsysSQL.fncFindCarryStatus(txtCaneNo5.Text);
+                if (lvStatus == "1" && lvStatus != "")
+                    rdCarry.Checked = true;
+                else
+                    rdOil.Checked = true;
+            }
         }
 
         //KeyDown Event
@@ -3673,6 +3884,7 @@ namespace PSOilBill
                     int lvMeterE = lvMeterS + lvLitter;
                     TMeterE.Text = lvMeterE.ToString();
                     btnSave.PerformClick();
+                   
                 }
             }
             else
@@ -3720,25 +3932,6 @@ namespace PSOilBill
         private void txtFront6_SelectedIndexChanged(object sender, EventArgs e)
         {
             FncKeyDownLitAmount(txtAmount6, txtLitter6, txtTotal6, txtMeterS6, txtMeterE6, txtFront6);
-        }
-
-        private void txtEmpID_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                string lvName = GsysSQL.fncFindEmpFullName(txtEmpID.Text);
-                if (lvName != "")
-                {
-                    txtEmpName.Text = lvName;
-                    txtBudjet.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("ไม่พบรหัสพนักงาน กรุณาตรวจสอบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtEmpID.Text = "";
-                    txtEmpID.Focus();
-                }
-            }
         }
 
         private void txtEmpName_KeyDown(object sender, KeyEventArgs e)
@@ -3841,7 +4034,7 @@ namespace PSOilBill
             string lvReturn = "";
 
             string lvDate1 = Gstr.fncChangeTDate(txtDate.Text);
-            if (lvDate1 == "20191101") lvDate1 = "20191032";
+            if (lvDate1 == "20200501") lvDate1 = "20200431";
             string lvDate = Gstr.fncChangeTDate(txtDate.Text);
             try
             {
@@ -4048,6 +4241,142 @@ namespace PSOilBill
         {
             frmOilChange frm = new frmOilChange();
             frm.ShowDialog();
+        }
+
+        private void txtDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past" && pvMode != "Pasttwo" && txtDept.Text != "")
+            {
+                MessageBox.Show("กรุณากดเพิ่มข้อมูลก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            txtName6.Text = GsysSQL.fncFindFactionName(txtDept.Text);
+
+            if (txtName6.Text != "")
+            {
+                txtObjective.Focus();
+            }
+            else
+            {
+                //if (pvMode != "")
+                //{
+                //    MessageBox.Show("ไม่พบข้อมูลหน่วยงาน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    txtDept.Text = "";
+                //    txtDept.Focus();
+                //}
+            }
+        }
+
+        private void txtRemark_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtQ1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FncKeyDownQueue(txtQ1);
+            }
+        }
+
+        private void fncLoadCarnum(string lvCar)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                DataTable DT = new DataTable();
+                string lvSQL = "SELECT * FROM MiniCane_OilCar Where M_CarNum like '%" + lvCar + "%' ";
+                DT = GsysSQL.fncGetQueryData(lvSQL,DT);
+
+                int lvRow = DT.Rows.Count;
+                for (int i = 0; i < lvRow; i++)
+                {
+                    txtDept.Text = DT.Rows[i]["M_SecID"].ToString();
+                    txtName6.Text = DT.Rows[i]["M_SecName"].ToString();
+                    txtBudjet.Text = DT.Rows[i]["M_Budjet"].ToString();
+                    txtAsset.Text = DT.Rows[i]["M_Asset"].ToString();
+                }
+
+                string[] lvArr = lvCar.Split('.');
+                txtCarNumS6.Text = lvArr[0];
+                txtCarNumE6.Text = lvArr[1];
+
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ไม่มีข้อมูลทะเบียนรถคันนี้", "แจ้งเตือน", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private string FncThaicar(string lvTXT)
+        {
+            string lvReturn = "";
+            try
+            {
+                string[] lvArr = lvTXT.Split('.');
+                string lvEndcar = lvArr[0];
+                string lvThaicar = GsysSQL.fncFindShotThaiCar(lvEndcar);
+
+                lvReturn = lvThaicar + "." + lvArr[1];
+                return lvReturn;
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show("ไม่มีข้อมูลทะเบียนรถคันนี้", "แจ้งเตือน", MessageBoxButtons.OK);
+                return lvReturn;
+            }
+        }
+
+        private void lineNotify(string msg)
+        {
+            //string token = "Wuh3ocetjly3TUZgd9OV0YY3o9g6GouD3wPaIsthAna"; //แผนกคอม
+            string token = "DTZlHpcfp8wKoFKMhBfiUKbrnaYXT1tEdRGqFN9S9Jj"; //ส่วนตัว
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
+                var postData = string.Format("message={0}", msg);
+                var data = Encoding.UTF8.GetBytes(postData);
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+                request.Headers.Add("Authorization", "Bearer " + token);
+
+                if (GVar.gvAlertLine)
+                {
+                    using (var stream = request.GetRequestStream()) stream.Write(data, 0, data.Length);
+                    var response = (HttpWebResponse)request.GetResponse();
+                    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private void txtFront1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTime_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+
+            }
         }
     }
 }

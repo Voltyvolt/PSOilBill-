@@ -29,5 +29,23 @@ namespace PSOilBill
             frmSearchPrint frm = new frmSearchPrint();
             frm.ShowDialog();
         }
+
+        private void ลอคควToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLockQ frm = new frmLockQ();
+            frm.ShowDialog();
+        }
+
+        private void พมพใบทะเบยนรถToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPrintCarnum frm = new frmPrintCarnum();
+            frm.ShowDialog();
+        }
+
+        private void เพมทะเบยนรถToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddOilCar frm = new frmAddOilCar();
+            frm.ShowDialog();
+        }
     }
 }

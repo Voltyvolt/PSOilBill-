@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://10.104.1.9/AutoUpdate/PSOilBill/</UpdateUrl>
-    <ApplicationRevision>156</ApplicationRevision>
+    <ApplicationRevision>247</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -63,7 +63,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -107,6 +107,7 @@
     <Reference Include="FarPoint.Win, Version=5.0.3514.2008, Culture=neutral, PublicKeyToken=327c3516b1b18457" />
     <Reference Include="FarPoint.Win.Chart, Version=5.0.3514.2008, Culture=neutral, PublicKeyToken=327c3516b1b18457" />
     <Reference Include="FarPoint.Win.Spread, Version=5.0.3514.2008, Culture=neutral, PublicKeyToken=327c3516b1b18457, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -122,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAddOilCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddOilCar.Designer.cs">
+      <DependentUpon>frmAddOilCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +140,12 @@
     </Compile>
     <Compile Include="frmCar.Designer.cs">
       <DependentUpon>frmCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLockQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLockQ.Designer.cs">
+      <DependentUpon>frmLockQ.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -146,11 +159,23 @@
     <Compile Include="frmOilChange.Designer.cs">
       <DependentUpon>frmOilChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPassword.Designer.cs">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrint.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPrint.Designer.cs">
       <DependentUpon>frmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintCarnum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrintCarnum.Designer.cs">
+      <DependentUpon>frmPrintCarnum.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrintMulti.cs">
       <SubType>Form</SubType>
@@ -199,6 +224,18 @@
     <Compile Include="rptBill_DT.Designer.cs">
       <DependentUpon>rptBill_DT.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptCarnum.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptCarnum.Designer.cs">
+      <DependentUpon>rptCarnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptCarTotal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptCarTotal.Designer.cs">
+      <DependentUpon>rptCarTotal.cs</DependentUpon>
+    </Compile>
     <Compile Include="rptReport1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -211,11 +248,26 @@
     <Compile Include="rptSumReport.Designer.cs">
       <DependentUpon>rptSumReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptTotal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptTotal.Designer.cs">
+      <DependentUpon>rptTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rptTotal2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="frmAddOilCar.resx">
+      <DependentUpon>frmAddOilCar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBrowse.resx">
       <DependentUpon>frmBrowse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCar.resx">
       <DependentUpon>frmCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLockQ.resx">
+      <DependentUpon>frmLockQ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -226,8 +278,14 @@
     <EmbeddedResource Include="frmOilChange.resx">
       <DependentUpon>frmOilChange.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPassword.resx">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrint.resx">
       <DependentUpon>frmPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrintCarnum.resx">
+      <DependentUpon>frmPrintCarnum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrintMulti.resx">
       <DependentUpon>frmPrintMulti.cs</DependentUpon>
@@ -257,11 +315,23 @@
     <EmbeddedResource Include="rptBill_DT.resx">
       <DependentUpon>rptBill_DT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptCarnum.resx">
+      <DependentUpon>rptCarnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptCarTotal.resx">
+      <DependentUpon>rptCarTotal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptReport1.resx">
       <DependentUpon>rptReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptSumReport.resx">
       <DependentUpon>rptSumReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptTotal.resx">
+      <DependentUpon>rptTotal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptTotal2.resx">
+      <DependentUpon>rptTotal2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

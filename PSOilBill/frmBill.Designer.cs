@@ -46,14 +46,15 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelDoc = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtRealdate = new DevExpress.XtraEditors.DateEdit();
             this.txtTime = new DevExpress.XtraEditors.TimeEdit();
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.chkPast = new DevExpress.XtraEditors.CheckEdit();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtDate = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbDocNo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtDocS = new DevExpress.XtraEditors.TextEdit();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,6 +63,9 @@
             this.sp1 = new FarPoint.Win.Spread.FpSpread();
             this.sp1_Sheet1 = new FarPoint.Win.Spread.SheetView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.rdIssue = new System.Windows.Forms.RadioButton();
@@ -75,6 +79,7 @@
             this.btn1 = new DevExpress.XtraEditors.SimpleButton();
             this.tabPageAll = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtRemark = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtQ = new DevExpress.XtraEditors.TextEdit();
             this.labelControl112 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill1 = new DevExpress.XtraEditors.SimpleButton();
@@ -98,7 +103,6 @@
             this.txtQuota = new DevExpress.XtraEditors.TextEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -110,6 +114,7 @@
             this.txtlitter = new DevExpress.XtraEditors.TextEdit();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtQ1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtRemark1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl113 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill2 = new DevExpress.XtraEditors.SimpleButton();
             this.txtCaneS1 = new DevExpress.XtraEditors.TextEdit();
@@ -132,7 +137,6 @@
             this.txtQuota1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl45 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo1 = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl46 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl47 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil1 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -143,6 +147,7 @@
             this.btnEditPrice1 = new DevExpress.XtraEditors.SimpleButton();
             this.txtlitter1 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtRemark2 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtQ2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl115 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill3 = new DevExpress.XtraEditors.SimpleButton();
@@ -166,7 +171,6 @@
             this.txtQuota2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl60 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo2 = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl61 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl62 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil2 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -177,6 +181,7 @@
             this.btnEditPrice2 = new DevExpress.XtraEditors.SimpleButton();
             this.txtlitter2 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.txtRemark3 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtQ3 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl117 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill4 = new DevExpress.XtraEditors.SimpleButton();
@@ -200,7 +205,6 @@
             this.txtQuota3 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl75 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo3 = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark3 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl76 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl77 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil3 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -211,6 +215,7 @@
             this.btnEditPrice3 = new DevExpress.XtraEditors.SimpleButton();
             this.txtlitter3 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.txtRemark4 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtQ4 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl119 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill5 = new DevExpress.XtraEditors.SimpleButton();
@@ -234,7 +239,6 @@
             this.txtQuota4 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl90 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo4 = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark4 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl91 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl92 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil4 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -245,6 +249,7 @@
             this.btnEditPrice4 = new DevExpress.XtraEditors.SimpleButton();
             this.txtlitter4 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.txtRemark5 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtQ5 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl121 = new DevExpress.XtraEditors.LabelControl();
             this.btnBill6 = new DevExpress.XtraEditors.SimpleButton();
@@ -268,7 +273,6 @@
             this.txtQuota5 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl105 = new DevExpress.XtraEditors.LabelControl();
             this.txtCaneNo5 = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark5 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl106 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl107 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil5 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -279,14 +283,13 @@
             this.btnEditPrice5 = new DevExpress.XtraEditors.SimpleButton();
             this.txtlitter5 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtRemark6 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtDept = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtPdOut = new DevExpress.XtraEditors.TextEdit();
-            this.txtPdIn = new DevExpress.XtraEditors.TextEdit();
             this.labelControl118 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl116 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl111 = new DevExpress.XtraEditors.LabelControl();
-            this.txtEmpID = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl114 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
             this.txtCarNumE6 = new DevExpress.XtraEditors.TextEdit();
             this.txtCarNumS6 = new DevExpress.XtraEditors.TextEdit();
@@ -307,11 +310,8 @@
             this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
             this.txtTotal6 = new DevExpress.XtraEditors.TextEdit();
-            this.txtDept = new DevExpress.XtraEditors.TextEdit();
             this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
             this.txtBudjet = new DevExpress.XtraEditors.TextEdit();
-            this.txtRemark6 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.txtOil6 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtAmount6 = new DevExpress.XtraEditors.TextEdit();
@@ -328,6 +328,8 @@
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRealdate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRealdate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPast.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -344,6 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).BeginInit();
             this.tabPageAll.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE.Properties)).BeginInit();
@@ -355,12 +358,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter.Properties)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumS1.Properties)).BeginInit();
@@ -371,11 +374,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter1.Properties)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE2.Properties)).BeginInit();
@@ -387,11 +390,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter2.Properties)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE3.Properties)).BeginInit();
@@ -403,11 +406,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter3.Properties)).BeginInit();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE4.Properties)).BeginInit();
@@ -419,11 +422,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter4.Properties)).BeginInit();
             this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE5.Properties)).BeginInit();
@@ -435,15 +438,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter5.Properties)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPdOut.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPdIn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmpID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumS6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIssue.Properties)).BeginInit();
@@ -453,9 +455,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMeterS6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudjet.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLitter6.Properties)).BeginInit();
@@ -474,7 +474,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(555, 145);
+            this.groupBox1.Size = new System.Drawing.Size(555, 184);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "เมนู";
@@ -486,7 +486,7 @@
             this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
             this.btnPrint.Location = new System.Drawing.Point(436, 49);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(107, 58);
+            this.btnPrint.Size = new System.Drawing.Size(107, 64);
             this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "พิมพ์";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -498,7 +498,7 @@
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.Location = new System.Drawing.Point(224, 49);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 58);
+            this.btnSave.Size = new System.Drawing.Size(100, 64);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "บันทึก (F3)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -510,7 +510,7 @@
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.Location = new System.Drawing.Point(330, 49);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 58);
+            this.btnCancel.Size = new System.Drawing.Size(100, 64);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "ยกเลิก (F4)";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -522,7 +522,7 @@
             this.btnEdit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.ImageOptions.Image")));
             this.btnEdit.Location = new System.Drawing.Point(118, 49);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 58);
+            this.btnEdit.Size = new System.Drawing.Size(100, 64);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "แก้ไข (F2)";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -534,7 +534,7 @@
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
             this.btnAdd.Location = new System.Drawing.Point(12, 49);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 58);
+            this.btnAdd.Size = new System.Drawing.Size(100, 64);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "เพิ่ม (F1)";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -542,7 +542,7 @@
             // btnDelDoc
             // 
             this.btnDelDoc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelDoc.ImageOptions.Image")));
-            this.btnDelDoc.Location = new System.Drawing.Point(241, 95);
+            this.btnDelDoc.Location = new System.Drawing.Point(284, 141);
             this.btnDelDoc.Name = "btnDelDoc";
             this.btnDelDoc.Size = new System.Drawing.Size(31, 33);
             this.btnDelDoc.TabIndex = 3;
@@ -551,28 +551,43 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtRealdate);
             this.groupBox2.Controls.Add(this.txtTime);
             this.groupBox2.Controls.Add(this.simpleButton6);
             this.groupBox2.Controls.Add(this.chkPast);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.btnDelDoc);
+            this.groupBox2.Controls.Add(this.labelControl1);
             this.groupBox2.Controls.Add(this.labelControl3);
             this.groupBox2.Controls.Add(this.labelControl2);
             this.groupBox2.Controls.Add(this.txtDate);
-            this.groupBox2.Controls.Add(this.labelControl1);
             this.groupBox2.Controls.Add(this.cmbDocNo);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox2.Location = new System.Drawing.Point(953, 0);
+            this.groupBox2.Location = new System.Drawing.Point(903, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(311, 145);
+            this.groupBox2.Size = new System.Drawing.Size(361, 184);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "เอกสาร";
             // 
+            // txtRealdate
+            // 
+            this.txtRealdate.EditValue = null;
+            this.txtRealdate.Location = new System.Drawing.Point(121, 65);
+            this.txtRealdate.Name = "txtRealdate";
+            this.txtRealdate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRealdate.Properties.Appearance.Options.UseFont = true;
+            this.txtRealdate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRealdate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRealdate.Size = new System.Drawing.Size(224, 30);
+            this.txtRealdate.TabIndex = 61;
+            // 
             // txtTime
             // 
             this.txtTime.EditValue = new System.DateTime(2019, 9, 30, 0, 0, 0, 0);
-            this.txtTime.Location = new System.Drawing.Point(222, 59);
+            this.txtTime.Location = new System.Drawing.Point(265, 105);
             this.txtTime.Name = "txtTime";
             this.txtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtTime.Properties.Appearance.Options.UseFont = true;
@@ -581,15 +596,15 @@
             this.txtTime.Properties.Mask.EditMask = "t";
             this.txtTime.Size = new System.Drawing.Size(83, 30);
             this.txtTime.TabIndex = 2;
+            this.txtTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTime_KeyDown_1);
             // 
             // simpleButton6
             // 
-            this.simpleButton6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.simpleButton6.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton6.Appearance.Options.UseFont = true;
             this.simpleButton6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton6.ImageOptions.Image")));
             this.simpleButton6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.BottomCenter;
-            this.simpleButton6.Location = new System.Drawing.Point(278, 95);
+            this.simpleButton6.Location = new System.Drawing.Point(321, 141);
             this.simpleButton6.Name = "simpleButton6";
             this.simpleButton6.Size = new System.Drawing.Size(27, 33);
             this.simpleButton6.TabIndex = 60;
@@ -599,7 +614,7 @@
             // 
             // chkPast
             // 
-            this.chkPast.Location = new System.Drawing.Point(125, 102);
+            this.chkPast.Location = new System.Drawing.Point(168, 148);
             this.chkPast.Name = "chkPast";
             this.chkPast.Properties.Caption = "ทำรายการย้อนหลัง";
             this.chkPast.Size = new System.Drawing.Size(110, 19);
@@ -609,28 +624,38 @@
             // btnSearch
             // 
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(274, 23);
+            this.btnSearch.Location = new System.Drawing.Point(317, 23);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(31, 30);
             this.btnSearch.TabIndex = 5;
             this.btnSearch.ToolTip = "คีย์ลัด = F12";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(66, 68);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(49, 24);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "วันที่ :";
+            // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(23, 62);
+            this.labelControl3.Location = new System.Drawing.Point(6, 108);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 24);
+            this.labelControl3.Size = new System.Drawing.Size(109, 24);
             this.labelControl3.TabIndex = 5;
-            this.labelControl3.Text = "วันที่ :";
+            this.labelControl3.Text = "วันที่ตัดยอด :";
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(14, 26);
+            this.labelControl2.Location = new System.Drawing.Point(57, 29);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(58, 24);
             this.labelControl2.TabIndex = 3;
@@ -639,7 +664,7 @@
             // txtDate
             // 
             this.txtDate.EditValue = new System.DateTime(2017, 11, 23, 12, 37, 13, 0);
-            this.txtDate.Location = new System.Drawing.Point(78, 59);
+            this.txtDate.Location = new System.Drawing.Point(121, 105);
             this.txtDate.Name = "txtDate";
             this.txtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtDate.Properties.Appearance.Options.UseFont = true;
@@ -661,20 +686,9 @@
             this.txtDate.TextChanged += new System.EventHandler(this.txtDate_TextChanged);
             this.txtDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDate_KeyDown);
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(14, 26);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(64, 24);
-            this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "เล่มที่ : ";
-            this.labelControl1.Visible = false;
-            // 
             // cmbDocNo
             // 
-            this.cmbDocNo.Location = new System.Drawing.Point(78, 23);
+            this.cmbDocNo.Location = new System.Drawing.Point(121, 23);
             this.cmbDocNo.Name = "cmbDocNo";
             this.cmbDocNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.cmbDocNo.Properties.Appearance.Options.UseFont = true;
@@ -710,9 +724,9 @@
             this.panel1.Controls.Add(this.txtDocS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MaximumSize = new System.Drawing.Size(0, 145);
+            this.panel1.MaximumSize = new System.Drawing.Size(0, 300);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1264, 145);
+            this.panel1.Size = new System.Drawing.Size(1264, 184);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -720,18 +734,18 @@
             this.panel2.Controls.Add(this.groupBox4);
             this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 145);
+            this.panel2.Location = new System.Drawing.Point(0, 184);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1264, 840);
+            this.panel2.Size = new System.Drawing.Size(1264, 801);
             this.panel2.TabIndex = 4;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.sp1);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox4.Location = new System.Drawing.Point(0, 673);
+            this.groupBox4.Location = new System.Drawing.Point(0, 784);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1264, 167);
+            this.groupBox4.Size = new System.Drawing.Size(1264, 17);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ประวัติการทำรายการ";
@@ -746,7 +760,7 @@
             this.sp1.Name = "sp1";
             this.sp1.Sheets.AddRange(new FarPoint.Win.Spread.SheetView[] {
             this.sp1_Sheet1});
-            this.sp1.Size = new System.Drawing.Size(1258, 148);
+            this.sp1.Size = new System.Drawing.Size(1258, 0);
             this.sp1.TabIndex = 0;
             this.sp1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sp1_KeyDown);
             this.sp1.Resize += new System.EventHandler(this.sp1_Resize);
@@ -835,6 +849,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Controls.Add(this.simpleButton4);
             this.groupBox3.Controls.Add(this.simpleButton5);
@@ -846,10 +863,44 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1264, 840);
+            this.groupBox3.Size = new System.Drawing.Size(1264, 801);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "รายละเอียด";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(1000, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 20);
+            this.label3.TabIndex = 61;
+            this.label3.Text = "บาท";
+            this.label3.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(943, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.TabIndex = 61;
+            this.label2.Text = "label2";
+            this.label2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(830, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "ราคาน้ำมันวันนี้ :";
+            this.label1.Visible = false;
             // 
             // groupBox5
             // 
@@ -859,9 +910,9 @@
             this.groupBox5.Controls.Add(this.rdIssue);
             this.groupBox5.Controls.Add(this.rdCarry);
             this.groupBox5.Controls.Add(this.rdOil);
-            this.groupBox5.Location = new System.Drawing.Point(225, 96);
+            this.groupBox5.Location = new System.Drawing.Point(224, 120);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 93);
+            this.groupBox5.Size = new System.Drawing.Size(811, 92);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -869,7 +920,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(625, 32);
+            this.txtType.Location = new System.Drawing.Point(625, 31);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -880,9 +931,7 @@
             this.txtType.Properties.Items.AddRange(new object[] {
             "รถบริษัท",
             "รับเหมา",
-            "รถน้ำตาล",
-            "ใช้ในตัวโรง",
-            "โรงในเครือ"});
+            "รถในเครือ"});
             this.txtType.Size = new System.Drawing.Size(174, 30);
             this.txtType.TabIndex = 95;
             // 
@@ -930,7 +979,7 @@
             this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton4.Appearance.Options.UseFont = true;
             this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.Location = new System.Drawing.Point(13, 314);
+            this.simpleButton4.Location = new System.Drawing.Point(12, 357);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(206, 58);
             this.simpleButton4.TabIndex = 59;
@@ -943,7 +992,7 @@
             this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton5.Appearance.Options.UseFont = true;
             this.simpleButton5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
-            this.simpleButton5.Location = new System.Drawing.Point(1042, 314);
+            this.simpleButton5.Location = new System.Drawing.Point(1041, 357);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(206, 58);
             this.simpleButton5.TabIndex = 58;
@@ -956,7 +1005,7 @@
             this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton3.Appearance.Options.UseFont = true;
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(13, 250);
+            this.simpleButton3.Location = new System.Drawing.Point(12, 293);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(206, 58);
             this.simpleButton3.TabIndex = 57;
@@ -969,7 +1018,7 @@
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(1042, 250);
+            this.simpleButton2.Location = new System.Drawing.Point(1041, 293);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(206, 58);
             this.simpleButton2.TabIndex = 56;
@@ -982,7 +1031,7 @@
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(1042, 186);
+            this.simpleButton1.Location = new System.Drawing.Point(1041, 229);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(206, 58);
             this.simpleButton1.TabIndex = 55;
@@ -995,7 +1044,7 @@
             this.btn1.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.btn1.Appearance.Options.UseFont = true;
             this.btn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn1.ImageOptions.Image")));
-            this.btn1.Location = new System.Drawing.Point(12, 186);
+            this.btn1.Location = new System.Drawing.Point(11, 229);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(206, 58);
             this.btn1.TabIndex = 54;
@@ -1012,7 +1061,7 @@
             this.tabPageAll.Controls.Add(this.tabPage6);
             this.tabPageAll.Controls.Add(this.tabPage7);
             this.tabPageAll.Controls.Add(this.tabPage2);
-            this.tabPageAll.Location = new System.Drawing.Point(225, 164);
+            this.tabPageAll.Location = new System.Drawing.Point(224, 188);
             this.tabPageAll.Name = "tabPageAll";
             this.tabPageAll.SelectedIndex = 0;
             this.tabPageAll.Size = new System.Drawing.Size(811, 484);
@@ -1022,6 +1071,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.txtRemark);
             this.tabPage1.Controls.Add(this.txtQ);
             this.tabPage1.Controls.Add(this.labelControl112);
             this.tabPage1.Controls.Add(this.btnBill1);
@@ -1045,7 +1095,6 @@
             this.tabPage1.Controls.Add(this.txtQuota);
             this.tabPage1.Controls.Add(this.labelControl14);
             this.tabPage1.Controls.Add(this.txtCaneNo);
-            this.tabPage1.Controls.Add(this.txtRemark);
             this.tabPage1.Controls.Add(this.labelControl4);
             this.tabPage1.Controls.Add(this.labelControl13);
             this.tabPage1.Controls.Add(this.txtOil);
@@ -1061,6 +1110,22 @@
             this.tabPage1.Size = new System.Drawing.Size(803, 458);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ตู้ 1/1";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(175, 355);
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark.TabIndex = 58;
             // 
             // txtQ
             // 
@@ -1343,18 +1408,6 @@
             this.txtCaneNo.TabIndex = 30;
             this.txtCaneNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo_KeyDown);
             // 
-            // txtRemark
-            // 
-            this.txtRemark.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark.Location = new System.Drawing.Point(175, 346);
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark.TabIndex = 40;
-            // 
             // labelControl4
             // 
             this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1371,7 +1424,7 @@
             this.labelControl13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(77, 349);
+            this.labelControl13.Location = new System.Drawing.Point(77, 358);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(92, 24);
             this.labelControl13.TabIndex = 39;
@@ -1468,6 +1521,7 @@
             // 
             this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage3.Controls.Add(this.txtQ1);
+            this.tabPage3.Controls.Add(this.txtRemark1);
             this.tabPage3.Controls.Add(this.labelControl113);
             this.tabPage3.Controls.Add(this.btnBill2);
             this.tabPage3.Controls.Add(this.txtCaneS1);
@@ -1490,7 +1544,6 @@
             this.tabPage3.Controls.Add(this.txtQuota1);
             this.tabPage3.Controls.Add(this.labelControl45);
             this.tabPage3.Controls.Add(this.txtCaneNo1);
-            this.tabPage3.Controls.Add(this.txtRemark1);
             this.tabPage3.Controls.Add(this.labelControl46);
             this.tabPage3.Controls.Add(this.labelControl47);
             this.tabPage3.Controls.Add(this.txtOil1);
@@ -1509,18 +1562,29 @@
             // 
             // txtQ1
             // 
-            this.txtQ1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtQ1.Location = new System.Drawing.Point(175, 18);
             this.txtQ1.Name = "txtQ1";
-            this.txtQ1.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtQ1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtQ1.Properties.Appearance.Options.UseBackColor = true;
             this.txtQ1.Properties.Appearance.Options.UseFont = true;
-            this.txtQ1.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtQ1.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtQ1.Size = new System.Drawing.Size(137, 30);
-            this.txtQ1.TabIndex = 87;
-            this.txtQ1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQ1_KeyDown);
+            this.txtQ1.TabIndex = 88;
+            this.txtQ1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQ1_KeyDown_1);
+            // 
+            // txtRemark1
+            // 
+            this.txtRemark1.Location = new System.Drawing.Point(175, 347);
+            this.txtRemark1.Name = "txtRemark1";
+            this.txtRemark1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark1.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark1.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark1.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark1.TabIndex = 87;
             // 
             // labelControl113
             // 
@@ -1627,6 +1691,7 @@
             this.txtFront1.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtFront1.Size = new System.Drawing.Size(174, 30);
             this.txtFront1.TabIndex = 60;
+            this.txtFront1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFront1_KeyDown);
             // 
             // labelControl38
             // 
@@ -1785,18 +1850,6 @@
             this.txtCaneNo1.TabIndex = 64;
             this.txtCaneNo1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo1_KeyDown);
             // 
-            // txtRemark1
-            // 
-            this.txtRemark1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark1.Location = new System.Drawing.Point(175, 347);
-            this.txtRemark1.Name = "txtRemark1";
-            this.txtRemark1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark1.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark1.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark1.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark1.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark1.TabIndex = 73;
-            // 
             // labelControl46
             // 
             this.labelControl46.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1908,6 +1961,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage4.Controls.Add(this.txtRemark2);
             this.tabPage4.Controls.Add(this.txtQ2);
             this.tabPage4.Controls.Add(this.labelControl115);
             this.tabPage4.Controls.Add(this.btnBill3);
@@ -1931,7 +1985,6 @@
             this.tabPage4.Controls.Add(this.txtQuota2);
             this.tabPage4.Controls.Add(this.labelControl60);
             this.tabPage4.Controls.Add(this.txtCaneNo2);
-            this.tabPage4.Controls.Add(this.txtRemark2);
             this.tabPage4.Controls.Add(this.labelControl61);
             this.tabPage4.Controls.Add(this.labelControl62);
             this.tabPage4.Controls.Add(this.txtOil2);
@@ -1947,6 +2000,22 @@
             this.tabPage4.Size = new System.Drawing.Size(803, 458);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ตู้ 2/1";
+            // 
+            // txtRemark2
+            // 
+            this.txtRemark2.Location = new System.Drawing.Point(175, 348);
+            this.txtRemark2.Name = "txtRemark2";
+            this.txtRemark2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark2.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark2.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark2.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark2.TabIndex = 88;
             // 
             // txtQ2
             // 
@@ -2226,18 +2295,6 @@
             this.txtCaneNo2.TabIndex = 64;
             this.txtCaneNo2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo2_KeyDown);
             // 
-            // txtRemark2
-            // 
-            this.txtRemark2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark2.Location = new System.Drawing.Point(175, 348);
-            this.txtRemark2.Name = "txtRemark2";
-            this.txtRemark2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark2.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark2.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark2.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark2.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark2.TabIndex = 73;
-            // 
             // labelControl61
             // 
             this.labelControl61.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2349,6 +2406,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage5.Controls.Add(this.txtRemark3);
             this.tabPage5.Controls.Add(this.txtQ3);
             this.tabPage5.Controls.Add(this.labelControl117);
             this.tabPage5.Controls.Add(this.btnBill4);
@@ -2372,7 +2430,6 @@
             this.tabPage5.Controls.Add(this.txtQuota3);
             this.tabPage5.Controls.Add(this.labelControl75);
             this.tabPage5.Controls.Add(this.txtCaneNo3);
-            this.tabPage5.Controls.Add(this.txtRemark3);
             this.tabPage5.Controls.Add(this.labelControl76);
             this.tabPage5.Controls.Add(this.labelControl77);
             this.tabPage5.Controls.Add(this.txtOil3);
@@ -2388,6 +2445,22 @@
             this.tabPage5.Size = new System.Drawing.Size(803, 458);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "ตู้ 2/2";
+            // 
+            // txtRemark3
+            // 
+            this.txtRemark3.Location = new System.Drawing.Point(174, 369);
+            this.txtRemark3.Name = "txtRemark3";
+            this.txtRemark3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark3.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark3.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark3.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark3.TabIndex = 88;
             // 
             // txtQ3
             // 
@@ -2667,18 +2740,6 @@
             this.txtCaneNo3.TabIndex = 64;
             this.txtCaneNo3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo3_KeyDown);
             // 
-            // txtRemark3
-            // 
-            this.txtRemark3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark3.Location = new System.Drawing.Point(174, 369);
-            this.txtRemark3.Name = "txtRemark3";
-            this.txtRemark3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark3.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark3.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark3.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark3.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark3.TabIndex = 73;
-            // 
             // labelControl76
             // 
             this.labelControl76.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2790,6 +2851,7 @@
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage6.Controls.Add(this.txtRemark4);
             this.tabPage6.Controls.Add(this.txtQ4);
             this.tabPage6.Controls.Add(this.labelControl119);
             this.tabPage6.Controls.Add(this.btnBill5);
@@ -2813,7 +2875,6 @@
             this.tabPage6.Controls.Add(this.txtQuota4);
             this.tabPage6.Controls.Add(this.labelControl90);
             this.tabPage6.Controls.Add(this.txtCaneNo4);
-            this.tabPage6.Controls.Add(this.txtRemark4);
             this.tabPage6.Controls.Add(this.labelControl91);
             this.tabPage6.Controls.Add(this.labelControl92);
             this.tabPage6.Controls.Add(this.txtOil4);
@@ -2829,6 +2890,22 @@
             this.tabPage6.Size = new System.Drawing.Size(803, 458);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "ตู้ 3/1";
+            // 
+            // txtRemark4
+            // 
+            this.txtRemark4.Location = new System.Drawing.Point(177, 370);
+            this.txtRemark4.Name = "txtRemark4";
+            this.txtRemark4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark4.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark4.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark4.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark4.TabIndex = 88;
             // 
             // txtQ4
             // 
@@ -3108,18 +3185,6 @@
             this.txtCaneNo4.TabIndex = 64;
             this.txtCaneNo4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo4_KeyDown);
             // 
-            // txtRemark4
-            // 
-            this.txtRemark4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark4.Location = new System.Drawing.Point(177, 370);
-            this.txtRemark4.Name = "txtRemark4";
-            this.txtRemark4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark4.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark4.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark4.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark4.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark4.TabIndex = 73;
-            // 
             // labelControl91
             // 
             this.labelControl91.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -3231,6 +3296,7 @@
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage7.Controls.Add(this.txtRemark5);
             this.tabPage7.Controls.Add(this.txtQ5);
             this.tabPage7.Controls.Add(this.labelControl121);
             this.tabPage7.Controls.Add(this.btnBill6);
@@ -3254,7 +3320,6 @@
             this.tabPage7.Controls.Add(this.txtQuota5);
             this.tabPage7.Controls.Add(this.labelControl105);
             this.tabPage7.Controls.Add(this.txtCaneNo5);
-            this.tabPage7.Controls.Add(this.txtRemark5);
             this.tabPage7.Controls.Add(this.labelControl106);
             this.tabPage7.Controls.Add(this.labelControl107);
             this.tabPage7.Controls.Add(this.txtOil5);
@@ -3270,6 +3335,22 @@
             this.tabPage7.Size = new System.Drawing.Size(803, 458);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "ตู้ 3/2";
+            // 
+            // txtRemark5
+            // 
+            this.txtRemark5.Location = new System.Drawing.Point(178, 369);
+            this.txtRemark5.Name = "txtRemark5";
+            this.txtRemark5.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark5.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark5.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark5.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark5.TabIndex = 88;
             // 
             // txtQ5
             // 
@@ -3549,18 +3630,6 @@
             this.txtCaneNo5.TabIndex = 64;
             this.txtCaneNo5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCaneNo5_KeyDown);
             // 
-            // txtRemark5
-            // 
-            this.txtRemark5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark5.Location = new System.Drawing.Point(178, 369);
-            this.txtRemark5.Name = "txtRemark5";
-            this.txtRemark5.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark5.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark5.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark5.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark5.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark5.TabIndex = 73;
-            // 
             // labelControl106
             // 
             this.labelControl106.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -3672,14 +3741,13 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.txtRemark6);
+            this.tabPage2.Controls.Add(this.txtDept);
             this.tabPage2.Controls.Add(this.txtPdOut);
-            this.tabPage2.Controls.Add(this.txtPdIn);
             this.tabPage2.Controls.Add(this.labelControl118);
-            this.tabPage2.Controls.Add(this.labelControl116);
             this.tabPage2.Controls.Add(this.txtEmpName);
             this.tabPage2.Controls.Add(this.labelControl111);
-            this.tabPage2.Controls.Add(this.txtEmpID);
-            this.tabPage2.Controls.Add(this.labelControl114);
+            this.tabPage2.Controls.Add(this.labelControl29);
             this.tabPage2.Controls.Add(this.labelControl34);
             this.tabPage2.Controls.Add(this.txtCarNumE6);
             this.tabPage2.Controls.Add(this.txtCarNumS6);
@@ -3700,11 +3768,8 @@
             this.tabPage2.Controls.Add(this.labelControl26);
             this.tabPage2.Controls.Add(this.labelControl27);
             this.tabPage2.Controls.Add(this.txtTotal6);
-            this.tabPage2.Controls.Add(this.txtDept);
             this.tabPage2.Controls.Add(this.labelControl28);
             this.tabPage2.Controls.Add(this.txtBudjet);
-            this.tabPage2.Controls.Add(this.txtRemark6);
-            this.tabPage2.Controls.Add(this.labelControl29);
             this.tabPage2.Controls.Add(this.labelControl30);
             this.tabPage2.Controls.Add(this.txtOil6);
             this.tabPage2.Controls.Add(this.txtAmount6);
@@ -3721,50 +3786,115 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "เบิก";
             // 
+            // txtRemark6
+            // 
+            this.txtRemark6.Location = new System.Drawing.Point(171, 419);
+            this.txtRemark6.Name = "txtRemark6";
+            this.txtRemark6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtRemark6.Properties.Appearance.Options.UseFont = true;
+            this.txtRemark6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRemark6.Properties.Items.AddRange(new object[] {
+            "รถตำรวจ",
+            "รถเช่า",
+            "ขนกากใบ",
+            "บรรทุกน้ำตาล"});
+            this.txtRemark6.Size = new System.Drawing.Size(599, 30);
+            this.txtRemark6.TabIndex = 98;
+            // 
+            // txtDept
+            // 
+            this.txtDept.Location = new System.Drawing.Point(167, 46);
+            this.txtDept.Name = "txtDept";
+            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDept.Properties.Appearance.Options.UseFont = true;
+            this.txtDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtDept.Properties.Items.AddRange(new object[] {
+            "121",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "122",
+            "123",
+            "125",
+            "126",
+            "127",
+            "129",
+            "130",
+            "131",
+            "132",
+            "133",
+            "134",
+            "135",
+            "137",
+            "141",
+            "142",
+            "143",
+            "144",
+            "145",
+            "146",
+            "147",
+            "148",
+            "149",
+            "152",
+            "161",
+            "162",
+            "163",
+            "164",
+            "165",
+            "166",
+            "167",
+            "168",
+            "169",
+            "170",
+            "171",
+            "172",
+            "174",
+            "191",
+            "192",
+            "111",
+            "231",
+            "234",
+            "900",
+            "901",
+            "902",
+            "903",
+            "904",
+            "905",
+            "120",
+            "107",
+            "201"});
+            this.txtDept.Size = new System.Drawing.Size(101, 30);
+            this.txtDept.TabIndex = 97;
+            this.txtDept.SelectedIndexChanged += new System.EventHandler(this.txtDept_SelectedIndexChanged);
+            // 
             // txtPdOut
             // 
-            this.txtPdOut.Location = new System.Drawing.Point(490, 236);
+            this.txtPdOut.Location = new System.Drawing.Point(167, 236);
             this.txtPdOut.Name = "txtPdOut";
             this.txtPdOut.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtPdOut.Properties.Appearance.Options.UseFont = true;
-            this.txtPdOut.Size = new System.Drawing.Size(276, 30);
+            this.txtPdOut.Size = new System.Drawing.Size(599, 30);
             this.txtPdOut.TabIndex = 96;
             this.txtPdOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPdOut_KeyDown);
-            // 
-            // txtPdIn
-            // 
-            this.txtPdIn.Location = new System.Drawing.Point(171, 236);
-            this.txtPdIn.Name = "txtPdIn";
-            this.txtPdIn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtPdIn.Properties.Appearance.Options.UseFont = true;
-            this.txtPdIn.Size = new System.Drawing.Size(143, 30);
-            this.txtPdIn.TabIndex = 95;
-            this.txtPdIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPdIn_KeyDown);
             // 
             // labelControl118
             // 
             this.labelControl118.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl118.Appearance.Options.UseFont = true;
-            this.labelControl118.Location = new System.Drawing.Point(327, 239);
+            this.labelControl118.Location = new System.Drawing.Point(9, 239);
             this.labelControl118.Name = "labelControl118";
             this.labelControl118.Size = new System.Drawing.Size(152, 24);
             this.labelControl118.TabIndex = 94;
             this.labelControl118.Text = "ใบสั่งจ่าย/ใบเบิก :";
             // 
-            // labelControl116
-            // 
-            this.labelControl116.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl116.Appearance.Options.UseFont = true;
-            this.labelControl116.Location = new System.Drawing.Point(101, 239);
-            this.labelControl116.Name = "labelControl116";
-            this.labelControl116.Size = new System.Drawing.Size(57, 24);
-            this.labelControl116.TabIndex = 93;
-            this.labelControl116.Text = "ใบรับ :";
-            // 
             // txtEmpName
             // 
             this.txtEmpName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmpName.Location = new System.Drawing.Point(355, 143);
+            this.txtEmpName.Location = new System.Drawing.Point(167, 143);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtEmpName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -3772,7 +3902,7 @@
             this.txtEmpName.Properties.Appearance.Options.UseFont = true;
             this.txtEmpName.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
             this.txtEmpName.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtEmpName.Size = new System.Drawing.Size(411, 30);
+            this.txtEmpName.Size = new System.Drawing.Size(599, 30);
             this.txtEmpName.TabIndex = 92;
             this.txtEmpName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpName_KeyDown);
             // 
@@ -3781,37 +3911,22 @@
             this.labelControl111.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl111.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl111.Appearance.Options.UseFont = true;
-            this.labelControl111.Location = new System.Drawing.Point(307, 146);
+            this.labelControl111.Location = new System.Drawing.Point(123, 146);
             this.labelControl111.Name = "labelControl111";
             this.labelControl111.Size = new System.Drawing.Size(38, 24);
             this.labelControl111.TabIndex = 91;
             this.labelControl111.Text = "ชื่อ :";
             // 
-            // txtEmpID
+            // labelControl29
             // 
-            this.txtEmpID.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmpID.Location = new System.Drawing.Point(167, 143);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtEmpID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtEmpID.Properties.Appearance.Options.UseBackColor = true;
-            this.txtEmpID.Properties.Appearance.Options.UseFont = true;
-            this.txtEmpID.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtEmpID.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtEmpID.Size = new System.Drawing.Size(129, 30);
-            this.txtEmpID.TabIndex = 90;
-            this.txtEmpID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpID_KeyDown);
-            // 
-            // labelControl114
-            // 
-            this.labelControl114.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl114.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl114.Appearance.Options.UseFont = true;
-            this.labelControl114.Location = new System.Drawing.Point(44, 146);
-            this.labelControl114.Name = "labelControl114";
-            this.labelControl114.Size = new System.Drawing.Size(117, 24);
-            this.labelControl114.TabIndex = 89;
-            this.labelControl114.Text = "รหัสพนักงาน :";
+            this.labelControl29.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl29.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.labelControl29.Appearance.Options.UseFont = true;
+            this.labelControl29.Location = new System.Drawing.Point(69, 49);
+            this.labelControl29.Name = "labelControl29";
+            this.labelControl29.Size = new System.Drawing.Size(92, 24);
+            this.labelControl29.TabIndex = 53;
+            this.labelControl29.Text = "หน่วยงาน :";
             // 
             // labelControl34
             // 
@@ -3998,15 +4113,15 @@
             // txtName6
             // 
             this.txtName6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtName6.Location = new System.Drawing.Point(304, 49);
+            this.txtName6.Location = new System.Drawing.Point(318, 46);
             this.txtName6.Name = "txtName6";
-            this.txtName6.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtName6.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.txtName6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtName6.Properties.Appearance.Options.UseBackColor = true;
             this.txtName6.Properties.Appearance.Options.UseFont = true;
             this.txtName6.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
             this.txtName6.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtName6.Size = new System.Drawing.Size(275, 30);
+            this.txtName6.Size = new System.Drawing.Size(261, 30);
             this.txtName6.TabIndex = 56;
             // 
             // labelControl25
@@ -4014,7 +4129,7 @@
             this.labelControl25.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl25.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl25.Appearance.Options.UseFont = true;
-            this.labelControl25.Location = new System.Drawing.Point(258, 52);
+            this.labelControl25.Location = new System.Drawing.Point(274, 49);
             this.labelControl25.Name = "labelControl25";
             this.labelControl25.Size = new System.Drawing.Size(38, 24);
             this.labelControl25.TabIndex = 55;
@@ -4056,21 +4171,6 @@
             this.txtTotal6.Size = new System.Drawing.Size(174, 30);
             this.txtTotal6.TabIndex = 75;
             // 
-            // txtDept
-            // 
-            this.txtDept.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDept.Location = new System.Drawing.Point(167, 49);
-            this.txtDept.Name = "txtDept";
-            this.txtDept.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDept.Properties.Appearance.Options.UseBackColor = true;
-            this.txtDept.Properties.Appearance.Options.UseFont = true;
-            this.txtDept.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtDept.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtDept.Size = new System.Drawing.Size(83, 30);
-            this.txtDept.TabIndex = 54;
-            this.txtDept.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDept_KeyDown);
-            // 
             // labelControl28
             // 
             this.labelControl28.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -4094,29 +4194,6 @@
             this.txtBudjet.Size = new System.Drawing.Size(174, 30);
             this.txtBudjet.TabIndex = 64;
             this.txtBudjet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBudjet_KeyDown);
-            // 
-            // txtRemark6
-            // 
-            this.txtRemark6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtRemark6.Location = new System.Drawing.Point(171, 419);
-            this.txtRemark6.Name = "txtRemark6";
-            this.txtRemark6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtRemark6.Properties.Appearance.Options.UseFont = true;
-            this.txtRemark6.Properties.AppearanceFocused.BackColor = System.Drawing.Color.Bisque;
-            this.txtRemark6.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtRemark6.Size = new System.Drawing.Size(599, 30);
-            this.txtRemark6.TabIndex = 73;
-            // 
-            // labelControl29
-            // 
-            this.labelControl29.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl29.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.labelControl29.Appearance.Options.UseFont = true;
-            this.labelControl29.Location = new System.Drawing.Point(69, 52);
-            this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(92, 24);
-            this.labelControl29.TabIndex = 53;
-            this.labelControl29.Text = "หน่วยงาน :";
             // 
             // labelControl30
             // 
@@ -4287,6 +4364,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRealdate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRealdate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPast.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDate.Properties.CalendarTimeProperties)).EndInit();
@@ -4299,12 +4378,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.sp1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sp1_Sheet1)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtType.Properties)).EndInit();
             this.tabPageAll.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE.Properties)).EndInit();
@@ -4316,13 +4397,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter.Properties)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumS1.Properties)).EndInit();
@@ -4333,12 +4414,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter1.Properties)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE2.Properties)).EndInit();
@@ -4350,12 +4431,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter2.Properties)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE3.Properties)).EndInit();
@@ -4367,12 +4448,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter3.Properties)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE4.Properties)).EndInit();
@@ -4384,12 +4465,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter4.Properties)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQ5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneS5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE5.Properties)).EndInit();
@@ -4401,16 +4482,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuota5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCaneNo5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter5.Properties)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPdOut.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPdIn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmpID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumS6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIssue.Properties)).EndInit();
@@ -4420,9 +4500,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMeterS6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBudjet.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOil6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLitter6.Properties)).EndInit();
@@ -4445,7 +4523,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtDocS;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.DateEdit txtDate;
@@ -4478,7 +4555,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit txtOil;
         private DevExpress.XtraEditors.TextEdit txtAmount;
         private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.TextEdit txtRemark;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.TextEdit txtTotal;
         private DevExpress.XtraEditors.LabelControl labelControl14;
@@ -4508,11 +4584,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl26;
         private DevExpress.XtraEditors.LabelControl labelControl27;
         private DevExpress.XtraEditors.TextEdit txtTotal6;
-        private DevExpress.XtraEditors.TextEdit txtDept;
         private DevExpress.XtraEditors.LabelControl labelControl28;
         private DevExpress.XtraEditors.TextEdit txtBudjet;
-        private DevExpress.XtraEditors.TextEdit txtRemark6;
-        private DevExpress.XtraEditors.LabelControl labelControl29;
         private DevExpress.XtraEditors.LabelControl labelControl30;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil6;
         private DevExpress.XtraEditors.TextEdit txtAmount6;
@@ -4554,7 +4627,6 @@
         private DevExpress.XtraEditors.TextEdit txtQuota1;
         private DevExpress.XtraEditors.LabelControl labelControl45;
         private DevExpress.XtraEditors.TextEdit txtCaneNo1;
-        private DevExpress.XtraEditors.TextEdit txtRemark1;
         private DevExpress.XtraEditors.LabelControl labelControl46;
         private DevExpress.XtraEditors.LabelControl labelControl47;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil1;
@@ -4584,7 +4656,6 @@
         private DevExpress.XtraEditors.TextEdit txtQuota2;
         private DevExpress.XtraEditors.LabelControl labelControl60;
         private DevExpress.XtraEditors.TextEdit txtCaneNo2;
-        private DevExpress.XtraEditors.TextEdit txtRemark2;
         private DevExpress.XtraEditors.LabelControl labelControl61;
         private DevExpress.XtraEditors.LabelControl labelControl62;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil2;
@@ -4614,7 +4685,6 @@
         private DevExpress.XtraEditors.TextEdit txtQuota3;
         private DevExpress.XtraEditors.LabelControl labelControl75;
         private DevExpress.XtraEditors.TextEdit txtCaneNo3;
-        private DevExpress.XtraEditors.TextEdit txtRemark3;
         private DevExpress.XtraEditors.LabelControl labelControl76;
         private DevExpress.XtraEditors.LabelControl labelControl77;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil3;
@@ -4644,7 +4714,6 @@
         private DevExpress.XtraEditors.TextEdit txtQuota4;
         private DevExpress.XtraEditors.LabelControl labelControl90;
         private DevExpress.XtraEditors.TextEdit txtCaneNo4;
-        private DevExpress.XtraEditors.TextEdit txtRemark4;
         private DevExpress.XtraEditors.LabelControl labelControl91;
         private DevExpress.XtraEditors.LabelControl labelControl92;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil4;
@@ -4674,7 +4743,6 @@
         private DevExpress.XtraEditors.TextEdit txtQuota5;
         private DevExpress.XtraEditors.LabelControl labelControl105;
         private DevExpress.XtraEditors.TextEdit txtCaneNo5;
-        private DevExpress.XtraEditors.TextEdit txtRemark5;
         private DevExpress.XtraEditors.LabelControl labelControl106;
         private DevExpress.XtraEditors.LabelControl labelControl107;
         private DevExpress.XtraEditors.ComboBoxEdit txtOil5;
@@ -4687,7 +4755,6 @@
         private DevExpress.XtraEditors.SimpleButton btnBill1;
         private DevExpress.XtraEditors.TextEdit txtQ;
         private DevExpress.XtraEditors.LabelControl labelControl112;
-        private DevExpress.XtraEditors.TextEdit txtQ1;
         private DevExpress.XtraEditors.LabelControl labelControl113;
         private DevExpress.XtraEditors.SimpleButton btnBill2;
         private DevExpress.XtraEditors.TextEdit txtQ2;
@@ -4711,17 +4778,28 @@
         private DevExpress.XtraEditors.ComboBoxEdit txtFront6;
         private DevExpress.XtraEditors.TextEdit txtEmpName;
         private DevExpress.XtraEditors.LabelControl labelControl111;
-        private DevExpress.XtraEditors.TextEdit txtEmpID;
-        private DevExpress.XtraEditors.LabelControl labelControl114;
         private DevExpress.XtraEditors.ComboBoxEdit txtType;
         private DevExpress.XtraEditors.TextEdit txtPdOut;
-        private DevExpress.XtraEditors.TextEdit txtPdIn;
         private DevExpress.XtraEditors.LabelControl labelControl118;
-        private DevExpress.XtraEditors.LabelControl labelControl116;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.CheckEdit chkPast;
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private DevExpress.XtraEditors.TimeEdit txtTime;
+        private DevExpress.XtraEditors.LabelControl labelControl29;
+        private DevExpress.XtraEditors.ComboBoxEdit txtDept;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark6;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark1;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark2;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark3;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark4;
+        private DevExpress.XtraEditors.ComboBoxEdit txtRemark5;
+        private DevExpress.XtraEditors.TextEdit txtQ1;
+        private DevExpress.XtraEditors.DateEdit txtRealdate;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
     }
 }
 

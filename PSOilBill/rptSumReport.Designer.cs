@@ -223,7 +223,7 @@
             this.xrTableCell11.StylePriority.UseTextAlignment = false;
             this.xrTableCell11.Text = "xrTableCell11";
             this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell11.Weight = 0.15384090989847551D;
+            this.xrTableCell11.Weight = 0.13112420120965274D;
             // 
             // xrTableCell23
             // 
@@ -235,7 +235,7 @@
             this.xrTableCell23.StylePriority.UseBorders = false;
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
             this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell23.Weight = 0.066942316327871634D;
+            this.xrTableCell23.Weight = 0.089659025016694427D;
             // 
             // xrTableCell12
             // 
@@ -703,7 +703,7 @@
             this.xrTableCell1.StylePriority.UseFont = false;
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell1.Weight = 0.15397460227436519D;
+            this.xrTableCell1.Weight = 0.13123817108924296D;
             // 
             // xrTableCell22
             // 
@@ -721,9 +721,9 @@
             this.xrTableCell22.StylePriority.UseFont = false;
             this.xrTableCell22.StylePriority.UseForeColor = false;
             this.xrTableCell22.StylePriority.UseTextAlignment = false;
-            this.xrTableCell22.Text = "วันที่";
+            this.xrTableCell22.Text = "วันที่/เวลา";
             this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell22.Weight = 0.067000540857237348D;
+            this.xrTableCell22.Weight = 0.089736972042359572D;
             // 
             // xrTableCell2
             // 
