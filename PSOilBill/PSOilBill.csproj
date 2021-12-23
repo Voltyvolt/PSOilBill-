@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://10.104.1.9/AutoUpdate/PSOilBill/</UpdateUrl>
-    <ApplicationRevision>247</ApplicationRevision>
+    <ApplicationRevision>299</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -123,6 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarPrint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CarPrint.Designer.cs">
+      <DependentUpon>CarPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddOilCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     <Compile Include="rptTotal2.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="CarPrint.resx">
+      <DependentUpon>CarPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddOilCar.resx">
       <DependentUpon>frmAddOilCar.cs</DependentUpon>
     </EmbeddedResource>

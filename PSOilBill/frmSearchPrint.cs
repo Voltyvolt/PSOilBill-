@@ -390,7 +390,6 @@ namespace PSOilBill
                 string lvField9 = DT.Rows[i]["O_Remark"].ToString(); //หมายเหตุ
                 string lvField10 = DT.Rows[i]["O_DocNo"].ToString(); //เลขที่อ้างอิง
                 string lvField11 = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString(""); //ราคาน้ำมันต่อลิตร
-                
 
                 //เพิ่ม
                 lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Field11) ";
@@ -465,7 +464,7 @@ namespace PSOilBill
             //เฉพาะบิลโรงงาน
             lvSQL += "And Cane_OilBillHD.O_DocNo like 'C-%' ";
 
-            if (txtYear.Text != "" && txtYear.Text == "62/63")
+            if (txtYear.Text != "" && txtYear.Text == "64/65")
             {
                 lvSQL += "And Cane_OilBillHD.O_Year = '' ";
             }
@@ -503,7 +502,9 @@ namespace PSOilBill
                 lvSQL += "And Cane_OilBillHD.O_Asset like '%" + txtAsset.Text + "%' ";
             }
 
-            lvSQL += "Order by Cane_OilBillHD.O_DocNo ";
+            //lvSQL += "And Cane_OilBillHD.O_Type = 'รถบริษัท' ";
+
+            lvSQL += "Order by Cane_OilBillHD.O_Dept ";
 
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
@@ -611,7 +612,7 @@ namespace PSOilBill
 
                 // DT2
                 DataTable DT2 = new DataTable();
-                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' And Cane_OilBillHD.O_DocNo Not Like '%A-%' And Cane_OilBillHD.O_DocNo Not Like '%C-%' ";
+                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' And Cane_OilBillHD.O_DocNo Not Like '%A-%' And Cane_OilBillHD.O_DocNo Not Like '%C-%' And O_Year = '' ";
 
                 if (txtDateS.Text != "")
                 {
@@ -646,7 +647,7 @@ namespace PSOilBill
 
                 //DT3
                 DataTable DT3 = new DataTable();
-                lvSQL = "SELECT* FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status<> 'Cancel' And Cane_OilBillHD.O_DocNo Like '%A-%'";
+                lvSQL = "SELECT* FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status<> 'Cancel' And Cane_OilBillHD.O_DocNo Like '%A-%' And O_Year = '' ";
 
                 if (txtDateS.Text != "")
                 {
@@ -681,7 +682,7 @@ namespace PSOilBill
 
                 //DT4
                 DataTable DT4 = new DataTable();
-                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_DocNo Not Like '%C-%' ";
+                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_DocNo Not Like '%C-%' And O_Year = '' ";
 
                 if (txtDateS.Text != "")
                 {
@@ -715,7 +716,7 @@ namespace PSOilBill
 
                 //DT5
                 DataTable DT5 = new DataTable();
-                lvSQL = "SELECT * From Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_Type = 'รถบริษัท' And Cane_OilBillHD.O_DocNo Like '%C-%'";
+                lvSQL = "SELECT * From Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_Type = 'รถบริษัท' And Cane_OilBillHD.O_DocNo Like '%C-%' And O_Year = '' ";
                 if (txtDateS.Text != "")
                 {
                     string lvDateS = Gstr.fncChangeTDate(txtDateS.Text);
@@ -750,7 +751,7 @@ namespace PSOilBill
 
                 //DT6
                 DataTable DT6 = new DataTable();
-                lvSQL = "SELECT * From Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_Type = 'รับเหมา' And Cane_OilBillHD.O_DocNo Like '%C-%'";
+                lvSQL = "SELECT * From Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And Cane_OilBillHD.O_Type = 'รับเหมา' And Cane_OilBillHD.O_DocNo Like '%C-%' And O_Year = '' ";
                 if (txtDateS.Text != "")
                 {
                     string lvDateS = Gstr.fncChangeTDate(txtDateS.Text);
@@ -808,7 +809,7 @@ namespace PSOilBill
 
                 // DT
                 DataTable DT2 = new DataTable();
-                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel'";
+                lvSQL = "SELECT * FROM Cane_OilBillHD inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' And O_Year = '' ";
 
                 if (txtDateS.Text != "")
                 {
@@ -837,11 +838,12 @@ namespace PSOilBill
                     string lvField3 = DT2.Rows[i]["O_Name"].ToString();
                     string lvField4 = DT2.Rows[i]["O_Dept"].ToString();
                     string lvField5 = Gstr.fncChangeTDate(lvDate);
+                    string lvField6 = DT2.Rows[i]["O_CarNum"].ToString();
                     string lvMonthsort = Gstr.Left(lvField5, 6);
                     double Num1 = Gstr.fncToDouble(DT2.Rows[i]["O_Litter"].ToString());
                     double Num2 = Gstr.fncToDouble(DT2.Rows[i]["O_Price"].ToString());
 
-                    lvSQL = "Insert Into SysTemp (Field1,Field2,Field3,Field4,Field5,Field6,Num1,Num2) Values ('" + lvField1 + "','" + lvField2 + "','" + lvField3 + "','" + lvField4 + "','" + lvField5 + "','" + lvMonthsort + "','" + Num1 + "','" + Num2 + "')";
+                    lvSQL = "Insert Into SysTemp (Field1,Field2,Field3,Field4,Field5,Field6,Num1,Num2,Field7) Values ('" + lvField1 + "','" + lvField2 + "','" + lvField3 + "','" + lvField4 + "','" + lvField5 + "','" + lvMonthsort + "','" + Num1 + "','" + Num2 + "','" + lvField6 + "')";
                     lvResult = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
                 }
 
@@ -849,7 +851,7 @@ namespace PSOilBill
                 btnSearch.Enabled = true;
 
                 //Refresh รายงาน
-                rptTotal2 Report = new rptTotal2();
+                rptTotal2_1 Report = new rptTotal2_1();
                 Report.CreateDocument();
                 documentViewer1.DocumentSource = Report;
             }
@@ -916,7 +918,7 @@ namespace PSOilBill
                 //}
 
                 DataTable DT2 = new DataTable();
-                lvSQL = "SELECT * From Cane_OilBillHD inner JOIN Cane_OilBillDT ON Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo inner join Cane_Oilmonth ON Cane_OilBillHD.O_DocNo = Cane_Oilmonth.Cane_DocNo inner join Cane_Oilyear ON Cane_OilBillHD.O_DocNo = Cane_Oilyear.Cane_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel'";
+                lvSQL = "SELECT * From Cane_OilBillHD inner JOIN Cane_OilBillDT ON Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo inner join Cane_Oilmonth ON Cane_OilBillHD.O_DocNo = Cane_Oilmonth.Cane_DocNo inner join Cane_Oilyear ON Cane_OilBillHD.O_DocNo = Cane_Oilyear.Cane_DocNo where Cane_OilBillDT.O_Item = '01' And O_Status <> 'Cancel' And O_Year <> '62/63' ";
 
                 if (txtDateS.Text != "")
                 {
@@ -930,6 +932,15 @@ namespace PSOilBill
                 if (cmbDept.Text != "")
                 {
                     lvSQL += "And O_Dept = '" + cmbDept.Text + "' ";
+                }
+                else
+                {
+                    lvSQL += "And O_Dept <> '' ";
+                }
+
+                if(txtCarNum.Text != "")
+                {
+                    lvSQL += "And O_CarNum = '" + txtCarNum.Text + "' ";
                 }
 
                 DT2 = GsysSQL.fncGetQueryData(lvSQL, DT2);
@@ -974,7 +985,7 @@ namespace PSOilBill
             string lvSQL = "Delete From SysTempOilBill ";
             string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
-            txtYear.Text = "62/63";
+            txtYear.Text = "64/65";
         }
 
         private void txtYear_QueryPopUp(object sender, CancelEventArgs e)
@@ -1009,12 +1020,138 @@ namespace PSOilBill
 
         private void btntxt_Click(object sender, EventArgs e)
         {
-            if (cmbType.Text != "บิลน้ำมัน")
+            /*if (cmbType.Text != "บิลน้ำมัน")
             {
                 MessageBox.Show("ไม่สามารถ Export ข้อมูลได้เนื่องจากต้องเป็นประเภท บิลน้ำมัน เท่านั้น","แจ้งเตือน",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
+            }*/
+            if (txtDateS.Text.Equals(""))
+            {
+                MessageBox.Show("ไม่สามารถ Export ข้อมูลได้ กรุณาเลือกวันที่ทำรายการให้ถูกต้อง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                //fncSendTxtFileExport(); //ส่งเป็น TxTfile แบบเก่า
+                fncSaveTophpAPI(); //ส่งข้อมูลไปเป็น PHP
+            }
+        }
+
+        private void fncSaveTophpAPI()
+        {
+            //Get Data0
+            string lvCarryStatus = "0";
+            DataTable DT = new DataTable();
+            string lvSQL = "select O_Name,O_Quota,O_DocS,Cane_OilBillHD.O_DocNo ,O_Litter,O_Price,O_Total,O_CarNum,Queue_Diary.Q_CarNum2,O_CaneNo,O_Date,O_Time ";
+            lvSQL += "from Cane_OilBillHD ";
+            lvSQL += "inner join Cane_OilBillDT on Cane_OilBillHD.O_DocNo = Cane_OilBillDT.O_DocNo ";
+            lvSQL += "INNER JOIN Queue_Diary ON Cane_OilBillHD.O_DocNo = Queue_Diary.Q_OilBillNo ";
+            lvSQL += "where Cane_OilBillDT.O_Item = '01'  And O_Status <> 'Cancel' ";
+
+            if (txtDateS.Text != "")
+            {
+                string lvDateS = Gstr.fncChangeTDate(txtDateS.Text);
+                string lvDateE = Gstr.fncChangeTDate(txtDateE.Text);
+                if (lvDateE == "") lvDateE = lvDateS;
+
+                lvSQL += "And O_Date >= '" + lvDateS + "' And O_Date <= '" + lvDateE + "' ";
             }
 
+            if (txtQuotaS.Text != "")
+            {
+                string lvQS = txtQuotaS.Text;
+                string lvQE = txtQuotaE.Text;
+                if (lvQE == "") lvQE = lvQS;
+
+                lvSQL += "And O_Quota >= '" + lvQS + "' And O_Quota <= '" + lvQE + "' ";
+            }
+
+            if (txtDocS.Text != "")
+            {
+                string lvDocS = txtDocS.Text;
+                string lvDocE = txtDocE.Text;
+                if (lvDocE == "") lvDocE = lvDocS;
+
+                lvSQL += "And Cast(Cane_OilBillHD.O_CaneNo as int) >= '" + lvDocS + "' And Cast(Cane_OilBillHD.O_CaneNo as int) <= '" + lvDocE + "' ";
+            }
+
+            if (cmbType.Text == "บิลเรียกเก็บค่าบรรทุก")
+            {
+                lvSQL += "And Cane_OilBillHD.O_DocNo like 'A-%' ";
+            }
+            else if (cmbType.Text == "บิลน้ำมัน")
+            {
+                lvSQL += "And Cane_OilBillHD.O_DocNo not like 'A-%' And Cane_OilBillHD.O_DocNo not like 'C-%' ";
+            }
+
+            if (txtYear.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_Year = ' ' ";
+            }
+
+            if (txtDue.Text != "")
+            {
+                lvSQL += "And Cane_OilBillHD.O_Due = '" + txtDue.Text + "' ";
+            }
+
+            lvSQL += "Order by Cast(Cane_OilBillHD.O_CaneNo as int) ";
+
+            DT = GsysSQL.fncGetQueryData(lvSQL, DT);
+
+            int lvNumRow = DT.Rows.Count;
+
+            int io = 0;
+
+            string lvType = "";
+
+            if (cmbType.Text == "บิลน้ำมัน")
+            {
+                lvType = "บิลน้ำมัน";
+            }
+            if(cmbType.Text == "บิลเรียกเก็บค่าบรรทุก")
+            {
+                lvType = "บิลเรียกเก็บค่าบรรทุก";
+            }
+
+            //ลบก่อน
+            lvSQL = "Delete From SysTempOilphp WHERE S_Fieid10 LIKE '" + txtDateS.Text + "' AND S_Fieid9 = '" + cmbType.Text + "'";
+            string lvResult = GsysSQL.fncExecuteQueryData(lvSQL);
+            
+            for (int i = 0; i < lvNumRow; i++)
+            {
+                //ตัวแปร
+                string lvDocChk = DT.Rows[i]["O_DocNo"].ToString(); //1
+                string name = GsysSQL.fncFindQuotaName(DT.Rows[i]["O_Name"].ToString()); //2
+                string quota = DT.Rows[i]["O_Quota"].ToString(); //3
+                string billno = Gstr.fncToInt(DT.Rows[i]["O_CaneNo"].ToString()).ToString(); //4
+                string litter = Gstr.fncToDouble(DT.Rows[i]["O_Litter"].ToString()).ToString(""); //5
+                string price = Gstr.fncToDouble(DT.Rows[i]["O_Price"].ToString()).ToString(""); //6
+                string total = Gstr.fncToDouble(DT.Rows[i]["O_Total"].ToString()).ToString(""); //7
+                string plate1 = DT.Rows[i]["O_CarNum"].ToString(); //8
+                string plate2 = DT.Rows[i]["Q_CarNum2"].ToString(); //9
+                string year = txtYear.Text; //10
+                string ka = txtKa.Text; //11
+                string lvField10 = ""; //12
+                string billnoq = DT.Rows[i]["O_CaneNo"].ToString(); //13
+                string date = Gstr.fncChangeSDate(DT.Rows[i]["O_Date"].ToString()); //14
+                string time = DT.Rows[i]["O_Time"].ToString(); //15
+                string datetime = date + " " + time; //16
+                string date10 = Gstr.fncChangeTDate(DT.Rows[i]["O_Date"].ToString());
+
+                //บันทึกข้อมูลลงตาราง Oilphp
+                lvSQL = "Insert Into SysTempOilphp (S_Fieid1, S_Fieid2, S_Fieid3, S_Fieid4, S_Fieid5, S_Fieid6, S_Fieid7, S_Fieid8, S_Fieid9, S_Fieid10, S_Fieid11) " +
+                    "Values ('" + billno + "', '" + quota + "', '" + datetime + "', '" + litter + "', '" + total + "', '" + price + "', '" + plate1 + "', '" + plate2 + "', '" + lvType + "', '" + date10 + "', '" + time + "')";
+                lvResult = GsysSQL.fncExecuteQueryData(lvSQL);
+
+                io = i + 1;
+            }
+            
+                MessageBox.Show("ส่งข้อมูลสำเร็จ!... '" + io.ToString() + "' รายการ", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+        }
+
+        private void fncSendTxtFileExport()
+        {
             //Get Data0
             string lvCarryStatus = "0";
             DataTable DT = new DataTable();
@@ -1074,10 +1211,10 @@ namespace PSOilBill
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
             int lvNumRow = DT.Rows.Count + 1;
-            
+
             string[] lines = new string[lvNumRow];
             string lvPeriod = txtDue.Text;
-            
+
             //Header
             lines[0] = "Period,Billno,Quota_no,Date,Amount,Cost";//,CarryStatus
             for (int i = 1; i < lvNumRow; i++)
@@ -1103,12 +1240,12 @@ namespace PSOilBill
                 //{
                 //    lvCarryStatus = "1";
                 //}
-                
+
                 // 0 - บิลอ้อย - โควต้า - วันที่ - จำนวนลิตร - จำนวนเงิน
                 lines[i] = "0" + "," + lvField3 + "," + lvField2 + "," + lvField12 + " " + lvField13 + "," + lvField4 + "," + lvField6;// + " ," + lvCarryStatus
             }
 
-            string lvPath = "X:\\FuelData";
+            string lvPath = "L:\\FuelData";
 
             string lvDay = DateTime.Now.ToString("dd");
             string lvMonth = DateTime.Now.ToString("MM");
@@ -1116,15 +1253,15 @@ namespace PSOilBill
             if (Gstr.fncToInt(lvYear) > 2500) lvYear = (Gstr.fncToInt(lvYear) - 543).ToString();
             string lvAll = lvYear + lvMonth + lvDay;
 
-            string lvPathFile = lvPath + "\\"+ lvAll + "#1FuelData.txt";
+            string lvPathFile = lvPath + "\\" + lvAll + "#1FuelData.txt";
             if (!Directory.Exists(lvPath))
             {
                 Directory.CreateDirectory(lvPath);
             }
-                        
+
             System.IO.File.WriteAllLines(lvPathFile, lines);
 
-            MessageBox.Show("Export ไฟล์เรียบร้อย","Export Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Export ไฟล์เรียบร้อย", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Process.Start(lvPath);
         }
 

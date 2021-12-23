@@ -22,6 +22,9 @@ namespace PSOilBill
             GVar.gvLockE = txtLockE.Text;
             txtLockE.Text = "";
 
+            string lvSQL = "Update SysDocNo SET S_RunNo = '" + GVar.gvLockE + "' Where S_MCode = 'OilBill_Lock' ";
+            string lvResult = GsysSQL.fncExecuteQueryData(lvSQL);
+
             MessageBox.Show("ล็อคคิวที่ 0 ถึง '" + GVar.gvLockE + "' เรียบร้อยแล้ว", "แจ้งเตือน", MessageBoxButtons.OK);
             this.Close();
         }
@@ -30,6 +33,9 @@ namespace PSOilBill
         {
             GVar.gvLockS = "";
             GVar.gvLockE = "";
+
+            string lvSQL = "Update SysDocNo SET S_RunNo = '0' Where S_MCode = 'OilBill_Lock' ";
+            string lvResult = GsysSQL.fncExecuteQueryData(lvSQL);
 
             MessageBox.Show("ล้างคิวเรียบร้อยแล้ว", "แจ้งเตือน", MessageBoxButtons.OK);
         }

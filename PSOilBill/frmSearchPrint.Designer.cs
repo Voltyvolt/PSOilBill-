@@ -287,7 +287,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtType.Location = new System.Drawing.Point(759, 174);
+            this.txtType.Location = new System.Drawing.Point(669, 207);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtType.Properties.Appearance.Options.UseFont = true;
@@ -295,8 +295,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtType.Properties.Items.AddRange(new object[] {
             "รถบริษัท",
-            "รถเช่า",
-            "โรงในเครือ"});
+            "รับเหมา",
+            "รถในเครือ"});
             this.txtType.Size = new System.Drawing.Size(174, 30);
             this.txtType.TabIndex = 96;
             // 
@@ -749,7 +749,7 @@
             // 
             this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.documentViewer1.DocumentSource = typeof(PSOilBill.rptSumReport);
-            this.documentViewer1.IsMetric = true;
+            this.documentViewer1.IsMetric = false;
             this.documentViewer1.Location = new System.Drawing.Point(0, 441);
             this.documentViewer1.Name = "documentViewer1";
             this.documentViewer1.Size = new System.Drawing.Size(1008, 288);

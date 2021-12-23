@@ -231,7 +231,7 @@
             this.xrLabel18.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dot;
             this.xrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.Num4")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.Field19", "{0:#,#}")});
             this.xrLabel18.Font = new System.Drawing.Font("Tahoma", 12F);
             this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(595.0002F, 268.75F);
             this.xrLabel18.Multiline = true;
@@ -293,7 +293,7 @@
             this.xrLabel13.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dot;
             this.xrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.Num3")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SysTempOilBill.Num3", "{0:#,#}")});
             this.xrLabel13.Font = new System.Drawing.Font("Tahoma", 12F);
             this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(435.5624F, 268.75F);
             this.xrLabel13.Multiline = true;

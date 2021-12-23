@@ -284,7 +284,7 @@
             this.txtlitter5 = new DevExpress.XtraEditors.TextEdit();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtRemark6 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.txtDept = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cmbDept = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtPdOut = new DevExpress.XtraEditors.TextEdit();
             this.labelControl118 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpName = new DevExpress.XtraEditors.TextEdit();
@@ -443,7 +443,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtlitter5.Properties)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDept.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPdOut.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE6.Properties)).BeginInit();
@@ -912,7 +912,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(224, 120);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 92);
+            this.groupBox5.Size = new System.Drawing.Size(811, 97);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -920,7 +920,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(625, 31);
+            this.txtType.Location = new System.Drawing.Point(625, 34);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -979,7 +979,7 @@
             this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton4.Appearance.Options.UseFont = true;
             this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.Location = new System.Drawing.Point(12, 357);
+            this.simpleButton4.Location = new System.Drawing.Point(1041, 357);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(206, 58);
             this.simpleButton4.TabIndex = 59;
@@ -992,7 +992,7 @@
             this.simpleButton5.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton5.Appearance.Options.UseFont = true;
             this.simpleButton5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
-            this.simpleButton5.Location = new System.Drawing.Point(1041, 357);
+            this.simpleButton5.Location = new System.Drawing.Point(11, 355);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(206, 58);
             this.simpleButton5.TabIndex = 58;
@@ -1005,7 +1005,7 @@
             this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton3.Appearance.Options.UseFont = true;
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(12, 293);
+            this.simpleButton3.Location = new System.Drawing.Point(1041, 293);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(206, 58);
             this.simpleButton3.TabIndex = 57;
@@ -1018,7 +1018,7 @@
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(1041, 293);
+            this.simpleButton2.Location = new System.Drawing.Point(11, 291);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(206, 58);
             this.simpleButton2.TabIndex = 56;
@@ -3742,7 +3742,7 @@
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage2.Controls.Add(this.txtRemark6);
-            this.tabPage2.Controls.Add(this.txtDept);
+            this.tabPage2.Controls.Add(this.cmbDept);
             this.tabPage2.Controls.Add(this.txtPdOut);
             this.tabPage2.Controls.Add(this.labelControl118);
             this.tabPage2.Controls.Add(this.txtEmpName);
@@ -3802,78 +3802,21 @@
             this.txtRemark6.Size = new System.Drawing.Size(599, 30);
             this.txtRemark6.TabIndex = 98;
             // 
-            // txtDept
+            // cmbDept
             // 
-            this.txtDept.Location = new System.Drawing.Point(167, 46);
-            this.txtDept.Name = "txtDept";
-            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDept.Properties.Appearance.Options.UseFont = true;
-            this.txtDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbDept.Location = new System.Drawing.Point(167, 37);
+            this.cmbDept.Name = "cmbDept";
+            this.cmbDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.cmbDept.Properties.Appearance.Options.UseFont = true;
+            this.cmbDept.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDept.Properties.Items.AddRange(new object[] {
-            "121",
-            "116",
-            "117",
-            "118",
-            "119",
-            "120",
-            "122",
-            "123",
-            "125",
-            "126",
-            "127",
-            "129",
-            "130",
-            "131",
-            "132",
-            "133",
-            "134",
-            "135",
-            "137",
-            "141",
-            "142",
-            "143",
-            "144",
-            "145",
-            "146",
-            "147",
-            "148",
-            "149",
-            "152",
-            "161",
-            "162",
-            "163",
-            "164",
-            "165",
-            "166",
-            "167",
-            "168",
-            "169",
-            "170",
-            "171",
-            "172",
-            "174",
-            "191",
-            "192",
-            "111",
-            "231",
-            "234",
-            "900",
-            "901",
-            "902",
-            "903",
-            "904",
-            "905",
-            "120",
-            "107",
-            "201"});
-            this.txtDept.Size = new System.Drawing.Size(101, 30);
-            this.txtDept.TabIndex = 97;
-            this.txtDept.SelectedIndexChanged += new System.EventHandler(this.txtDept_SelectedIndexChanged);
+            this.cmbDept.Size = new System.Drawing.Size(101, 30);
+            this.cmbDept.TabIndex = 97;
+            this.cmbDept.SelectedIndexChanged += new System.EventHandler(this.txtDept_SelectedIndexChanged);
             // 
             // txtPdOut
             // 
-            this.txtPdOut.Location = new System.Drawing.Point(167, 236);
+            this.txtPdOut.Location = new System.Drawing.Point(167, 227);
             this.txtPdOut.Name = "txtPdOut";
             this.txtPdOut.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtPdOut.Properties.Appearance.Options.UseFont = true;
@@ -3885,7 +3828,7 @@
             // 
             this.labelControl118.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl118.Appearance.Options.UseFont = true;
-            this.labelControl118.Location = new System.Drawing.Point(9, 239);
+            this.labelControl118.Location = new System.Drawing.Point(9, 230);
             this.labelControl118.Name = "labelControl118";
             this.labelControl118.Size = new System.Drawing.Size(152, 24);
             this.labelControl118.TabIndex = 94;
@@ -3894,7 +3837,7 @@
             // txtEmpName
             // 
             this.txtEmpName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmpName.Location = new System.Drawing.Point(167, 143);
+            this.txtEmpName.Location = new System.Drawing.Point(167, 134);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtEmpName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -3911,7 +3854,7 @@
             this.labelControl111.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl111.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl111.Appearance.Options.UseFont = true;
-            this.labelControl111.Location = new System.Drawing.Point(123, 146);
+            this.labelControl111.Location = new System.Drawing.Point(123, 137);
             this.labelControl111.Name = "labelControl111";
             this.labelControl111.Size = new System.Drawing.Size(38, 24);
             this.labelControl111.TabIndex = 91;
@@ -3922,7 +3865,7 @@
             this.labelControl29.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl29.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl29.Appearance.Options.UseFont = true;
-            this.labelControl29.Location = new System.Drawing.Point(69, 49);
+            this.labelControl29.Location = new System.Drawing.Point(69, 40);
             this.labelControl29.Name = "labelControl29";
             this.labelControl29.Size = new System.Drawing.Size(92, 24);
             this.labelControl29.TabIndex = 53;
@@ -3933,7 +3876,7 @@
             this.labelControl34.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl34.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl34.Appearance.Options.UseFont = true;
-            this.labelControl34.Location = new System.Drawing.Point(561, 98);
+            this.labelControl34.Location = new System.Drawing.Point(561, 89);
             this.labelControl34.Name = "labelControl34";
             this.labelControl34.Size = new System.Drawing.Size(6, 24);
             this.labelControl34.TabIndex = 88;
@@ -3942,7 +3885,7 @@
             // txtCarNumE6
             // 
             this.txtCarNumE6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCarNumE6.Location = new System.Drawing.Point(573, 95);
+            this.txtCarNumE6.Location = new System.Drawing.Point(573, 86);
             this.txtCarNumE6.Name = "txtCarNumE6";
             this.txtCarNumE6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtCarNumE6.Properties.Appearance.Options.UseFont = true;
@@ -3955,7 +3898,7 @@
             // txtCarNumS6
             // 
             this.txtCarNumS6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCarNumS6.Location = new System.Drawing.Point(486, 95);
+            this.txtCarNumS6.Location = new System.Drawing.Point(486, 86);
             this.txtCarNumS6.Name = "txtCarNumS6";
             this.txtCarNumS6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtCarNumS6.Properties.Appearance.Options.UseFont = true;
@@ -3970,7 +3913,7 @@
             this.labelControl35.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl35.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl35.Appearance.Options.UseFont = true;
-            this.labelControl35.Location = new System.Drawing.Point(374, 98);
+            this.labelControl35.Location = new System.Drawing.Point(374, 89);
             this.labelControl35.Name = "labelControl35";
             this.labelControl35.Size = new System.Drawing.Size(101, 24);
             this.labelControl35.TabIndex = 85;
@@ -3979,8 +3922,8 @@
             // txtIssue
             // 
             this.txtIssue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtIssue.EditValue = "1301";
-            this.txtIssue.Location = new System.Drawing.Point(669, 49);
+            this.txtIssue.EditValue = "1302";
+            this.txtIssue.Location = new System.Drawing.Point(669, 40);
             this.txtIssue.Name = "txtIssue";
             this.txtIssue.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtIssue.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -3997,7 +3940,7 @@
             this.labelControl22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl22.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl22.Appearance.Options.UseFont = true;
-            this.labelControl22.Location = new System.Drawing.Point(585, 52);
+            this.labelControl22.Location = new System.Drawing.Point(585, 43);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(78, 24);
             this.labelControl22.TabIndex = 83;
@@ -4008,7 +3951,7 @@
             this.labelControl19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl19.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl19.Appearance.Options.UseFont = true;
-            this.labelControl19.Location = new System.Drawing.Point(355, 194);
+            this.labelControl19.Location = new System.Drawing.Point(355, 185);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(120, 24);
             this.labelControl19.TabIndex = 81;
@@ -4017,7 +3960,7 @@
             // txtAsset
             // 
             this.txtAsset.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAsset.Location = new System.Drawing.Point(486, 191);
+            this.txtAsset.Location = new System.Drawing.Point(486, 182);
             this.txtAsset.Name = "txtAsset";
             this.txtAsset.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtAsset.Properties.Appearance.Options.UseFont = true;
@@ -4030,7 +3973,7 @@
             // txtObjective
             // 
             this.txtObjective.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtObjective.Location = new System.Drawing.Point(167, 95);
+            this.txtObjective.Location = new System.Drawing.Point(167, 86);
             this.txtObjective.Name = "txtObjective";
             this.txtObjective.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtObjective.Properties.Appearance.Options.UseFont = true;
@@ -4045,7 +3988,7 @@
             this.labelControl20.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl20.Appearance.Options.UseFont = true;
-            this.labelControl20.Location = new System.Drawing.Point(109, 377);
+            this.labelControl20.Location = new System.Drawing.Point(109, 368);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(56, 24);
             this.labelControl20.TabIndex = 59;
@@ -4054,7 +3997,7 @@
             // txtMeterE6
             // 
             this.txtMeterE6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtMeterE6.Location = new System.Drawing.Point(658, 374);
+            this.txtMeterE6.Location = new System.Drawing.Point(658, 365);
             this.txtMeterE6.Name = "txtMeterE6";
             this.txtMeterE6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtMeterE6.Properties.Appearance.Options.UseFont = true;
@@ -4069,7 +4012,7 @@
             this.labelControl21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl21.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl21.Appearance.Options.UseFont = true;
-            this.labelControl21.Location = new System.Drawing.Point(617, 377);
+            this.labelControl21.Location = new System.Drawing.Point(617, 368);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(35, 24);
             this.labelControl21.TabIndex = 79;
@@ -4078,7 +4021,7 @@
             // txtMeterS6
             // 
             this.txtMeterS6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtMeterS6.Location = new System.Drawing.Point(490, 374);
+            this.txtMeterS6.Location = new System.Drawing.Point(490, 365);
             this.txtMeterS6.Name = "txtMeterS6";
             this.txtMeterS6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtMeterS6.Properties.Appearance.Options.UseFont = true;
@@ -4093,7 +4036,7 @@
             this.labelControl23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(49, 98);
+            this.labelControl23.Location = new System.Drawing.Point(49, 89);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(112, 24);
             this.labelControl23.TabIndex = 61;
@@ -4104,7 +4047,7 @@
             this.labelControl24.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl24.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(383, 377);
+            this.labelControl24.Location = new System.Drawing.Point(383, 368);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(96, 24);
             this.labelControl24.TabIndex = 77;
@@ -4113,7 +4056,7 @@
             // txtName6
             // 
             this.txtName6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtName6.Location = new System.Drawing.Point(318, 46);
+            this.txtName6.Location = new System.Drawing.Point(318, 37);
             this.txtName6.Name = "txtName6";
             this.txtName6.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.txtName6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -4129,7 +4072,7 @@
             this.labelControl25.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl25.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl25.Appearance.Options.UseFont = true;
-            this.labelControl25.Location = new System.Drawing.Point(274, 49);
+            this.labelControl25.Location = new System.Drawing.Point(274, 40);
             this.labelControl25.Name = "labelControl25";
             this.labelControl25.Size = new System.Drawing.Size(38, 24);
             this.labelControl25.TabIndex = 55;
@@ -4140,7 +4083,7 @@
             this.labelControl26.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl26.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl26.Appearance.Options.UseFont = true;
-            this.labelControl26.Location = new System.Drawing.Point(670, 331);
+            this.labelControl26.Location = new System.Drawing.Point(670, 322);
             this.labelControl26.Name = "labelControl26";
             this.labelControl26.Size = new System.Drawing.Size(37, 24);
             this.labelControl26.TabIndex = 76;
@@ -4151,7 +4094,7 @@
             this.labelControl27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl27.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl27.Appearance.Options.UseFont = true;
-            this.labelControl27.Location = new System.Drawing.Point(21, 194);
+            this.labelControl27.Location = new System.Drawing.Point(21, 185);
             this.labelControl27.Name = "labelControl27";
             this.labelControl27.Size = new System.Drawing.Size(140, 24);
             this.labelControl27.TabIndex = 63;
@@ -4160,7 +4103,7 @@
             // txtTotal6
             // 
             this.txtTotal6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTotal6.Location = new System.Drawing.Point(490, 328);
+            this.txtTotal6.Location = new System.Drawing.Point(490, 319);
             this.txtTotal6.Name = "txtTotal6";
             this.txtTotal6.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTotal6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -4176,7 +4119,7 @@
             this.labelControl28.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl28.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl28.Appearance.Options.UseFont = true;
-            this.labelControl28.Location = new System.Drawing.Point(405, 331);
+            this.labelControl28.Location = new System.Drawing.Point(405, 322);
             this.labelControl28.Name = "labelControl28";
             this.labelControl28.Size = new System.Drawing.Size(74, 24);
             this.labelControl28.TabIndex = 74;
@@ -4185,7 +4128,7 @@
             // txtBudjet
             // 
             this.txtBudjet.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBudjet.Location = new System.Drawing.Point(167, 191);
+            this.txtBudjet.Location = new System.Drawing.Point(167, 182);
             this.txtBudjet.Name = "txtBudjet";
             this.txtBudjet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtBudjet.Properties.Appearance.Options.UseFont = true;
@@ -4209,7 +4152,7 @@
             // txtOil6
             // 
             this.txtOil6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtOil6.Location = new System.Drawing.Point(171, 281);
+            this.txtOil6.Location = new System.Drawing.Point(171, 272);
             this.txtOil6.Name = "txtOil6";
             this.txtOil6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtOil6.Properties.Appearance.Options.UseFont = true;
@@ -4223,7 +4166,7 @@
             // txtAmount6
             // 
             this.txtAmount6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAmount6.Location = new System.Drawing.Point(171, 328);
+            this.txtAmount6.Location = new System.Drawing.Point(171, 319);
             this.txtAmount6.Name = "txtAmount6";
             this.txtAmount6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtAmount6.Properties.Appearance.Options.UseFont = true;
@@ -4238,7 +4181,7 @@
             this.labelControl31.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl31.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl31.Appearance.Options.UseFont = true;
-            this.labelControl31.Location = new System.Drawing.Point(69, 284);
+            this.labelControl31.Location = new System.Drawing.Point(69, 275);
             this.labelControl31.Name = "labelControl31";
             this.labelControl31.Size = new System.Drawing.Size(96, 24);
             this.labelControl31.TabIndex = 66;
@@ -4249,7 +4192,7 @@
             this.labelControl32.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl32.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl32.Appearance.Options.UseFont = true;
-            this.labelControl32.Location = new System.Drawing.Point(19, 331);
+            this.labelControl32.Location = new System.Drawing.Point(19, 322);
             this.labelControl32.Name = "labelControl32";
             this.labelControl32.Size = new System.Drawing.Size(146, 24);
             this.labelControl32.TabIndex = 70;
@@ -4260,7 +4203,7 @@
             this.labelControl33.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelControl33.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.labelControl33.Appearance.Options.UseFont = true;
-            this.labelControl33.Location = new System.Drawing.Point(412, 284);
+            this.labelControl33.Location = new System.Drawing.Point(412, 275);
             this.labelControl33.Name = "labelControl33";
             this.labelControl33.Size = new System.Drawing.Size(67, 24);
             this.labelControl33.TabIndex = 67;
@@ -4270,7 +4213,7 @@
             // 
             this.btnEditPrice6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEditPrice6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEditPrice6.ImageOptions.Image")));
-            this.btnEditPrice6.Location = new System.Drawing.Point(670, 281);
+            this.btnEditPrice6.Location = new System.Drawing.Point(670, 272);
             this.btnEditPrice6.Name = "btnEditPrice6";
             this.btnEditPrice6.Size = new System.Drawing.Size(100, 30);
             this.btnEditPrice6.TabIndex = 69;
@@ -4280,7 +4223,7 @@
             // txtLitter6
             // 
             this.txtLitter6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtLitter6.Location = new System.Drawing.Point(490, 281);
+            this.txtLitter6.Location = new System.Drawing.Point(490, 272);
             this.txtLitter6.Name = "txtLitter6";
             this.txtLitter6.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLitter6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -4294,7 +4237,7 @@
             // txtFront6
             // 
             this.txtFront6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtFront6.Location = new System.Drawing.Point(171, 374);
+            this.txtFront6.Location = new System.Drawing.Point(171, 365);
             this.txtFront6.Name = "txtFront6";
             this.txtFront6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.txtFront6.Properties.Appearance.Options.UseFont = true;
@@ -4488,7 +4431,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDept.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPdOut.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCarNumE6.Properties)).EndInit();
@@ -4786,7 +4729,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private DevExpress.XtraEditors.TimeEdit txtTime;
         private DevExpress.XtraEditors.LabelControl labelControl29;
-        private DevExpress.XtraEditors.ComboBoxEdit txtDept;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbDept;
         private DevExpress.XtraEditors.ComboBoxEdit txtRemark6;
         private DevExpress.XtraEditors.ComboBoxEdit txtRemark;
         private DevExpress.XtraEditors.ComboBoxEdit txtRemark1;

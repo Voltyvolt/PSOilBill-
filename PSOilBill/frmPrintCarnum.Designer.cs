@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrintCarnum));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtDept = new DevExpress.XtraEditors.TextEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCarnum = new DevExpress.XtraEditors.TextEdit();
             this.documentViewerBarManager1 = new DevExpress.XtraPrinting.Preview.DocumentViewerBarManager(this.components);
             this.previewBar1 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.bbiDocumentMap = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
@@ -104,25 +110,21 @@
             this.printPreviewBarCheckItem17 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtCarnum = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDept = new DevExpress.XtraEditors.TextEdit();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerBarManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.txtDept);
@@ -134,6 +136,63 @@
             this.groupBox1.Size = new System.Drawing.Size(783, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(692, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "ปริ้นทะเบียน";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(526, 49);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(96, 36);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "ยกเลิก";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(424, 49);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(96, 36);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "ตกลง";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtDept
+            // 
+            this.txtDept.Location = new System.Drawing.Point(177, 19);
+            this.txtDept.Name = "txtDept";
+            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDept.Properties.Appearance.Options.UseFont = true;
+            this.txtDept.Size = new System.Drawing.Size(225, 30);
+            this.txtDept.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(73, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 24);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "หน่วยงาน :";
+            // 
+            // txtCarnum
+            // 
+            this.txtCarnum.Location = new System.Drawing.Point(177, 55);
+            this.txtCarnum.MenuManager = this.documentViewerBarManager1;
+            this.txtCarnum.Name = "txtCarnum";
+            this.txtCarnum.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtCarnum.Properties.Appearance.Options.UseFont = true;
+            this.txtCarnum.Size = new System.Drawing.Size(225, 30);
+            this.txtCarnum.TabIndex = 1;
             // 
             // documentViewerBarManager1
             // 
@@ -750,7 +809,7 @@
             // documentViewer1
             // 
             this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.documentViewer1.IsMetric = true;
+            this.documentViewer1.IsMetric = false;
             this.documentViewer1.Location = new System.Drawing.Point(3, 16);
             this.documentViewer1.Name = "documentViewer1";
             this.documentViewer1.Size = new System.Drawing.Size(777, 254);
@@ -950,25 +1009,6 @@
             this.printPreviewBarCheckItem19.Id = 60;
             this.printPreviewBarCheckItem19.Name = "printPreviewBarCheckItem19";
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(424, 49);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(96, 36);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "ตกลง";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtCarnum
-            // 
-            this.txtCarnum.Location = new System.Drawing.Point(177, 55);
-            this.txtCarnum.MenuManager = this.documentViewerBarManager1;
-            this.txtCarnum.Name = "txtCarnum";
-            this.txtCarnum.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtCarnum.Properties.Appearance.Options.UseFont = true;
-            this.txtCarnum.Size = new System.Drawing.Size(225, 30);
-            this.txtCarnum.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -988,34 +1028,6 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(73, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "หน่วยงาน :";
-            // 
-            // txtDept
-            // 
-            this.txtDept.Location = new System.Drawing.Point(177, 19);
-            this.txtDept.Name = "txtDept";
-            this.txtDept.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtDept.Properties.Appearance.Options.UseFont = true;
-            this.txtDept.Size = new System.Drawing.Size(225, 30);
-            this.txtDept.TabIndex = 1;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(526, 49);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(96, 36);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "ยกเลิก";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // frmPrintCarnum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1032,13 +1044,13 @@
             this.Text = "frmPrintCarnum";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerBarManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.printPreviewRepositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemZoomTrackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCarnum.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtDept.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1127,5 +1139,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.TextEdit txtDept;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

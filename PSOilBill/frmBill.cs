@@ -494,23 +494,27 @@ namespace PSOilBill
             int lvStatNow = Gstr.fncToInt(Gstr.fncChangeTDate(txtDate.Text));
 
             //รีสเตตัสเมื่อถึง 15:00
-            if (DTNow >= DTBreak || lvStatNow > lvSQLChkStat)
+            if (DTNow >= DTBreak)
             {
-                    DTNow = DTNow.AddDays(1);
-                    txtDate.Text = DTNow.ToString("dd/MM/yyyy");
-                    lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '" + Gstr.fncChangeTDate(txtDate.Text) + "' WHERE S_MCode = 'OilBill_02' ";
-                    lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
-             }
+                DTNow = DTNow.AddDays(1);
+                txtDate.Text = DTNow.ToString("dd/MM/yyyy");
 
-                //DTNow = DTNow.AddDays(1);
-                //txtDate.Text = DTNow.ToString("dd/MM/yyyy");
-                //lvSQL = "Update SysDocNo SET S_RunNo = 0 WHERE S_MCode = 'OilBill_02' ";
-                //lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+                    if (lvStatNow > lvSQLChkStat)
+                    {
+                        lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '" + Gstr.fncChangeTDate(txtDate.Text) + "' WHERE S_MCode = 'OilBill_02' ";
+                        lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+                    }
+            }
 
             else
             {
-                //DTNow = DTNow.AddDays(1);
                 txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+                if (lvStatNow > lvSQLChkStat)
+                {
+                    lvSQL = "Update SysDocNo SET S_RunNo = 0, S_ResetStatus = '" + Gstr.fncChangeTDate(txtDate.Text) + "' WHERE S_MCode = 'OilBill_02' ";
+                    lvSQL = GsysSQL.fncExecuteQueryData(lvSQL);
+                }
             }
              
             //ล้างข้อมูล ตาม Tab
@@ -762,10 +766,11 @@ namespace PSOilBill
                     lvCarNum = txtCarNumS6.Text + "-" + txtCarNumE6.Text;
                     lvName = txtName6.Text;
                     lvFront = txtFront6.Text;
+                    lvFront = txtFront6.Text;
                     lvMeterS = txtMeterS6.Text;
                     lvMeterE = txtMeterE6.Text;
                     lvAmountL = txtAmount6.Text;
-                    lvDept = txtDept.Text;
+                    lvDept = cmbDept.Text;
                     lvIssue = txtIssue.Text;
                     lvObjective = txtObjective.Text;
                     lvBudjet = txtBudjet.Text;
@@ -786,11 +791,11 @@ namespace PSOilBill
 
                     else if (pvMode == "Past" || pvMode == "Pasttwo")
                     {
-                        lvTimePast = txtTime.Text;
+                        lvTimePast = "00:00";
 
                         if (lvTimePast == "00:00")
                         {
-                            lvTimePast = "11:00";
+                            lvTimePast = "14:00";
                         }
                     }
                 }
@@ -981,6 +986,16 @@ namespace PSOilBill
                     lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
                     if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
+                    //ล็อคเลขมิเตอร์ใบเบิก
+                    if (rdIssue.Checked != true)
+                    {
+
+                    }
+                    else
+                    {
+                        lvFront = "ใบเบิก";
+                    }
+
                     lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
                     lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
@@ -993,7 +1008,7 @@ namespace PSOilBill
                     lvSQL += "O_MeterS = '" + lvMeterS + "', O_MeterE = '" + lvMeterE + "', O_QNo = '" + lvQ + "', ";
                     lvSQL += "O_Dept = '" + lvDept + "', O_Issue = '" + lvIssue + "', O_Objective = '" + lvObjective + "', ";
                     lvSQL += "O_Budjet = '" + lvBudjet + "', O_Asset = '" + lvAsset + "', O_Remark = '" + lvRemark + "', O_Due = '" + lvDue + "', O_Time = '" + lvTime + "', O_Year = '" + lvYear + "', O_EmpID = '" + lvEmpID + "', O_EmpName = '" + lvEmpName + "', O_Type = '" + lvType + "', O_PdIn = '" + lvproductIn + "', O_PdOut = '" + lvproductOut + "' , O_CarnumS6 = '" + lvCarnumS6 + "' , O_CarnumE6 = '" + lvCarnumE6 + "' ";
-                    lvSQL += "Where O_DocNo = '" + lvDocNo + "' "; //O_DocS = '"+ lvDocS +"' And 
+                    lvSQL += "Where O_DocNo = '" + lvDocNo + "' And O_Year = '' "; //O_DocS = '"+ lvDocS +"' And 
                     string lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
                     //DT
@@ -1027,10 +1042,10 @@ namespace PSOilBill
 
                     //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
                     //clear อันเก่า
-                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' And Q_Year = '' ";
                     if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
-                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' And Q_Year = '' ";
                     if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
                     txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -1071,13 +1086,13 @@ namespace PSOilBill
 
                     //อัพเดทเลขที่บิล ในข้อมูลห้องชั่ง
                     //clear อันเก่า
-                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' ";
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '' Where Q_OilBillNo = '" + lvDocNo + "' And Q_Year = ''  ";
                     if (lvDocNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
-                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' ";
+                    lvSQL = "Update Queue_Diary Set Q_OilBillNo = '" + lvDocNo + "' Where Q_BillingNo = '" + lvCaneNo + "' And Q_Year = ''  ";
                     if (lvCaneNo != "") lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
-                    lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
-                    lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
+                    //lvSQL = "Update Cane_OilMeter Set M_RunMetter = '" + lvMeterE + "' Where M_ID = '" + lvFront + "' ";
+                    //lvResault = GsysSQL.fncExecuteQueryData(lvSQL);
 
                     pvMode = "";
                 }
@@ -1149,7 +1164,7 @@ namespace PSOilBill
                     txtDate_EditValueChanged_1(sender, e);
                     txtTime.Text = "";
                     txtType.Text = "";
-                    txtDept.Text = "";
+                    cmbDept.Text = "";
                     txtName6.Text = "";
                     txtObjective.Text = "";
                     txtEmpName.Text = "";
@@ -1365,7 +1380,7 @@ namespace PSOilBill
 
             if (lvTab == "6" || lvTab == "ALL")
             {
-                txtDept.Text = "";
+                cmbDept.Text = "";
                 //txtIssue.Text = "";
                 txtObjective.Text = "";
                 txtBudjet.Text = "";
@@ -1564,13 +1579,13 @@ namespace PSOilBill
                     txtMeterE.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdCarry.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 0;
@@ -1598,13 +1613,17 @@ namespace PSOilBill
                     txtMeterE1.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ1.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS1.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
+                    else if (cmbDocNo.Text.Contains("C"))
+                    {
+                        rdIssue.Checked = true;
+                    }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdOil.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 1;
@@ -1632,13 +1651,17 @@ namespace PSOilBill
                     txtMeterE2.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ2.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS2.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
+                    else if (cmbDocNo.Text.Contains("C"))
+                    {
+                        rdIssue.Checked = true;
+                    }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdOil.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 2;
@@ -1666,13 +1689,17 @@ namespace PSOilBill
                     txtMeterE3.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ3.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS3.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
+                    else if (cmbDocNo.Text.Contains("C"))
+                    {
+                        rdIssue.Checked = true;
+                    }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdOil.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 3;
@@ -1700,13 +1727,17 @@ namespace PSOilBill
                     txtMeterE4.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ4.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS4.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
+                    else if (cmbDocNo.Text.Contains("C"))
+                    {
+                        rdIssue.Checked = true;
+                    }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdOil.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 4;
@@ -1734,13 +1765,17 @@ namespace PSOilBill
                     txtMeterE5.Text = DT.Rows[i]["O_MeterE"].ToString();
                     txtQ5.Text = DT.Rows[i]["O_QNo"].ToString();
 
-                    if (txtCarNumS5.Text.Contains("a"))
+                    if (cmbDocNo.Text.Contains("A"))
                     {
                         rdCarry.Checked = true;
                     }
+                    else if (cmbDocNo.Text.Contains("C"))
+                    {
+                        rdIssue.Checked = true;
+                    }
                     else
                     {
-                        rdCarry.Checked = false;
+                        rdOil.Checked = true;
                     }
 
                     tabPageAll.SelectedIndex = 5;
@@ -1763,7 +1798,7 @@ namespace PSOilBill
                     txtMeterS6.Text = DT.Rows[i]["O_MeterS"].ToString();
                     txtMeterE6.Text = DT.Rows[i]["O_MeterE"].ToString();
 
-                    txtDept.Text = DT.Rows[i]["O_Dept"].ToString();
+                    cmbDept.Text = DT.Rows[i]["O_Dept"].ToString();
                     txtIssue.Text = DT.Rows[i]["O_Issue"].ToString();
                     txtObjective.Text = DT.Rows[i]["O_Objective"].ToString();
                     txtBudjet.Text = DT.Rows[i]["O_Budjet"].ToString();
@@ -2083,7 +2118,7 @@ namespace PSOilBill
             string lvTime = tTime;
 
             //เพิ่ม
-            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Num4, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18) ";//
+            lvSQL = "Insert into SysTemp (Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Num1, Num2, Num3, Field19, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18) ";//
             lvSQL += "Values ('" + lvDocNo + "', '" + lvDay + "', '" + lvMonth + "', '" + lvYear + "', '" + lvName + "', '" + lvQuota + "', '" + lvCarNum + "', '" + lvBillNo + "', '" + lvRemark + "', '" + lvLitter + "', '" + lvPricePer + "', '" + lvPrice + "', '" + lvPrice2 + "', '" + lvMeterS + "', '" + lvMeterE + "', '" + lvFront + "', '" + lvproductIn + "', '" + lvproductOut + "', '" + lvCarnumS6 + "', '" + lvCarnumE6 + "', '" + lvTotal6 + "', '" + lvTime + "') ";
             lvResault = GsysSQL.fncExecuteQueryDataAccess(lvSQL);
             
@@ -2504,23 +2539,37 @@ namespace PSOilBill
                     cmbDocNo.Text = GsysSQL.fncGenDocNo("OilBill_02");
             }
 
-            //LoadDataDetail();
+            DataTable DT = new DataTable();
+            string lvSQL = "Select Faction_ID From Emp_Faction";
+            DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
+            for (int i = 0; i < DT.Rows.Count; i++)
+            {
+                string lvEmpId = DT.Rows[i]["Faction_ID"].ToString();
+                cmbDept.Properties.Items.Add(lvEmpId);
+            }
+            
             if (rdIssue.Checked)
                 tabPageAll.SelectedTab = tabPage2;
             else
                 tabPageAll.SelectedTab = tabPage1;
 
             if (rdIssue.Checked)
-                txtDept.Focus();
+                cmbDept.Focus();
             else
                 txtQuota.Focus();
 
             if (rdIssue.Checked)
+            {
                 txtType.Visible = true;
+            }
+
             else
+            {
                 txtType.Visible = false;
+            }
         }
+        
 
         private void txtCarNum1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -3800,7 +3849,7 @@ namespace PSOilBill
         {
             if (btnAdd.Enabled)
             {
-                MessageBox.Show("กรุณากดเพิ่มข้อมูลก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("กรุณากดเพิ่มข้อมูลหรือแก้ไขก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //TQouta.Text = "";
                 return;
             }
@@ -4001,22 +4050,7 @@ namespace PSOilBill
                 pvMode = "New";
                 try
                 {
-                    //if (pvMode == "New")
-                    //{
-                    //    if (lvTimeNow > lvTimeChk || lvLastdoc == "0")
-                    //    {
-                    //        string lvstu = fncGenDocNoX("OilBill_02", Gstr.fncToInt("S_RunNo"));
-                    //        cmbDocNo.Text = lvstu;
-                    //    }
-                        //else
-                        //{
-                        //    string lvstm = Gstr.Right(fncGetLastDocNoX(lvDate2), 5);
-                        //    string lvstl = Gstr.Left(fncGetLastDocNoX(lvDate2), 5);
-                        //    string lvstr = (Gstr.fncToInt(lvstm) + 1).ToString("00000");
-                        //    //string lvstr = fncGenDocNoX("OilBill_02", Gstr.fncToInt(lvstm.ToString()));
-                        //    cmbDocNo.Text = "C-" + lvstl + lvstr;
-                        //}
-                    //}
+                   
                 }
                 catch(Exception ex)
                 {
@@ -4034,7 +4068,7 @@ namespace PSOilBill
             string lvReturn = "";
 
             string lvDate1 = Gstr.fncChangeTDate(txtDate.Text);
-            if (lvDate1 == "20200501") lvDate1 = "20200431";
+            if (lvDate1 == "20210201") lvDate1 = "20210131";
             string lvDate = Gstr.fncChangeTDate(txtDate.Text);
             try
             {
@@ -4245,13 +4279,13 @@ namespace PSOilBill
 
         private void txtDept_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past" && pvMode != "Pasttwo" && txtDept.Text != "")
+            if (pvMode != "New" && pvMode != "Edit" && pvMode != "Past" && pvMode != "Pasttwo" && cmbDept.Text != "")
             {
                 MessageBox.Show("กรุณากดเพิ่มข้อมูลก่อน", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            txtName6.Text = GsysSQL.fncFindFactionName(txtDept.Text);
+            txtName6.Text = GsysSQL.fncFindFactionName(cmbDept.Text);
 
             if (txtName6.Text != "")
             {
@@ -4294,7 +4328,7 @@ namespace PSOilBill
                 int lvRow = DT.Rows.Count;
                 for (int i = 0; i < lvRow; i++)
                 {
-                    txtDept.Text = DT.Rows[i]["M_SecID"].ToString();
+                    cmbDept.Text = DT.Rows[i]["M_SecID"].ToString();
                     txtName6.Text = DT.Rows[i]["M_SecName"].ToString();
                     txtBudjet.Text = DT.Rows[i]["M_Budjet"].ToString();
                     txtAsset.Text = DT.Rows[i]["M_Asset"].ToString();

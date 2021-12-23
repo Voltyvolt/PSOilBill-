@@ -275,7 +275,7 @@ namespace PSOilBill
 
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo = '"+ lvDocNo +"' And O_Status = '' ";//O_DocS = '" + lvDocS + "' And
+            cmd.CommandText = "SELECT O_DocNo FROM Cane_OilBillHD WHERE O_DocNo = '"+ lvDocNo +"' And O_Status = '' And O_Year = '' ";//O_DocS = '" + lvDocS + "' And
             dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {
@@ -939,10 +939,7 @@ namespace PSOilBill
                     string lvTypeGen = dr["S_TypeGen"].ToString();
                     int lvRunDoc = Gstr.fncToInt(dr["S_RunNo"].ToString());
 
-                    if (lvRunDoc == 0)
-                        lvRunDoc = 1;
-                    else
-                        lvRunDoc += 1;
+                    lvRunDoc += 1;
 
                     string lvDocID = "";
                     if (lvTypeGen == "YYMMDept")

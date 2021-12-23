@@ -64,7 +64,7 @@ namespace PSOilBill
                 lvSQL += "And HD.O_CarFront = '" + txtFront.Text + "' ";
             }
 
-            lvSQL += "And HD.O_Status = '' and (O_Year = '' or HD.O_DocNo like 'C-%' )  "; //And HD.O_HStatus = '1'
+            lvSQL += "And HD.O_Status = '' and (O_Year = '' or HD.O_DocNo like 'C-%' )  "; //And HD.O_HStatus = '1' or HD.O_DocNo like 'C-%'
             
 
             lvSQL += "Order by HD.O_PK desc ";//by HD.O_CaneNo desc,HD.O_Date,
