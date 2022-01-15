@@ -2540,7 +2540,7 @@ namespace PSOilBill
             }
 
             DataTable DT = new DataTable();
-            string lvSQL = "Select Faction_ID From Emp_Faction";
+            string lvSQL = "Select Faction_ID From Emp_Faction WHERE Faction_Remark != '1' ";
             DT = GsysSQL.fncGetQueryData(lvSQL, DT);
 
             for (int i = 0; i < DT.Rows.Count; i++)
@@ -4068,7 +4068,7 @@ namespace PSOilBill
             string lvReturn = "";
 
             string lvDate1 = Gstr.fncChangeTDate(txtDate.Text);
-            if (lvDate1 == "20210201") lvDate1 = "20210131";
+            if (lvDate1 == "20220101") lvDate1 = "20211231";
             string lvDate = Gstr.fncChangeTDate(txtDate.Text);
             try
             {

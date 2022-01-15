@@ -912,7 +912,7 @@
             this.groupBox5.Controls.Add(this.rdOil);
             this.groupBox5.Location = new System.Drawing.Point(224, 120);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(811, 97);
+            this.groupBox5.Size = new System.Drawing.Size(811, 92);
             this.groupBox5.TabIndex = 45;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ประเภทบิล";
@@ -920,7 +920,7 @@
             // txtType
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtType.Location = new System.Drawing.Point(625, 34);
+            this.txtType.Location = new System.Drawing.Point(625, 31);
             this.txtType.Name = "txtType";
             this.txtType.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
